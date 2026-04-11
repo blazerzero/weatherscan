@@ -12,12 +12,13 @@ export function useGeolocation(): GeoState {
   const [state, setState] = useState<GeoState>({ status: 'loading' })
 
   useEffect(() => {
-    if (!navigator.geolocation) {
+    const geo = navigator.geolocation
+    if (!geo) {
       setState({ status: 'denied' })
       return
     }
 
-    const id = navigator.geolocation.watchPosition(
+    const id = geo.watchPosition(
       (pos) => {
         setState({
           status: 'success',
@@ -34,7 +35,7 @@ export function useGeolocation(): GeoState {
       { enableHighAccuracy: false, timeout: 15000, maximumAge: 300000 },
     )
 
-    return () => navigator.geolocation.clearWatch(id)
+    return () => geo.clearWatch(id)
   }, [])
 
   return state

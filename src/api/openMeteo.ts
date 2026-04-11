@@ -31,24 +31,24 @@ export function wmoLabel(code: number, isDay: boolean): string {
   return 'Unknown'
 }
 
-function degToCardinal(deg: number): string {
+export function degToCardinal(deg: number): string {
   const dirs = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW']
   return dirs[Math.round(deg / 22.5) % 16] ?? 'N'
 }
 
-function cToF(c: number): number {
+export function cToF(c: number): number {
   return Math.round(c * 9 / 5 + 32)
 }
 
-function kmToMiles(km: number): number {
+export function kmToMiles(km: number): number {
   return Math.round(km * 0.621371 * 10) / 10
 }
 
-function hpaToInHg(hpa: number): number {
+export function hpaToInHg(hpa: number): number {
   return Math.round(hpa * 0.02953 * 100) / 100
 }
 
-function mpsToMph(mps: number): number {
+export function mpsToMph(mps: number): number {
   return Math.round(mps * 2.23694)
 }
 

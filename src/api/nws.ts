@@ -76,7 +76,7 @@ function parseAlert(a: NWSAlert): WeatherAlert {
   }
 }
 
-function normalizeSeverity(s?: string): WeatherAlert['severity'] {
+export function normalizeSeverity(s?: string): WeatherAlert['severity'] {
   if (s === 'Extreme') return 'Extreme'
   if (s === 'Severe') return 'Severe'
   if (s === 'Moderate') return 'Moderate'
