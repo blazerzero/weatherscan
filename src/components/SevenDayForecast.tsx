@@ -1,4 +1,6 @@
 import type { DailyForecast } from '../types/weather'
+import { COLORS, MONO_FONT } from '../lib/constants'
+import { SlideHeader } from './SlideHeader'
 import { WeatherIcon } from './WeatherIcon'
 
 interface Props {
@@ -17,12 +19,7 @@ export function SevenDayForecast({ data }: Props) {
 
   return (
     <div className="flex flex-col h-full">
-      <div
-        className="text-center py-2 text-sm font-bold tracking-widest uppercase"
-        style={{ color: '#00aaff', borderBottom: '2px solid #1a4070', background: 'rgba(0,51,102,0.3)' }}
-      >
-        7-Day Forecast
-      </div>
+      <SlideHeader title="7-Day Forecast" />
 
       <div className="flex-1 overflow-hidden flex flex-col justify-around py-1">
         {days.map((d, i) => {
@@ -38,12 +35,12 @@ export function SevenDayForecast({ data }: Props) {
             <div
               key={d.date.toISOString()}
               className="flex items-center gap-2 px-3 py-0.5"
-              style={{ borderBottom: '1px solid #0d2a40' }}
+              style={{ borderBottom: `1px solid ${COLORS.borderDark}` }}
             >
               {/* Day */}
               <span
                 className="text-xs font-bold w-10 uppercase"
-                style={{ color: i === 0 ? '#ffcc00' : '#88bbdd' }}
+                style={{ color: i === 0 ? COLORS.gold : COLORS.textSecondary }}
               >
                 {dayLabel}
               </span>
@@ -54,19 +51,19 @@ export function SevenDayForecast({ data }: Props) {
               {/* Low */}
               <span
                 className="text-xs font-bold w-10 text-right"
-                style={{ color: '#6699bb', fontFamily: 'Courier New, monospace' }}
+                style={{ color: COLORS.textTertiary, fontFamily: MONO_FONT }}
               >
                 {d.lowF}°
               </span>
 
               {/* Temp bar */}
-              <div className="flex-1 relative h-2 rounded-full" style={{ background: '#0d2a40' }}>
+              <div className="flex-1 relative h-2 rounded-full" style={{ background: COLORS.borderDark }}>
                 <div
                   className="absolute top-0 h-full rounded-full"
                   style={{
                     left: barLeft,
                     width: barWidth,
-                    background: 'linear-gradient(90deg, #0077cc, #ffcc00)',
+                    background: `linear-gradient(90deg, ${COLORS.blueBright}, ${COLORS.gold})`,
                   }}
                 />
               </div>
@@ -74,14 +71,14 @@ export function SevenDayForecast({ data }: Props) {
               {/* High */}
               <span
                 className="text-xs font-bold w-10"
-                style={{ color: '#ffcc00', fontFamily: 'Courier New, monospace' }}
+                style={{ color: COLORS.gold, fontFamily: MONO_FONT }}
               >
                 {d.highF}°
               </span>
 
               {/* Precip */}
               {d.precipChancePct > 0 && (
-                <span className="text-xs w-8 text-right" style={{ color: '#0099dd' }}>
+                <span className="text-xs w-8 text-right" style={{ color: COLORS.blueAccent }}>
                   {d.precipChancePct}%
                 </span>
               )}

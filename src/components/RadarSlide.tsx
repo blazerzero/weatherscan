@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
 import type { Coordinates } from '../types/weather'
 import { fetchRadarFrames, radarTileUrl } from '../api/rainviewer'
+import { COLORS } from '../lib/constants'
+import { SlideHeader } from './SlideHeader'
 import 'leaflet/dist/leaflet.css'
 
 interface Props {
@@ -27,12 +29,7 @@ export function RadarSlide({ coords }: Props) {
 
   return (
     <div className="flex flex-col h-full">
-      <div
-        className="text-center py-2 text-sm font-bold tracking-widest uppercase"
-        style={{ color: '#00aaff', borderBottom: '2px solid #1a4070', background: 'rgba(0,51,102,0.3)' }}
-      >
-        Local Radar
-      </div>
+      <SlideHeader title="Local Radar" />
       <div className="flex-1 relative">
         <MapContainer
           center={[coords.lat, coords.lon]}
@@ -43,7 +40,7 @@ export function RadarSlide({ coords }: Props) {
           doubleClickZoom={false}
           keyboard={false}
           attributionControl={false}
-          style={{ height: '100%', width: '100%', background: '#001433' }}
+          style={{ height: '100%', width: '100%', background: COLORS.blueDark }}
         >
           <TileLayer
             url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
@@ -61,7 +58,7 @@ export function RadarSlide({ coords }: Props) {
         {!radarUrl && (
           <div
             className="absolute inset-0 flex items-center justify-center text-sm"
-            style={{ color: '#557799', pointerEvents: 'none' }}
+            style={{ color: COLORS.textDim, pointerEvents: 'none' }}
           >
             Loading radar...
           </div>

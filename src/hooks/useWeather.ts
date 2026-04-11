@@ -2,9 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import type { Coordinates, LocationInfo, WeatherData } from '../types/weather'
 import { fetchCurrentAndForecast, reverseGeocode } from '../api/openMeteo'
 import { enrichWithNWS, fetchAlerts } from '../api/nws'
-
-const FIVE_MIN = 5 * 60 * 1000
-const THIRTY_MIN = 30 * 60 * 1000
+import { FIVE_MIN, THIRTY_MIN } from '../lib/constants'
 
 async function loadWeather(coords: Coordinates): Promise<WeatherData> {
   // 1. Reverse-geocode to get city/state info

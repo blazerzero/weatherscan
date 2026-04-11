@@ -1,4 +1,6 @@
 import type { CurrentConditions as CC } from '../types/weather'
+import { COLORS, MONO_FONT } from '../lib/constants'
+import { uvLabel } from '../lib/format'
 import { WeatherIcon } from './WeatherIcon'
 
 interface Props {
@@ -15,17 +17,20 @@ function Row({ label, value, highlight }: RowProps) {
   return (
     <div
       className="flex justify-between items-baseline py-1 px-2"
-      style={{ borderBottom: '1px solid #1a4070' }}
+      style={{ borderBottom: `1px solid ${COLORS.border}` }}
     >
       <span
         className="text-xs uppercase tracking-widest"
-        style={{ color: '#557799', minWidth: '5.5rem' }}
+        style={{ color: COLORS.textDim, minWidth: '5.5rem' }}
       >
         {label}
       </span>
       <span
         className="text-sm font-bold text-right"
-        style={{ color: highlight ? '#ffcc00' : '#e8f4ff', textShadow: highlight ? '0 0 8px #cc8800' : undefined }}
+        style={{
+          color: highlight ? COLORS.gold : COLORS.textPrimary,
+          textShadow: highlight ? `0 0 8px ${COLORS.goldDark}` : undefined,
+        }}
       >
         {value}
       </span>
@@ -42,12 +47,12 @@ export function CurrentConditions({ data }: Props) {
   return (
     <section
       className="flex flex-col h-full"
-      style={{ borderRight: '2px solid #1a4070' }}
+      style={{ borderRight: `2px solid ${COLORS.border}` }}
     >
       {/* Big temperature + condition */}
       <div
         className="flex flex-col items-center justify-center py-4 px-2 gap-1"
-        style={{ borderBottom: '2px solid #1a4070', background: 'rgba(0,51,102,0.25)' }}
+        style={{ borderBottom: `2px solid ${COLORS.border}`, background: 'rgba(0,51,102,0.25)' }}
       >
         <WeatherIcon
           code={data.conditionCode}
@@ -57,16 +62,16 @@ export function CurrentConditions({ data }: Props) {
         <div
           className="text-6xl font-bold leading-none"
           style={{
-            color: '#e8f4ff',
-            textShadow: '0 0 20px #0077cc, 0 0 6px #00aaff',
-            fontFamily: 'Courier New, monospace',
+            color: COLORS.textPrimary,
+            textShadow: `0 0 20px ${COLORS.blueBright}, 0 0 6px ${COLORS.cyan}`,
+            fontFamily: MONO_FONT,
           }}
         >
           {data.temperatureF}°
         </div>
         <div
           className="text-sm font-bold uppercase tracking-widest mt-1"
-          style={{ color: '#00aaff' }}
+          style={{ color: COLORS.cyan }}
         >
           {data.conditionLabel}
         </div>
@@ -86,18 +91,10 @@ export function CurrentConditions({ data }: Props) {
       {/* Observed at */}
       <div
         className="text-center text-xs py-1"
-        style={{ color: '#557799', borderTop: '1px solid #1a4070' }}
+        style={{ color: COLORS.textDim, borderTop: `1px solid ${COLORS.border}` }}
       >
         Obs: {data.observedAt.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}
       </div>
     </section>
   )
-}
-
-function uvLabel(uv: number): string {
-  if (uv <= 2) return `${uv} Low`
-  if (uv <= 5) return `${uv} Moderate`
-  if (uv <= 7) return `${uv} High`
-  if (uv <= 10) return `${uv} V.High`
-  return `${uv} Extreme`
 }

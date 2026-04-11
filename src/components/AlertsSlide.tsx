@@ -1,23 +1,18 @@
 import type { WeatherAlert } from '../types/weather'
+import { COLORS } from '../lib/constants'
+import { formatAlertTime } from '../lib/format'
+import { SlideHeader } from './SlideHeader'
 
 interface Props {
   alerts: WeatherAlert[]
 }
 
 const SEVERITY_COLORS: Record<WeatherAlert['severity'], { text: string; border: string; bg: string }> = {
-  Extreme: { text: '#ff3300', border: '#ff3300', bg: 'rgba(255,51,0,0.1)' },
-  Severe:  { text: '#ff8800', border: '#ff8800', bg: 'rgba(255,136,0,0.1)' },
-  Moderate:{ text: '#ffcc00', border: '#ffcc00', bg: 'rgba(255,204,0,0.1)' },
-  Minor:   { text: '#00cc44', border: '#00cc44', bg: 'rgba(0,204,68,0.1)' },
-  Unknown: { text: '#88bbdd', border: '#1a4070', bg: 'transparent' },
-}
-
-function formatTime(d: Date | null): string {
-  if (!d) return '--'
-  return d.toLocaleString('en-US', {
-    weekday: 'short', month: 'short', day: 'numeric',
-    hour: '2-digit', minute: '2-digit', hour12: true,
-  })
+  Extreme: { text: COLORS.red,           border: COLORS.red,           bg: 'rgba(255,51,0,0.1)' },
+  Severe:  { text: COLORS.orange,        border: COLORS.orange,        bg: 'rgba(255,136,0,0.1)' },
+  Moderate:{ text: COLORS.gold,          border: COLORS.gold,          bg: 'rgba(255,204,0,0.1)' },
+  Minor:   { text: COLORS.green,         border: COLORS.green,         bg: 'rgba(0,204,68,0.1)' },
+  Unknown: { text: COLORS.textSecondary, border: COLORS.border,        bg: 'transparent' },
 }
 
 export function AlertsSlide({ alerts }: Props) {
@@ -25,22 +20,17 @@ export function AlertsSlide({ alerts }: Props) {
     return (
       <div className="flex flex-col h-full items-center justify-center gap-2">
         <div className="text-4xl">✅</div>
-        <div className="text-sm font-bold uppercase tracking-widest" style={{ color: '#00cc44' }}>
+        <div className="text-sm font-bold uppercase tracking-widest" style={{ color: COLORS.green }}>
           No Active Alerts
         </div>
-        <div className="text-xs" style={{ color: '#557799' }}>No warnings or advisories for your area.</div>
+        <div className="text-xs" style={{ color: COLORS.textDim }}>No warnings or advisories for your area.</div>
       </div>
     )
   }
 
   return (
     <div className="flex flex-col h-full">
-      <div
-        className="text-center py-2 text-sm font-bold tracking-widest uppercase"
-        style={{ color: '#ff3300', borderBottom: '2px solid #ff3300', background: 'rgba(255,51,0,0.1)' }}
-      >
-        ⚠ Active Alerts ({alerts.length})
-      </div>
+      <SlideHeader title={`⚠ Active Alerts (${alerts.length})`} alert />
       <div className="flex-1 overflow-y-auto">
         {alerts.map((a) => {
           const colors = SEVERITY_COLORS[a.severity]
@@ -64,11 +54,11 @@ export function AlertsSlide({ alerts }: Props) {
                   {a.severity}
                 </div>
               </div>
-              <div className="text-xs mt-1" style={{ color: '#88bbdd' }}>
+              <div className="text-xs mt-1" style={{ color: COLORS.textSecondary }}>
                 {a.areaDesc}
               </div>
-              <div className="text-xs mt-0.5" style={{ color: '#557799' }}>
-                Until: {formatTime(a.expires)}
+              <div className="text-xs mt-0.5" style={{ color: COLORS.textDim }}>
+                Until: {formatAlertTime(a.expires)}
               </div>
             </div>
           )
