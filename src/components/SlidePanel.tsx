@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import type { WeatherData, SlideType } from "@/types/weather";
+import type { SlideType, WeatherData } from "@/types/weather";
 import { AlertsSlide } from "./AlertsSlide";
 import { CurrentConditions } from "./CurrentConditions";
 import { HourlyForecast } from "./HourlyForecast";
