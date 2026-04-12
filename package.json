@@ -6,6 +6,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
+		"deploy": "wrangler deploy",
 		"build": "tsc -b && vite build",
 		"preview": "vite preview",
 		"typecheck": "tsc --noEmit",
@@ -14,8 +15,7 @@
 		"test:coverage": "vitest run --coverage",
 		"lint": "biome lint --write",
 		"format": "biome format --write",
-		"prepare": "husky",
-		"deploy": "yarn build && wrangler pages deploy"
+		"prepare": "husky"
 	},
 	"engines": {
 		"node": "^24"
@@ -49,6 +49,6 @@
 		"vite-plugin-pwa": "^0.21.1",
 		"vitest": "^3.1.1",
 		"workbox-window": "^7.3.0",
-		"wrangler": "^3"
+		"wrangler": "^4"
 	}
 }

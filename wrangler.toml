@@ -1,7 +1,10 @@
 name = "weatherscan"
 compatibility_date = "2026-04-11"
-compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = "dist"
 
 [assets]
 directory = "./dist"
+
+[observability]
+[observability.logs]
+enabled = true
+invocation_logs = true
