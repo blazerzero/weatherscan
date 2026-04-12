@@ -6,6 +6,7 @@ import { WeatherIcon } from "@/components/WeatherIcon";
 import type { CurrentConditions, LocationInfo } from "@/types/weather";
 import "leaflet/dist/leaflet.css";
 import styles from "./Sidebar.module.scss";
+import { DateTime } from "luxon";
 
 interface Props {
 	location: LocationInfo | null;
@@ -14,11 +15,11 @@ interface Props {
 }
 
 export function Sidebar({ location, current, isLoading }: Props) {
-	const [now, setNow] = useState(new Date());
+	const [now, setNow] = useState<DateTime>(DateTime.now());
 	const [radarUrl, setRadarUrl] = useState<string | null>(null);
 
 	useEffect(() => {
-		const id = setInterval(() => setNow(new Date()), 1000);
+		const id = setInterval(() => setNow(DateTime.now()), 1000);
 		return () => clearInterval(id);
 	}, []);
 
@@ -34,22 +35,10 @@ export function Sidebar({ location, current, isLoading }: Props) {
 		};
 	}, []);
 
-	const tz =
-		location?.timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone;
 	const city = location?.city ?? "---";
 
-	const timeStr = now.toLocaleTimeString("en-US", {
-		timeZone: tz,
-		hour: "numeric",
-		minute: "2-digit",
-		second: "2-digit",
-		hour12: true,
-	});
-	const dateStr = now.toLocaleDateString("en-US", {
-		timeZone: tz,
-		month: "short",
-		day: "numeric",
-	});
+	const dateStr = now.toFormat("LLL dd");
+	const timeStr = now.toFormat("hh:mm:ss a").toLocaleLowerCase();
 
 	const secondaryStat = current
 		? `humidity ${current.humidityPct}%`
@@ -58,25 +47,9 @@ export function Sidebar({ location, current, isLoading }: Props) {
 			: "";
 
 	return (
-		<div
-			className={styles.sidebar}
-			style={{
-				background:
-					"linear-gradient(160deg, #72bde8 0%, #4a9ad0 50%, #3a80bc 100%)",
-			}}
-		>
+		<div className={styles.sidebar}>
 			{/* Decorative circular arc */}
-			<svg
-				className={styles.decorativeArc}
-				style={{
-					width: "160%",
-					height: "160%",
-					right: "-30%",
-					top: "-20%",
-					opacity: 0.18,
-				}}
-				viewBox="0 0 400 500"
-			>
+			<svg className={styles.decorativeArc} viewBox="0 0 400 500">
 				<circle
 					cx="280"
 					cy="180"
@@ -98,102 +71,48 @@ export function Sidebar({ location, current, isLoading }: Props) {
 			{/* Date / time — top right */}
 			<div className={styles.dateTime}>
 				<div className={styles.dateTimeInner}>
-					<div
-						style={{
-							color: "#0d1f3a",
-							fontSize: "1rem",
-							fontWeight: 700,
-						}}
-					>
-						{dateStr}
-					</div>
-					<div
-						style={{
-							color: "#0d1f3a",
-							fontSize: "1rem",
-							fontWeight: 700,
-						}}
-					>
-						{timeStr}
-					</div>
+					<div className={styles.dateTimeText}>{dateStr}</div>
+					<div className={styles.dateTimeText}>{timeStr}</div>
 				</div>
 			</div>
 
 			{/* weatherscan wordmark */}
 			<div className={styles.wordmark}>
-				<div
-					style={{
-						color: "#1a5a9a",
-						fontSize: "2rem",
-						fontWeight: 700,
-						letterSpacing: "-0.01em",
-						textAlign: "right",
-					}}
-				>
-					weatherscan
-				</div>
+				<div className={styles.wordmarkText}>weatherscan</div>
 			</div>
 
-			{/* City name band */}
-			<div
-				className={styles.cityBand}
-				style={{ background: "#c8aa38" }}
-			>
-				<div
-					style={{
-						color: "#0d1f3a",
-						fontSize: "1.5rem",
-						fontWeight: 700,
-						textAlign: "center",
-					}}
-				>
-					{city}
+			<div className={styles.currentWeatherWrapper}>
+				{/* City name band */}
+				<div className={styles.cityBand}>
+					<div className={styles.cityName}>{city}</div>
 				</div>
-			</div>
 
-			{/* now / temperature / icon */}
-			<div className={styles.currentWeather}>
-				<div style={{ color: "#0d1f3a", fontSize: "1.5rem", fontWeight: 900 }}>
-					now
-				</div>
-				<div className={styles.tempRow}>
-					<div
-						style={{
-							color: "#0a1420",
-							fontSize: "3.75rem",
-							fontWeight: 700,
-							lineHeight: 1,
-						}}
-					>
-						{current?.temperatureF ?? "--"}
+				{/* now / temperature / icon */}
+				<div className={styles.currentWeather}>
+					<div className={styles.nowLabel}>now</div>
+					<div className={styles.tempRow}>
+						<div className={styles.temperature}>
+							{current?.temperatureF ?? "--"}
+						</div>
+						{current && (
+							<WeatherIcon
+								code={current.conditionCode}
+								isDay={current.isDay}
+								className={styles.currentIcon}
+								size="7rem"
+							/>
+						)}
 					</div>
-					{current && (
-						<WeatherIcon
-							code={current.conditionCode}
-							isDay={current.isDay}
-							className={styles.currentIcon}
-						/>
-					)}
+					<div className={styles.secondaryStat}>{secondaryStat}</div>
 				</div>
-				<div
-					style={{ color: "#1a3a6a", fontSize: "1.5rem", marginTop: "0.375rem" }}
-				>
-					{secondaryStat}
-				</div>
-			</div>
 
-			{/* Flexible spacer */}
-			<div className={styles.spacer} />
+				<div className={styles.currentWeatherWrapperShadow} />
+			</div>
 
 			{/* PAST 3 HOURS label + mini radar */}
 			<div className={styles.radarSection}>
-				<div
-					className={styles.radarLabel}
-					style={{ background: "rgba(15,25,55,0.75)", color: "#aaccee" }}
-				>
-					PAST 3 HOURS
-				</div>
-				<div style={{ height: "9rem", position: "relative" }}>
+				<div className={styles.radarLabel}>PAST 3 HOURS</div>
+				<div className={styles.radarContainer}>
 					{location?.coords ? (
 						<MapContainer
 							center={[location.coords.lat, location.coords.lon]}
@@ -204,7 +123,7 @@ export function Sidebar({ location, current, isLoading }: Props) {
 							doubleClickZoom={false}
 							keyboard={false}
 							attributionControl={false}
-							style={{ height: "100%", width: "100%", background: "#1a2d44" }}
+							className={styles.radarMap}
 						>
 							<TileLayer
 								url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
@@ -215,10 +134,7 @@ export function Sidebar({ location, current, isLoading }: Props) {
 							)}
 						</MapContainer>
 					) : (
-						<div
-							className={styles.radarPlaceholder}
-							style={{ background: "#1a2d44", color: "#5577aa" }}
-						>
+						<div className={styles.radarPlaceholder}>
 							{isLoading ? "loading…" : "no location"}
 						</div>
 					)}
@@ -226,10 +142,7 @@ export function Sidebar({ location, current, isLoading }: Props) {
 			</div>
 
 			{/* Audio player */}
-			<div
-				className={styles.audioRow}
-				style={{ background: "rgba(10,15,40,0.6)" }}
-			>
+			<div className={styles.audioRow}>
 				<AudioPlayer />
 			</div>
 		</div>

@@ -22,45 +22,20 @@ export function FiveDayFooter({ daily, location }: Props) {
 
 	return (
 		<div>
-			<div
-				className={styles.header}
-				style={{ background: "#c8aa38", borderTop: "2px solid #a08828" }}
-			>
-				<span className={styles.city} style={{ color: "#0d1f3a" }}>
-					{location.city.toUpperCase()}:
-				</span>
-				<span className={styles.label} style={{ color: "#1a2d7a" }}>
-					5 DAY FORECAST
-				</span>
+			<div className={styles.header}>
+				<span className={styles.city}>{location.city.toUpperCase()}:</span>
+				<span className={styles.label}>5 DAY FORECAST</span>
 			</div>
 
-			<div
-				className={styles.columns}
-				style={{
-					background:
-						"linear-gradient(180deg, #8ab4e4 0%, #6090cc 50%, #5080bc 100%)",
-				}}
-			>
-				{days.map((d, i) => {
+			<div className={styles.columns}>
+				{days.map((d) => {
 					const dayLabel = d.date
 						.toLocaleDateString("en-US", { weekday: "short", timeZone: tz })
 						.toUpperCase();
 					return (
-						<div
-							key={d.date.toISOString()}
-							className={styles.column}
-							style={{
-								borderRight:
-									i < days.length - 1 ? "1px solid #3a5888" : undefined,
-							}}
-						>
-							<div
-								className={styles.dayHeader}
-								style={{ background: i === 0 ? "#9abce8" : "#5a7ec0" }}
-							>
-								<span className={styles.dayName} style={{ color: "#0a1840" }}>
-									{dayLabel}
-								</span>
+						<div key={d.date.toISOString()} className={styles.column}>
+							<div className={styles.dayHeader}>
+								<span className={styles.dayName}>{dayLabel}</span>
 							</div>
 
 							<div className={styles.dayBody}>
@@ -68,14 +43,11 @@ export function FiveDayFooter({ daily, location }: Props) {
 									code={d.conditionCode}
 									isDay
 									className={styles.icon}
+									size="6rem"
 								/>
 								<div className={styles.temps}>
-									<span className={styles.highTemp} style={{ color: "#0a1428" }}>
-										{d.highF}
-									</span>
-									<span className={styles.lowTemp} style={{ color: "#333333" }}>
-										{d.lowF}
-									</span>
+									<span className={styles.highTemp}>{d.highF}</span>
+									<span className={styles.lowTemp}>{d.lowF}</span>
 								</div>
 							</div>
 						</div>

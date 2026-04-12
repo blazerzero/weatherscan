@@ -16,10 +16,12 @@
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
+	color: #22aa44;
 }
 
 .noAlertsDesc {
 	font-size: 0.875rem;
+	color: #5577aa;
 }
 
 .alertList {
@@ -33,6 +35,8 @@
 	margin: 0.375rem 0.5rem;
 	padding: 0.5rem;
 	border-radius: 0.25rem;
+	border: 1px solid var(--sev-border);
+	background: var(--sev-bg);
 }
 
 .alertHeader {
@@ -47,6 +51,7 @@
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 0.025em;
+	color: var(--sev-color);
 }
 
 .alertSeverity {
@@ -56,14 +61,18 @@
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
 	flex-shrink: 0;
+	color: var(--sev-color);
+	border: 1px solid var(--sev-border);
 }
 
 .alertArea {
 	font-size: 0.875rem;
 	margin-top: 0.25rem;
+	color: #99bbdd;
 }
 
 .alertExpires {
 	font-size: 0.875rem;
 	margin-top: 0.125rem;
+	color: #5577aa;
 }

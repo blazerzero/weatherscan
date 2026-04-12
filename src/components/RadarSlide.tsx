@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { fetchRadarFrames, radarTileUrl } from "@/api/rainviewer";
-import { COLORS } from "@/lib/constants";
 import type { Coordinates } from "@/types/weather";
 import "leaflet/dist/leaflet.css";
 import styles from "./RadarSlide.module.scss";
@@ -41,7 +40,7 @@ export function RadarSlide({ coords }: Props) {
 					doubleClickZoom={false}
 					keyboard={false}
 					attributionControl={false}
-					style={{ height: "100%", width: "100%", background: COLORS.blueDark }}
+					className={styles.map}
 				>
 					<TileLayer
 						url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
@@ -51,12 +50,7 @@ export function RadarSlide({ coords }: Props) {
 				</MapContainer>
 
 				{!radarUrl && (
-					<div
-						className={styles.loadingOverlay}
-						style={{ color: COLORS.textDim }}
-					>
-						Loading radar...
-					</div>
+					<div className={styles.loadingOverlay}>Loading radar...</div>
 				)}
 			</div>
 		</div>

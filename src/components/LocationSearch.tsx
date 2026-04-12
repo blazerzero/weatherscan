@@ -34,23 +34,10 @@ export function LocationSearch({ onLocationFound }: Props) {
 	};
 
 	return (
-		<div
-			className={styles.container}
-			style={{
-				background: "linear-gradient(180deg, #000d1a 0%, #001433 100%)",
-			}}
-		>
-			<div
-				className={styles.title}
-				style={{ color: "#00aaff", textShadow: "0 0 20px #0077cc" }}
-			>
-				WeatherScan
-			</div>
+		<div className={styles.container}>
+			<div className={styles.title}>WeatherScan</div>
 
-			<div
-				className={styles.instructions}
-				style={{ color: "#557799" }}
-			>
+			<div className={styles.instructions}>
 				Location access was denied or unavailable.
 				<br />
 				Enter a city name or zip code to get started.
@@ -64,33 +51,18 @@ export function LocationSearch({ onLocationFound }: Props) {
 					onChange={(e) => setQuery(e.target.value)}
 					placeholder="City, State or Zip"
 					className={styles.input}
-					style={{
-						background: "#001a40",
-						border: "1px solid #1a4070",
-						color: "#e8f4ff",
-					}}
 					autoFocus
 				/>
 				<button
 					type="submit"
 					disabled={loading}
 					className={styles.submitButton}
-					style={{
-						background: "#003366",
-						color: "#00aaff",
-						border: "1px solid #0055a0",
-						opacity: loading ? 0.6 : 1,
-					}}
 				>
 					{loading ? "..." : "Go"}
 				</button>
 			</form>
 
-			{error && (
-				<div className={styles.errorMsg} style={{ color: "#ff8800" }}>
-					{error}
-				</div>
-			)}
+			{error && <div className={styles.errorMsg}>{error}</div>}
 		</div>
 	);
 }

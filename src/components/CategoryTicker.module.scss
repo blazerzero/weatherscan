@@ -3,22 +3,8 @@
 	display: flex;
 	align-items: center;
 	overflow: hidden;
-	height: 1.625rem;
-}
-
-.city {
-	flex-shrink: 0;
-	font-size: 0.75rem;
-	font-weight: 700;
-	letter-spacing: 0.05em;
-	padding: 0 0.5rem;
-	white-space: nowrap;
-}
-
-.sep {
-	flex-shrink: 0;
-	font-size: 0.75rem;
-	padding: 0 0.25rem;
+	height: 2.5rem;
+	background: #0a0a22;
 }
 
 .strip {
@@ -35,4 +21,28 @@
 	left: 0;
 	display: flex;
 	align-items: center;
+	will-change: transform;
+}
+
+.innerSep {
+	width: 20px;
+	flex-shrink: 0;
+	text-align: center;
+	font-size: 1.25rem;
+	color: #2a2a55;
+	padding: 0 0.5rem;
+}
+
+.slot {
+	width: 105px;
+	flex-shrink: 0;
+	text-align: center;
+	font-size: 1.25rem;
+	font-weight: bold;
+	letter-spacing: 0.08em;
+	color: #2a2a55;
+
+	&.slotActive {
+		color: #ffffff;
+	}
 }

@@ -16,8 +16,18 @@
 	letter-spacing: 0.05em;
 	cursor: pointer;
 	transition: all 0.15s ease;
+	background: rgba(0, 85, 160, 0.3);
+	color: #00aaff;
+	border: 1px solid #0055a0;
+
+	&.muted {
+		background: rgba(80, 80, 80, 0.2);
+		color: #557799;
+		border-color: #334455;
+	}
 }
 
 .offlineLabel {
 	font-size: 0.75rem;
+	color: #557799;
 }

@@ -34,6 +34,11 @@ vi.mock("react-leaflet", () => ({
 	useMap: vi.fn(),
 }));
 
+// Stub lottie-web — it accesses canvas APIs unavailable in happy-dom
+vi.mock("lottie-web", () => ({
+	default: { loadAnimation: vi.fn(() => ({ destroy: vi.fn() })) },
+}));
+
 // Stub global fetch so tests must opt-in via vi.stubGlobal or vi.spyOn
 if (typeof globalThis.fetch === "undefined") {
 	globalThis.fetch = vi.fn();

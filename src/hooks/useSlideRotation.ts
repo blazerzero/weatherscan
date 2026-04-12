@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-import type { SlideType } from "@/types/weather";
+import type { MainPanelSlideType } from "@/types/weather";
 
-const SLIDE_DURATION_MS = 30_000;
+const SLIDE_DURATION_MS = 15_000;
 
-export function useSlideRotation(slides: SlideType[]): {
-	current: SlideType;
+export function useSlideRotation(slides: MainPanelSlideType[]): {
+	current: MainPanelSlideType;
 	index: number;
 	advance: () => void;
 	goTo: (i: number) => void;

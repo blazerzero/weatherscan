@@ -1,7 +1,6 @@
-import { COLORS } from "@/lib/constants";
 import type { DailyForecast } from "@/types/weather";
-import { WeatherIcon } from "./WeatherIcon";
 import styles from "./SevenDayForecast.module.scss";
+import { WeatherIcon } from "./WeatherIcon";
 
 interface Props {
 	data: DailyForecast[];
@@ -19,63 +18,29 @@ export function SevenDayForecast({ data }: Props) {
 						: d.date.toLocaleDateString("en-US", { weekday: "short" });
 
 				return (
-					<div
-						key={d.date.toISOString()}
-						className={styles.dayCol}
-						style={{
-							borderRight:
-								i < days.length - 1 ? `1px solid ${COLORS.borderDark}` : "none",
-						}}
-					>
+					<div key={d.date.toISOString()} className={styles.dayCol}>
 						{/* Day name header */}
-						<div
-							className={styles.dayHeader}
-							style={{
-								background: COLORS.panelMid,
-								color: i === 0 ? COLORS.gold : COLORS.textPrimary,
-							}}
-						>
-							{dayLabel}
-						</div>
+						<div className={styles.dayHeader}>{dayLabel}</div>
 
 						{/* Icon + condition area */}
-						<div
-							className={styles.iconArea}
-							style={{ background: COLORS.panelBg }}
-						>
-							<WeatherIcon code={d.conditionCode} isDay className={styles.icon} />
-							<span
-								className={styles.conditionLabel}
-								style={{ color: COLORS.textPrimary }}
-							>
-								{d.conditionLabel}
-							</span>
+						<div className={styles.iconArea}>
+							<WeatherIcon
+								code={d.conditionCode}
+								isDay
+								className={styles.icon}
+								size="8rem"
+							/>
+							<span className={styles.conditionLabel}>{d.conditionLabel}</span>
 						</div>
 
 						{/* High temp */}
-						<div
-							className={styles.highTemp}
-							style={{ background: COLORS.blueBright }}
-						>
-							<span
-								className={styles.highTempValue}
-								style={{ color: COLORS.textPrimary }}
-							>
-								{d.highF}
-							</span>
+						<div className={styles.highTemp}>
+							<span className={styles.highTempValue}>{d.highF}</span>
 						</div>
 
 						{/* Low temp */}
-						<div
-							className={styles.lowTemp}
-							style={{ background: COLORS.panelDark }}
-						>
-							<span
-								className={styles.lowTempValue}
-								style={{ color: COLORS.textSecondary }}
-							>
-								{d.lowF}
-							</span>
+						<div className={styles.lowTemp}>
+							<span className={styles.lowTempValue}>{d.lowF}</span>
 						</div>
 					</div>
 				);

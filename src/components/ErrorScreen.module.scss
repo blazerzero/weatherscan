@@ -10,10 +10,12 @@
 .title {
 	font-size: 1.5rem;
 	font-weight: 700;
+	color: #dd2200;
 }
 
 .subtitle {
 	font-size: 0.875rem;
+	color: #99bbdd;
 }
 
 .retryButton {
@@ -24,4 +26,7 @@
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
 	cursor: pointer;
+	background: #162870;
+	color: #d4a830;
+	border: 1px solid #d4a830;
 }

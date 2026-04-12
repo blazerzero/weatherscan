@@ -11,7 +11,11 @@ import { SlidePanel } from "@/components/SlidePanel";
 import { useGeolocation } from "@/hooks/useGeolocation";
 import { useSlideRotation } from "@/hooks/useSlideRotation";
 import { useWeather } from "@/hooks/useWeather";
-import type { Coordinates, LocationInfo, SlideType } from "@/types/weather";
+import type {
+	Coordinates,
+	LocationInfo,
+	MainPanelSlideType,
+} from "@/types/weather";
 import styles from "./App.module.scss";
 
 export function App() {
@@ -41,23 +45,16 @@ export function App() {
 		geo.status === "denied" && !manualLocation && !data;
 	const activeLocation = data?.location ?? manualLocation ?? null;
 
-	const slides: SlideType[] = [
+	const slides: MainPanelSlideType[] = [
 		"currently",
-		"hourly",
-		"7day",
 		"radar",
+		"7day",
 		...(data?.alerts && data.alerts.length > 0 ? (["alerts"] as const) : []),
 	];
 	const { current, index: slideIndex } = useSlideRotation(slides);
 
 	return (
-		<div
-			className={styles.app}
-			style={{
-				background:
-					"linear-gradient(160deg, #72bde8 0%, #4a9ad0 50%, #3a80bc 100%)",
-			}}
-		>
+		<div className={styles.app}>
 			<div className={styles.mainRow}>
 				<div className={styles.sidebarCol}>
 					{showLocationSearch ? (
@@ -72,13 +69,8 @@ export function App() {
 				</div>
 
 				<div className={styles.contentCol}>
-					<CategoryTicker
-						city={activeLocation?.city ?? null}
-						slides={slides}
-						activeIndex={slideIndex}
-					/>
-
-					<div className={styles.mainPanel} style={{ background: "#2244b0" }}>
+					<div className={styles.mainPanel}>
+						<CategoryTicker slides={slides} activeIndex={slideIndex} />
 						{isLoading && !data ? (
 							<LoadingScreen />
 						) : isError ? (
@@ -103,16 +95,7 @@ export function App() {
 			)}
 
 			{data && isLoading && (
-				<div
-					className={styles.staleIndicator}
-					style={{
-						background: "rgba(0,0,0,0.55)",
-						color: "#99bbdd",
-						border: "1px solid #2a44a8",
-					}}
-				>
-					Updating…
-				</div>
+				<div className={styles.staleIndicator}>Updating…</div>
 			)}
 		</div>
 	);

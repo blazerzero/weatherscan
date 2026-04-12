@@ -1,22 +1,25 @@
 .app {
 	width: 100vw;
-	height: 100vh;
+	height: 80vh;
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
+	background: linear-gradient(160deg, #72bde8 0%, #4a9ad0 50%, #3a80bc 100%);
+	padding: 10vh 0;
 }
 
 .mainRow {
-	display: flex;
 	flex: 1 1 0%;
+	display: grid;
+	grid-template-columns: 1fr 3fr;
 	overflow: hidden;
+	gap: 2rem;
 }
 
 .sidebarCol {
 	flex-shrink: 0;
 	display: flex;
 	flex-direction: column;
-	width: 33%;
 }
 
 .contentCol {
@@ -24,11 +27,15 @@
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
+	gap: 2rem;
 }
 
 .mainPanel {
 	flex: 1 1 0%;
 	overflow: hidden;
+	background: #2244b0;
+	display: flex;
+	flex-direction: column;
 }
 
 .staleIndicator {
@@ -39,4 +46,7 @@
 	padding: 0.125rem 0.5rem;
 	border-radius: 0.25rem;
 	z-index: 30;
+	background: rgba(0, 0, 0, 0.55);
+	color: #99bbdd;
+	border: 1px solid #2a44a8;
 }

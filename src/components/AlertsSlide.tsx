@@ -1,3 +1,4 @@
+import type React from "react";
 import { COLORS } from "@/lib/constants";
 import { formatAlertTime } from "@/lib/format";
 import type { WeatherAlert } from "@/types/weather";
@@ -39,13 +40,8 @@ export function AlertsSlide({ alerts }: Props) {
 		return (
 			<div className={styles.noAlerts}>
 				<div className={styles.noAlertsIcon}>✅</div>
-				<div
-					className={styles.noAlertsTitle}
-					style={{ color: COLORS.green }}
-				>
-					No Active Alerts
-				</div>
-				<div className={styles.noAlertsDesc} style={{ color: COLORS.textDim }}>
+				<div className={styles.noAlertsTitle}>No Active Alerts</div>
+				<div className={styles.noAlertsDesc}>
 					No warnings or advisories for your area.
 				</div>
 			</div>
@@ -60,35 +56,20 @@ export function AlertsSlide({ alerts }: Props) {
 					<div
 						key={a.id}
 						className={styles.alertCard}
-						style={{
-							border: `1px solid ${colors.border}`,
-							background: colors.bg,
-						}}
+						style={
+							{
+								"--sev-color": colors.text,
+								"--sev-border": colors.border,
+								"--sev-bg": colors.bg,
+							} as React.CSSProperties
+						}
 					>
 						<div className={styles.alertHeader}>
-							<div
-								className={styles.alertEvent}
-								style={{ color: colors.text }}
-							>
-								{a.event}
-							</div>
-							<div
-								className={styles.alertSeverity}
-								style={{
-									color: colors.text,
-									border: `1px solid ${colors.border}`,
-								}}
-							>
-								{a.severity}
-							</div>
+							<div className={styles.alertEvent}>{a.event}</div>
+							<div className={styles.alertSeverity}>{a.severity}</div>
 						</div>
-						<div
-							className={styles.alertArea}
-							style={{ color: COLORS.textSecondary }}
-						>
-							{a.areaDesc}
-						</div>
-						<div className={styles.alertExpires} style={{ color: COLORS.textDim }}>
+						<div className={styles.alertArea}>{a.areaDesc}</div>
+						<div className={styles.alertExpires}>
 							Until: {formatAlertTime(a.expires)}
 						</div>
 					</div>

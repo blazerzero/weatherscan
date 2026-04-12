@@ -1,3 +1,9 @@
 .strip {
 	flex-shrink: 0;
+	opacity: 0;
+	transition: opacity 0.35s ease;
+
+	&.visible {
+		opacity: 1;
+	}
 }

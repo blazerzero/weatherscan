@@ -41,63 +41,20 @@ export function Header({ location }: Props) {
 		: "ACQUIRING LOCATION...";
 
 	return (
-		<header
-			className={styles.header}
-			style={{
-				background:
-					"linear-gradient(90deg, #003366 0%, #001a40 50%, #003366 100%)",
-				borderBottom: "2px solid #0055a0",
-			}}
-		>
+		<header className={styles.header}>
 			{/* Logo */}
 			<div className={styles.logo}>
-				<div
-					className={styles.logoTitle}
-					style={{
-						color: "#00aaff",
-						textShadow: "0 0 12px #0077cc, 0 0 4px #00aaff",
-						fontFamily: "Courier New, monospace",
-					}}
-				>
-					WeatherScan
-				</div>
-				<div
-					className={styles.logoBadge}
-					style={{
-						background: "#0055a0",
-						color: "#88bbdd",
-					}}
-				>
-					LOCAL
-				</div>
+				<div className={styles.logoTitle}>WeatherScan</div>
+				<div className={styles.logoBadge}>LOCAL</div>
 			</div>
 
 			{/* Location */}
-			<div
-				className={styles.location}
-				style={{ color: "#ffcc00", textShadow: "0 0 8px #cc8800" }}
-			>
-				{locationStr}
-			</div>
+			<div className={styles.location}>{locationStr}</div>
 
 			{/* Clock */}
 			<div className={styles.clock}>
-				<div
-					className={styles.clockTime}
-					style={{
-						color: "#e8f4ff",
-						fontFamily: "Courier New, monospace",
-						textShadow: "0 0 6px #0077cc",
-					}}
-				>
-					{timeStr}
-				</div>
-				<div
-					className={styles.clockDate}
-					style={{ color: "#557799" }}
-				>
-					{dateStr}
-				</div>
+				<div className={styles.clockTime}>{timeStr}</div>
+				<div className={styles.clockDate}>{dateStr}</div>
 			</div>
 		</header>
 	);

@@ -1,10 +1,10 @@
 import { act, renderHook } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import type { SlideType } from "@/types/weather";
+import type { MainPanelSlideType } from "@/types/weather";
 import { useSlideRotation } from "./useSlideRotation";
 
-const ALL_SLIDES: SlideType[] = ["hourly", "7day", "radar", "alerts"];
-const THREE_SLIDES: SlideType[] = ["hourly", "7day", "radar"];
+const ALL_SLIDES: MainPanelSlideType[] = ["hourly", "7day", "radar", "alerts"];
+const THREE_SLIDES: MainPanelSlideType[] = ["hourly", "7day", "radar"];
 
 describe("useSlideRotation", () => {
 	beforeEach(() => {
@@ -54,21 +54,21 @@ describe("useSlideRotation", () => {
 		expect(result.current.index).toBe(0);
 	});
 
-	it("auto-advances after 30 seconds", () => {
+	it("auto-advances after 15 seconds", () => {
 		const { result } = renderHook(() => useSlideRotation(ALL_SLIDES));
 		expect(result.current.index).toBe(0);
-		act(() => vi.advanceTimersByTime(30_000));
+		act(() => vi.advanceTimersByTime(15_000));
 		expect(result.current.index).toBe(1);
 	});
 
-	it("auto-advances multiple times over 90 seconds", () => {
+	it("auto-advances multiple times over 45 seconds", () => {
 		const { result } = renderHook(() => useSlideRotation(ALL_SLIDES));
-		act(() => vi.advanceTimersByTime(90_000));
+		act(() => vi.advanceTimersByTime(45_000));
 		expect(result.current.index).toBe(3); // advanced 3 times
 	});
 
 	it("resets to index 0 if current index is out of bounds after slides shrink", () => {
-		let slides: SlideType[] = ALL_SLIDES;
+		let slides: MainPanelSlideType[] = ALL_SLIDES;
 		const { result, rerender } = renderHook(() => useSlideRotation(slides));
 		act(() => result.current.goTo(3)); // index 3 = alerts
 		slides = THREE_SLIDES; // alerts removed
@@ -78,7 +78,7 @@ describe("useSlideRotation", () => {
 	});
 
 	it("does not go negative when index equals slides.length after shrink", () => {
-		let slides: SlideType[] = ["hourly", "7day"];
+		let slides: MainPanelSlideType[] = ["hourly", "7day"];
 		const { result, rerender } = renderHook(() => useSlideRotation(slides));
 		act(() => result.current.goTo(1));
 		slides = ["hourly"]; // remove second

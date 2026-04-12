@@ -1,6 +1,7 @@
-import { useMemo } from "react";
 import { useNationalHeadlines } from "@/hooks/useAlerts";
 import type { WeatherAlert } from "@/types/weather";
+import cn from "classnames";
+import { useMemo } from "react";
 import styles from "./Chyron.module.scss";
 
 interface Props {
@@ -29,51 +30,28 @@ export function Chyron({ localAlerts, locationName }: Props) {
 		return combined.length > 0 ? combined : FALLBACK_HEADLINES;
 	}, [localAlerts, nationalHeadlines]);
 
-	const text = items.join("   ·   ");
-	const doubled = `${text}   ·   ${text}`;
+	const text = items.join(" • ");
+	const doubled = `${text} • ${text}`;
 
 	const hasAlerts = localAlerts.length > 0;
 
 	return (
-		<div
-			className={styles.chyron}
-			style={{
-				background: "#484848",
-				borderTop: "2px solid #606060",
-			}}
-		>
+		<div className={styles.chyron}>
 			{/* Station logo zone */}
-			<div
-				className={styles.logoZone}
-				style={{
-					background: "#333333",
-					borderRight: "2px solid #606060",
-				}}
-			>
-				<div
-					className={styles.stationName}
-					style={{ color: hasAlerts ? "#ffcc00" : "#cccccc" }}
-				>
+			<div className={styles.logoZone}>
+				<div className={cn(styles.stationName, hasAlerts && styles.hasAlerts)}>
 					{hasAlerts ? "⚠ ALERT" : locationName.toUpperCase()}
 				</div>
 			</div>
 
 			{/* Arrow separator */}
-			<div
-				className={styles.arrow}
-				style={{ color: "#888888" }}
-			>
-				▶
-			</div>
+			<div className={styles.arrow}>▶</div>
 
 			{/* Scrolling text */}
 			<div className={styles.scrollArea}>
 				<div
 					data-testid="chyron-track"
-					className={styles.scrollTrack}
-					style={{
-						color: hasAlerts ? "#ffcc00" : "#e8e8e8",
-					}}
+					className={cn(styles.scrollTrack, hasAlerts && styles.hasAlerts)}
 				>
 					{doubled}
 				</div>

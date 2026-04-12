@@ -16,19 +16,28 @@
 	display: flex;
 	align-items: baseline;
 	justify-content: space-between;
-	padding: 0.25rem 0;
+	padding: 0.5rem 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .dataLabel {
 	font-weight: 700;
-	font-size: 1rem;
+	font-size: 1.25rem;
 	min-width: 7rem;
+	color: #d4a830;
 }
 
 .dataValue {
 	font-weight: 700;
-	font-size: 1rem;
+	font-size: 1.25rem;
 	text-align: right;
+	color: #ffffff;
+}
+
+.divider {
+	width: 1px;
+	background: rgba(255, 255, 255, 0.15);
+	margin: 1rem 0;
 }
 
 .conditionIcon {
@@ -49,6 +58,7 @@
 	font-size: 1rem;
 	font-weight: 700;
 	text-align: center;
+	color: #ffffff;
 }
 
 .temperature {
@@ -56,4 +66,5 @@
 	line-height: 1;
 	font-size: 4rem;
 	font-family: Overpass, sans-serif;
+	color: #ffffff;
 }

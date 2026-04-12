@@ -1,8 +1,9 @@
+import cn from "classnames";
 import { useEffect, useState } from "react";
 import type { DailyForecast, HourlyPoint, LocationInfo } from "@/types/weather";
+import styles from "./BottomStrip.module.scss";
 import { FiveDayFooter } from "./FiveDayFooter";
 import { HourlyFooter } from "./HourlyFooter";
-import styles from "./BottomStrip.module.scss";
 
 interface Props {
 	hourly: HourlyPoint[];
@@ -28,10 +29,7 @@ export function BottomStrip({ hourly, daily, location }: Props) {
 	}, []);
 
 	return (
-		<div
-			className={styles.strip}
-			style={{ opacity: visible ? 1 : 0, transition: "opacity 0.35s ease" }}
-		>
+		<div className={cn(styles.strip, visible && styles.visible)}>
 			{view === "hourly" ? (
 				<HourlyFooter key="hourly" hourly={hourly} location={location} />
 			) : (

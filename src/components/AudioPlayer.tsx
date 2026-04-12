@@ -1,3 +1,4 @@
+import cn from "classnames";
 import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./AudioPlayer.module.scss";
 
@@ -106,26 +107,13 @@ export function AudioPlayer() {
 			<audio ref={audioRef} onEnded={handleEnded} preload="none" />
 
 			{!started ? (
-				<button
-					onClick={handleTuneIn}
-					className={styles.button}
-					style={{
-						background: "rgba(0,85,160,0.3)",
-						color: "#00aaff",
-						border: "1px solid #0055a0",
-					}}
-				>
+				<button onClick={handleTuneIn} className={styles.button}>
 					▶ Tune In
 				</button>
 			) : (
 				<button
 					onClick={toggleMute}
-					className={styles.button}
-					style={{
-						background: muted ? "rgba(80,80,80,0.2)" : "rgba(0,85,160,0.3)",
-						color: muted ? "#557799" : "#00aaff",
-						border: `1px solid ${muted ? "#334455" : "#0055a0"}`,
-					}}
+					className={cn(styles.button, muted && styles.muted)}
 					title={muted ? "Unmute" : "Mute"}
 				>
 					{muted ? "🔇" : "🎵"} {muted ? "Muted" : "Jazz"}
@@ -133,9 +121,7 @@ export function AudioPlayer() {
 			)}
 
 			{started && !isOnline && (
-				<span className={styles.offlineLabel} style={{ color: "#557799" }}>
-					offline mode
-				</span>
+				<span className={styles.offlineLabel}>offline mode</span>
 			)}
 		</div>
 	);

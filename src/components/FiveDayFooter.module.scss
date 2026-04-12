@@ -3,38 +3,54 @@
 	align-items: center;
 	gap: 0.5rem;
 	padding: 0.25rem 0.75rem;
+	background: #c8aa38;
+	border-top: 2px solid #a08828;
 }
 
 .city {
-	font-size: 1rem;
+	font-size: 1.25rem;
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 0.025em;
+	color: #0d1f3a;
 }
 
 .label {
-	font-size: 1rem;
+	font-size: 1.25rem;
 	font-weight: 700;
+	color: #1a2d7a;
 }
 
 .columns {
 	display: flex;
 	height: 10rem;
+	background: linear-gradient(180deg, #8ab4e4 0%, #6090cc 50%, #5080bc 100%);
 }
 
 .column {
 	flex: 1 1 0%;
 	display: flex;
 	flex-direction: column;
+	border-right: 1px solid #3a5888;
+
+	&:last-child {
+		border-right: none;
+	}
 }
 
 .dayHeader {
 	padding: 0.25rem 0.5rem;
+	background: #5a7ec0;
+
+	.column:first-child & {
+		background: #9abce8;
+	}
 }
 
 .dayName {
-	font-size: 0.875rem;
+	font-size: 1rem;
 	font-weight: 700;
+	color: #0a1840;
 }
 
 .dayBody {
@@ -46,7 +62,6 @@
 }
 
 .icon {
-	font-size: 1.875rem;
 	line-height: 1;
 	flex-shrink: 0;
 	align-self: center;
@@ -56,14 +71,17 @@
 	display: flex;
 	flex-direction: column;
 	line-height: 1;
+	gap: 0.5rem;
 }
 
 .highTemp {
-	font-size: 1.875rem;
+	font-size: 3rem;
 	font-weight: 700;
+	color: #0a1428;
 }
 
 .lowTemp {
-	font-size: 1.125rem;
+	font-size: 2rem;
 	font-weight: 700;
+	color: #333333;
 }

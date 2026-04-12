@@ -54,25 +54,12 @@ export function HourlyFooter({ hourly, location }: Props) {
 
 	return (
 		<div>
-			<div
-				className={styles.header}
-				style={{ background: "#c8aa38", borderTop: "2px solid #a08828" }}
-			>
-				<span className={styles.city} style={{ color: "#0d1f3a" }}>
-					{location.city.toUpperCase()}:
-				</span>
-				<span className={styles.label} style={{ color: "#1a2d7a" }}>
-					{dayName}'S FORECAST
-				</span>
+			<div className={styles.header}>
+				<span className={styles.city}>{location.city.toUpperCase()}:</span>
+				<span className={styles.label}>{dayName}'S FORECAST</span>
 			</div>
 
-			<div
-				className={styles.columns}
-				style={{
-					background:
-						"linear-gradient(180deg, #8ab4e4 0%, #6090cc 50%, #5080bc 100%)",
-				}}
-			>
+			<div className={styles.columns}>
 				{slots.map((h, i) => {
 					const rawHour = h.time.toLocaleTimeString("en-US", {
 						timeZone: tz,
@@ -86,48 +73,30 @@ export function HourlyFooter({ hourly, location }: Props) {
 						BAR_MIN + ((h.tempF - minT) / tempRange) * (BAR_MAX - BAR_MIN);
 
 					return (
-						<div
-							key={h.time.toISOString()}
-							className={styles.column}
-							style={{
-								borderRight:
-									i < slots.length - 1 ? "1px solid #3a5888" : undefined,
-							}}
-						>
+						<div key={h.time.toISOString()} className={styles.column}>
 							<div className={styles.slotBody}>
 								<WeatherIcon
 									code={h.conditionCode}
 									isDay={h.isDay}
 									className={styles.icon}
+									size="7rem"
 								/>
 								<div className={styles.tempBar}>
-									<span className={styles.temp} style={{ color: "#0a1428" }}>
-										{h.tempF}
-									</span>
+									<span className={styles.temp}>{h.tempF}</span>
 									<div
+										className={styles.bar}
 										style={
 											{
 												"--bar-h": `${barH}px`,
-												width: "100%",
-												height: `${barH}px`,
-												background:
-													"linear-gradient(90deg, #555 0%, #bbb 25%, #f4f4f4 50%, #bbb 75%, #555 100%)",
-												borderRadius: "2px 2px 0 0",
-												animation: "grow-bar 1.2s ease-out both",
-												animationDelay: `${i * 120}ms`,
+												"--bar-delay": `${i * 120}ms`,
 											} as React.CSSProperties
 										}
 									/>
 								</div>
 							</div>
 
-							<div
-								className={styles.timeBand}
-								style={{ background: "#6a5010" }}
-							>
-								<span className={styles.timeLabel} style={{ color: "#ffffff" }}>
-									{timeLabel}
-								</span>
+							<div className={styles.timeBand}>
+								<span className={styles.timeLabel}>{timeLabel}</span>
 							</div>
 						</div>
 					);

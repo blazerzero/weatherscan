@@ -2213,6 +2213,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@meteocons/lottie@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@meteocons/lottie@npm:0.1.0"
+  checksum: 10c0/8274f4bf871fe65c5cbe1d3d5d2e4058c478424794a3b6a75a67dd7707ebbf95d956b30064387dc0dabb585abcfd96d6adcb59ffccb65d0e4ad66f49e2c5c11b
+  languageName: node
+  linkType: hard
+
 "@npmcli/agent@npm:^4.0.0":
   version: 4.0.0
   resolution: "@npmcli/agent@npm:4.0.0"
@@ -2903,6 +2910,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/luxon@npm:^3.7.1":
+  version: 3.7.1
+  resolution: "@types/luxon@npm:3.7.1"
+  checksum: 10c0/2db30c13b58adcd86daa447faa3ba59515fe907ead8ee3e6bb716d662812af0619d712f6c1eb190cdd7f9d2c00444c3ecd80af0f36e8143eb0c5e7339d6b2aca
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:^24":
   version: 24.12.2
   resolution: "@types/node@npm:24.12.2"
@@ -3450,6 +3464,13 @@ __metadata:
   version: 3.0.0
   resolution: "chownr@npm:3.0.0"
   checksum: 10c0/43925b87700f7e3893296c8e9c56cc58f926411cce3a6e5898136daaf08f08b9a8eb76d37d3267e707d0dcc17aed2e2ebdf5848c0c3ce95cf910a919935c1b10
+  languageName: node
+  linkType: hard
+
+"classnames@npm:^2.5.1":
+  version: 2.5.1
+  resolution: "classnames@npm:2.5.1"
+  checksum: 10c0/afff4f77e62cea2d79c39962980bf316bacb0d7c49e13a21adaadb9221e1c6b9d3cdb829d8bb1b23c406f4e740507f37e1dcf506f7e3b7113d17c5bab787aa69
   languageName: node
   linkType: hard
 
@@ -5138,6 +5159,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lottie-web@npm:^5.13.0":
+  version: 5.13.0
+  resolution: "lottie-web@npm:5.13.0"
+  checksum: 10c0/b463ad462169df3f7e04b7f3716274e269842554f1d72b8303ca7245628f2512982a59ae31698b3d57fbcda886228ae160fcb2aa518c6cecd8a95974db2458ee
+  languageName: node
+  linkType: hard
+
 "loupe@npm:^3.1.0, loupe@npm:^3.1.4":
   version: 3.2.1
   resolution: "loupe@npm:3.2.1"
@@ -5165,6 +5193,13 @@ __metadata:
   dependencies:
     yallist: "npm:^3.0.2"
   checksum: 10c0/89b2ef2ef45f543011e38737b8a8622a2f8998cddf0e5437174ef8f1f70a8b9d14a918ab3e232cb3ba343b7abddffa667f0b59075b2b80e6b4d63c3de6127482
+  languageName: node
+  linkType: hard
+
+"luxon@npm:^3.7.2":
+  version: 3.7.2
+  resolution: "luxon@npm:3.7.2"
+  checksum: 10c0/ed8f0f637826c08c343a29dd478b00628be93bba6f068417b1d8896b61cb61c6deacbe1df1e057dbd9298334044afa150f9aaabbeb3181418ac8520acfdc2ae2
   languageName: node
   linkType: hard
 
@@ -7072,21 +7107,26 @@ __metadata:
   resolution: "weatherscan@workspace:."
   dependencies:
     "@biomejs/biome": "npm:^2.4.8"
+    "@meteocons/lottie": "npm:^0.1.0"
     "@tanstack/react-query": "npm:^5.74.4"
     "@testing-library/dom": "npm:^10.4.1"
     "@testing-library/jest-dom": "npm:^6.6.3"
     "@testing-library/react": "npm:^16.3.0"
     "@testing-library/user-event": "npm:^14.6.1"
     "@types/leaflet": "npm:^1.9.17"
+    "@types/luxon": "npm:^3.7.1"
     "@types/node": "npm:^24"
     "@types/react": "npm:^19.1.2"
     "@types/react-dom": "npm:^19.1.2"
     "@vitejs/plugin-react": "npm:^4.4.1"
     "@vitest/coverage-v8": "npm:^3.1.1"
+    classnames: "npm:^2.5.1"
     happy-dom: "npm:^17.4.4"
     husky: "npm:^9.1.7"
     leaflet: "npm:^1.9.4"
     lint-staged: "npm:^16.4.0"
+    lottie-web: "npm:^5.13.0"
+    luxon: "npm:^3.7.2"
     react: "npm:^19.1.0"
     react-dom: "npm:^19.1.0"
     react-leaflet: "npm:^5.0.0"

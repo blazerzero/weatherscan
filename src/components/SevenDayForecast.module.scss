@@ -8,6 +8,11 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	border-right: 1px solid #162870;
+
+	&:last-child {
+		border-right: none;
+	}
 }
 
 .dayHeader {
@@ -15,13 +20,19 @@
 	text-align: center;
 	padding: 0.25rem 0;
 	font-weight: 700;
-	font-size: 1rem;
+	font-size: 1.25rem;
 	text-transform: uppercase;
 	letter-spacing: 0.025em;
+	background: #2a52bc;
+	color: #ffffff;
+
+	.dayCol:first-child & {
+		color: #d4a830;
+	}
 }
 
 .iconArea {
-	flex: 1 1 0%;
+	flex: 1;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -29,6 +40,7 @@
 	justify-content: center;
 	gap: 0.25rem;
 	padding: 0.5rem 0.25rem;
+	background: #2244b0;
 }
 
 .icon {
@@ -36,7 +48,7 @@
 }
 
 .conditionLabel {
-	font-size: 0.875rem;
+	font-size: 1.25rem;
 	font-weight: 700;
 	text-align: center;
 	line-height: 1.25;
