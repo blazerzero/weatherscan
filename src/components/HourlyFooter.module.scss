@@ -1,0 +1,65 @@
+.header {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.25rem 0.75rem;
+}
+
+.city {
+	font-size: 1rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.025em;
+}
+
+.label {
+	font-size: 1rem;
+	font-weight: 700;
+}
+
+.columns {
+	display: flex;
+	height: 10rem;
+}
+
+.column {
+	flex: 1 1 0%;
+	display: flex;
+	flex-direction: column;
+}
+
+.slotBody {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	padding: 0.5rem 0.5rem 0.25rem;
+	flex: 1 1 0%;
+}
+
+.icon {
+	font-size: 1.875rem;
+	line-height: 1;
+	align-self: center;
+}
+
+.tempBar {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.125rem;
+}
+
+.temp {
+	font-size: 2.25rem;
+	font-weight: 700;
+	line-height: 1;
+}
+
+.timeBand {
+	padding: 0.25rem 0.5rem;
+}
+
+.timeLabel {
+	font-size: 0.875rem;
+	font-weight: 700;
+}
