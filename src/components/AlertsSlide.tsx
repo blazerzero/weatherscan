@@ -21,7 +21,11 @@ const SEVERITY_COLORS: Record<
 		border: COLORS.gold,
 		bg: "rgba(212,168,48,0.1)",
 	},
-	Minor: { text: COLORS.green, border: COLORS.green, bg: "rgba(34,170,68,0.1)" },
+	Minor: {
+		text: COLORS.green,
+		border: COLORS.green,
+		bg: "rgba(34,170,68,0.1)",
+	},
 	Unknown: {
 		text: COLORS.textSecondary,
 		border: COLORS.border,

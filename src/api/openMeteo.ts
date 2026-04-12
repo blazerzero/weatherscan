@@ -127,7 +127,9 @@ export async function fetchCurrentAndForecast(coords: Coordinates): Promise<{
 	// Appending "Z" would treat them as UTC, which is wrong. Instead, subtract
 	// the UTC offset so the resulting Date represents the correct instant.
 	const toUtc = (localStr: string) =>
-		new Date(new Date(localStr + "Z").getTime() - data.utc_offset_seconds * 1000);
+		new Date(
+			new Date(localStr + "Z").getTime() - data.utc_offset_seconds * 1000,
+		);
 
 	const c = data.current;
 	const isDay = c.is_day === 1;

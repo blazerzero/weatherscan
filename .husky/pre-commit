@@ -1,1 +1,1 @@
-yarn lint-staged
+yarm biome format .

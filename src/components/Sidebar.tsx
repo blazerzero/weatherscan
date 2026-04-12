@@ -152,7 +152,9 @@ export function Sidebar({ location, current, isLoading }: Props) {
 
 			{/* now / temperature / icon */}
 			<div className="px-4 pt-3 relative z-10">
-				<div style={{ color: "#0d1f3a", fontSize: "1.5rem", fontWeight: 900 }}>now</div>
+				<div style={{ color: "#0d1f3a", fontSize: "1.5rem", fontWeight: 900 }}>
+					now
+				</div>
 				<div className="flex items-center gap-3 mt-0.5">
 					<div
 						style={{

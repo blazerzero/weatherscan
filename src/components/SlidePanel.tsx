@@ -55,7 +55,12 @@ export function SlidePanel({ data, current }: Props) {
 				style={{ opacity: visible ? 1 : 0, transition: "opacity 0.3s ease" }}
 			>
 				{current === "currently" && <CurrentConditions data={data.current} />}
-				{current === "hourly" && <HourlyForecast data={data.hourly} timezone={data.location.timezone} />}
+				{current === "hourly" && (
+					<HourlyForecast
+						data={data.hourly}
+						timezone={data.location.timezone}
+					/>
+				)}
 				{current === "7day" && <SevenDayForecast data={data.daily} />}
 				{current === "radar" && <RadarSlide coords={data.location.coords} />}
 				{current === "alerts" && <AlertsSlide alerts={data.alerts} />}

@@ -6,9 +6,7 @@ import { CurrentConditions } from "./CurrentConditions";
 describe("CurrentConditions", () => {
 	it("renders the temperature", () => {
 		render(<CurrentConditions data={CURRENT} />);
-		expect(
-			screen.getByText(String(CURRENT.temperatureF)),
-		).toBeInTheDocument();
+		expect(screen.getByText(String(CURRENT.temperatureF))).toBeInTheDocument();
 	});
 
 	it("renders the condition label", () => {
@@ -23,16 +21,12 @@ describe("CurrentConditions", () => {
 
 	it("renders dew point", () => {
 		render(<CurrentConditions data={CURRENT} />);
-		expect(
-			screen.getByText(String(CURRENT.dewpointF)),
-		).toBeInTheDocument();
+		expect(screen.getByText(String(CURRENT.dewpointF))).toBeInTheDocument();
 	});
 
 	it("renders pressure with trend indicator", () => {
 		render(<CurrentConditions data={CURRENT} />);
-		expect(
-			screen.getByText(`${CURRENT.pressureInHg} ↓`),
-		).toBeInTheDocument();
+		expect(screen.getByText(`${CURRENT.pressureInHg} ↓`)).toBeInTheDocument();
 	});
 
 	it("renders wind direction and speed", () => {
@@ -57,9 +51,7 @@ describe("CurrentConditions", () => {
 
 	it("renders wind chill / feels-like", () => {
 		render(<CurrentConditions data={CURRENT} />);
-		expect(
-			screen.getByText(String(CURRENT.feelsLikeF)),
-		).toBeInTheDocument();
+		expect(screen.getByText(String(CURRENT.feelsLikeF))).toBeInTheDocument();
 	});
 
 	it("renders a weather icon", () => {

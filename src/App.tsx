@@ -8,7 +8,13 @@ import { WeatherIcon } from "@/components/WeatherIcon";
 import { useGeolocation } from "@/hooks/useGeolocation";
 import { useSlideRotation } from "@/hooks/useSlideRotation";
 import { useWeather } from "@/hooks/useWeather";
-import type { Coordinates, DailyForecast, HourlyPoint, LocationInfo, SlideType } from "@/types/weather";
+import type {
+	Coordinates,
+	DailyForecast,
+	HourlyPoint,
+	LocationInfo,
+	SlideType,
+} from "@/types/weather";
 
 export function App() {
 	const geo = useGeolocation();
@@ -59,9 +65,7 @@ export function App() {
 				{/* Left sidebar */}
 				<div className="shrink-0 flex flex-col" style={{ width: "33%" }}>
 					{showLocationSearch ? (
-						<LocationSearch
-							onLocationFound={(loc) => setManualLocation(loc)}
-						/>
+						<LocationSearch onLocationFound={(loc) => setManualLocation(loc)} />
 					) : (
 						<Sidebar
 							location={activeLocation}
@@ -90,10 +94,7 @@ export function App() {
 						) : isError ? (
 							<ErrorScreen onRetry={() => setManualLocation(null)} />
 						) : data ? (
-							<SlidePanel
-								data={data}
-								current={current}
-							/>
+							<SlidePanel data={data} current={current} />
 						) : null}
 					</div>
 
@@ -207,7 +208,10 @@ function CategoryTicker({
 			</span>
 
 			{/* Infinite sliding strip */}
-			<div ref={containerRef} className="flex-1 h-full overflow-hidden relative">
+			<div
+				ref={containerRef}
+				className="flex-1 h-full overflow-hidden relative"
+			>
 				<div
 					className="absolute inset-y-0 left-0 flex items-center"
 					style={{
@@ -474,74 +478,71 @@ function HourlyFooter({
 					const BAR_MIN = 20;
 					const BAR_MAX = 72;
 					return slots.map((h, i) => {
-					const rawHour = h.time.toLocaleTimeString("en-US", {
-						timeZone: tz,
-						hour: "numeric",
-						hour12: true,
-					});
-					const timeLabel =
-						rawHour === "12 PM" ? "noon" : rawHour.toLowerCase();
+						const rawHour = h.time.toLocaleTimeString("en-US", {
+							timeZone: tz,
+							hour: "numeric",
+							hour12: true,
+						});
+						const timeLabel =
+							rawHour === "12 PM" ? "noon" : rawHour.toLowerCase();
 
-					const barH =
-						BAR_MIN + ((h.tempF - minT) / tempRange) * (BAR_MAX - BAR_MIN);
+						const barH =
+							BAR_MIN + ((h.tempF - minT) / tempRange) * (BAR_MAX - BAR_MIN);
 
-					return (
-						<div
-							key={h.time.toISOString()}
-							className="flex-1 flex flex-col"
-							style={{
-								borderRight:
-									i < slots.length - 1 ? "1px solid #3a5888" : undefined,
-							}}
-						>
-							{/* Icon + temperature + bar */}
-							<div className="flex items-end justify-between px-2 pt-2 pb-1 flex-1">
-								<WeatherIcon
-									code={h.conditionCode}
-									isDay={h.isDay}
-									className="text-3xl leading-none self-center"
-								/>
-								{/* Temperature + silver bar stacked */}
-								<div className="flex flex-col items-center gap-0.5">
-									<span
-										className="text-4xl font-bold leading-none"
-										style={{ color: "#0a1428" }}
-									>
-										{h.tempF}
-									</span>
-									<div
-										style={
-											{
-												"--bar-h": `${barH}px`,
-												width: "100%",
-												height: `${barH}px`,
-												background:
-													"linear-gradient(90deg, #555 0%, #bbb 25%, #f4f4f4 50%, #bbb 75%, #555 100%)",
-												borderRadius: "2px 2px 0 0",
-												animation: "grow-bar 1.2s ease-out both",
-												animationDelay: `${i * 120}ms`,
-											} as React.CSSProperties
-										}
+						return (
+							<div
+								key={h.time.toISOString()}
+								className="flex-1 flex flex-col"
+								style={{
+									borderRight:
+										i < slots.length - 1 ? "1px solid #3a5888" : undefined,
+								}}
+							>
+								{/* Icon + temperature + bar */}
+								<div className="flex items-end justify-between px-2 pt-2 pb-1 flex-1">
+									<WeatherIcon
+										code={h.conditionCode}
+										isDay={h.isDay}
+										className="text-3xl leading-none self-center"
 									/>
+									{/* Temperature + silver bar stacked */}
+									<div className="flex flex-col items-center gap-0.5">
+										<span
+											className="text-4xl font-bold leading-none"
+											style={{ color: "#0a1428" }}
+										>
+											{h.tempF}
+										</span>
+										<div
+											style={
+												{
+													"--bar-h": `${barH}px`,
+													width: "100%",
+													height: `${barH}px`,
+													background:
+														"linear-gradient(90deg, #555 0%, #bbb 25%, #f4f4f4 50%, #bbb 75%, #555 100%)",
+													borderRadius: "2px 2px 0 0",
+													animation: "grow-bar 1.2s ease-out both",
+													animationDelay: `${i * 120}ms`,
+												} as React.CSSProperties
+											}
+										/>
+									</div>
+								</div>
+
+								{/* Time label band */}
+								<div className="px-2 py-1" style={{ background: "#6a5010" }}>
+									<span
+										className="text-sm font-bold"
+										style={{ color: "#ffffff" }}
+									>
+										{timeLabel}
+									</span>
 								</div>
 							</div>
-
-							{/* Time label band */}
-							<div
-								className="px-2 py-1"
-								style={{ background: "#6a5010" }}
-							>
-								<span
-									className="text-sm font-bold"
-									style={{ color: "#ffffff" }}
-								>
-									{timeLabel}
-								</span>
-							</div>
-						</div>
-					);
-				});
-			})()}
+						);
+					});
+				})()}
 			</div>
 		</div>
 	);

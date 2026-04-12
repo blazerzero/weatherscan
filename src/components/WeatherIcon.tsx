@@ -31,7 +31,10 @@ export function WeatherIcon({ code, isDay, className = "" }: Props) {
 			className={className}
 			role="img"
 			aria-label={`weather condition ${code}`}
-			style={{ fontFamily: "Apple Color Emoji, Segoe UI Emoji, sans-serif", fontSize: "4rem" }}
+			style={{
+				fontFamily: "Apple Color Emoji, Segoe UI Emoji, sans-serif",
+				fontSize: "4rem",
+			}}
 		>
 			{getSymbol(code, isDay)}
 		</span>
