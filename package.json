@@ -1,6 +1,6 @@
 {
 	"name": "weatherscan",
-	"version": "0.2.0",
+	"version": "0.2.4",
 	"private": true,
 	"packageManager": "yarn@4.13.0",
 	"type": "module",
@@ -29,7 +29,8 @@
 		"luxon": "^3.7.2",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
-		"react-leaflet": "^5.0.0"
+		"react-leaflet": "^5.0.0",
+		"vite-plugin-open-graph": "^2.0.6"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.8",

@@ -6,6 +6,10 @@
 	height: 3rem;
 	background: #484848;
 	border-top: 2px solid #606060;
+
+	@media (max-width: 767px) {
+		height: 2.25rem;
+	}
 }
 
 .logoZone {
@@ -19,6 +23,11 @@
 	min-width: 7rem;
 	background: #333333;
 	border-right: 2px solid #606060;
+
+	@media (max-width: 767px) {
+		min-width: 5rem;
+		padding: 0 0.5rem;
+	}
 }
 
 .stationName {
@@ -33,6 +42,11 @@
 	&.hasAlerts {
 		color: #ffcc00;
 	}
+
+	@media (max-width: 767px) {
+		font-size: 0.75rem;
+		letter-spacing: 0.05em;
+	}
 }
 
 .arrow {
@@ -40,6 +54,10 @@
 	font-size: 0.875rem;
 	padding: 0 0.75rem;
 	color: #888888;
+
+	@media (max-width: 767px) {
+		padding: 0 0.375rem;
+	}
 }
 
 .scrollArea {
@@ -62,6 +80,10 @@
 
 	&.hasAlerts {
 		color: #ffcc00;
+	}
+
+	@media (max-width: 767px) {
+		font-size: 0.8rem;
 	}
 }
 

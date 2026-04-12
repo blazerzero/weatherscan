@@ -13,9 +13,9 @@ describe("Header", () => {
 		vi.useRealTimers();
 	});
 
-	it("renders the WeatherScan brand name", () => {
+	it("renders the Weatherscan brand name", () => {
 		render(<Header location={LOCATION} />);
-		expect(screen.getByText("WeatherScan")).toBeInTheDocument();
+		expect(screen.getByText("Weatherscan")).toBeInTheDocument();
 	});
 
 	it("renders the LOCAL badge", () => {

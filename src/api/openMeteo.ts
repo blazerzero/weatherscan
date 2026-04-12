@@ -206,7 +206,7 @@ export async function reverseGeocode(
 		const res = await fetch(
 			`https://nominatim.openstreetmap.org/reverse?${params}`,
 			{
-				headers: { "Accept-Language": "en", "User-Agent": "WeatherScan/1.0" },
+				headers: { "Accept-Language": "en", "User-Agent": "Weatherscan/1.0" },
 			},
 		);
 		if (!res.ok) return null;

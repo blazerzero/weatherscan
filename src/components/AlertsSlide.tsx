@@ -1,4 +1,4 @@
-import type React from "react";
+import type { CSSProperties } from "react";
 import { COLORS } from "@/lib/constants";
 import { formatAlertTime } from "@/lib/format";
 import type { WeatherAlert } from "@/types/weather";
@@ -61,7 +61,7 @@ export function AlertsSlide({ alerts }: Props) {
 								"--sev-color": colors.text,
 								"--sev-border": colors.border,
 								"--sev-bg": colors.bg,
-							} as React.CSSProperties
+							} as CSSProperties
 						}
 					>
 						<div className={styles.alertHeader}>

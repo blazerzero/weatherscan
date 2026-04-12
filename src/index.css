@@ -41,10 +41,10 @@ body,
 /* Hourly footer bar grow animation */
 @keyframes grow-bar {
 	from {
-		height: 0;
+		transform: scaleY(0);
 	}
 	to {
-		height: var(--bar-h);
+		transform: scaleY(1);
 	}
 }
 

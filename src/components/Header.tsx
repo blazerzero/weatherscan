@@ -44,7 +44,7 @@ export function Header({ location }: Props) {
 		<header className={styles.header}>
 			{/* Logo */}
 			<div className={styles.logo}>
-				<div className={styles.logoTitle}>WeatherScan</div>
+				<div className={styles.logoTitle}>Weatherscan</div>
 				<div className={styles.logoBadge}>LOCAL</div>
 			</div>
 

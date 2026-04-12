@@ -4,6 +4,38 @@
 	height: 100%;
 }
 
+.title7desktop {
+	display: inline;
+}
+
+.title7tablet {
+	display: none;
+}
+
+.title7mobile {
+	display: none;
+}
+
+@media (max-width: 1023px) {
+	.title7desktop {
+		display: none;
+	}
+
+	.title7tablet {
+		display: inline;
+	}
+}
+
+@media (max-width: 767px) {
+	.title7tablet {
+		display: none;
+	}
+
+	.title7mobile {
+		display: inline;
+	}
+}
+
 .content {
 	flex: 1 1 0%;
 	overflow: hidden;

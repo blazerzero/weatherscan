@@ -10,6 +10,11 @@
 	gap: 0;
 	padding: 1rem 1.25rem;
 	flex: 0 0 55%;
+
+	@media (max-width: 767px) {
+		padding: 0.5rem 0.75rem;
+		flex: 0 0 58%;
+	}
 }
 
 .dataRow {
@@ -18,6 +23,10 @@
 	justify-content: space-between;
 	padding: 0.5rem 0;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+	@media (max-width: 767px) {
+		padding: 0.3rem 0;
+	}
 }
 
 .dataLabel {
@@ -25,6 +34,16 @@
 	font-size: 1.25rem;
 	min-width: 7rem;
 	color: #d4a830;
+
+	@media (max-width: 1023px) {
+		font-size: 1rem;
+		min-width: 5.5rem;
+	}
+
+	@media (max-width: 767px) {
+		font-size: 0.8rem;
+		min-width: 4.25rem;
+	}
 }
 
 .dataValue {
@@ -32,12 +51,24 @@
 	font-size: 1.25rem;
 	text-align: right;
 	color: #ffffff;
+
+	@media (max-width: 1023px) {
+		font-size: 1rem;
+	}
+
+	@media (max-width: 767px) {
+		font-size: 0.8rem;
+	}
 }
 
 .divider {
 	width: 1px;
 	background: rgba(255, 255, 255, 0.15);
 	margin: 1rem 0;
+
+	@media (max-width: 767px) {
+		margin: 0.5rem 0;
+	}
 }
 
 .conditionIcon {
@@ -52,6 +83,11 @@
 	gap: 0.75rem;
 	flex: 1 1 0%;
 	padding: 0 1rem;
+
+	@media (max-width: 767px) {
+		padding: 0 0.5rem;
+		gap: 0.4rem;
+	}
 }
 
 .conditionLabel {
@@ -59,6 +95,10 @@
 	font-weight: 700;
 	text-align: center;
 	color: #ffffff;
+
+	@media (max-width: 767px) {
+		font-size: 0.75rem;
+	}
 }
 
 .temperature {
@@ -67,4 +107,12 @@
 	font-size: 4rem;
 	font-family: Overpass, sans-serif;
 	color: #ffffff;
+
+	@media (max-width: 1023px) {
+		font-size: 3rem;
+	}
+
+	@media (max-width: 767px) {
+		font-size: 2.25rem;
+	}
 }

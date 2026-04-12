@@ -2,7 +2,7 @@ import type { LocationInfo, WeatherAlert } from "@/types/weather";
 
 const BASE = "https://api.weather.gov";
 const HEADERS = {
-	"User-Agent": "WeatherScan/1.0 (weather@weatherscan.app)",
+	"User-Agent": "Weatherscan/1.0 (weather@weatherscan.app)",
 	Accept: "application/ld+json",
 };
 

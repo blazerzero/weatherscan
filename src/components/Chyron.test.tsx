@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import type { ReactNode } from "react";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { ALERT } from "@/test/fixtures";
@@ -6,7 +7,7 @@ import { Chyron } from "./Chyron";
 
 // The Chyron uses useNationalHeadlines which calls TanStack Query.
 // Wrap with a QueryClient that has no data so it shows fallback.
-function wrapper({ children }: { children: React.ReactNode }) {
+function wrapper({ children }: { children: ReactNode }) {
 	const client = new QueryClient({
 		defaultOptions: { queries: { retry: false } },
 	});
@@ -55,7 +56,7 @@ describe("Chyron", () => {
 			wrapper,
 		});
 		const track = screen.getByTestId("chyron-track");
-		expect(track.textContent).toContain("WeatherScan");
+		expect(track.textContent).toContain("Weatherscan");
 	});
 
 	it("doubles the text for seamless looping", () => {

@@ -1,5 +1,5 @@
 import cn from "classnames";
-import { useEffect, useRef, useState } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 import type { MainPanelSlideType, WeatherData } from "@/types/weather";
 import { AlertsSlide } from "./AlertsSlide";
 import { CurrentConditions } from "./CurrentConditions";
@@ -13,9 +13,17 @@ interface Props {
 	current: MainPanelSlideType;
 }
 
-const SLIDE_TITLES: Record<MainPanelSlideType, string> = {
+const FORECAST_TITLE = (
+	<>
+		<span className={styles.title7desktop}>7-Day Forecast</span>
+		<span className={styles.title7tablet}>5-Day Forecast</span>
+		<span className={styles.title7mobile}>3-Day Forecast</span>
+	</>
+);
+
+const SLIDE_TITLES: Record<MainPanelSlideType, ReactNode> = {
 	currently: "Currently",
-	"7day": "7-Day Forecast",
+	"7day": FORECAST_TITLE,
 	radar: "Local Radar",
 	alerts: "Active Alerts",
 };

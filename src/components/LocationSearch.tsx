@@ -35,7 +35,7 @@ export function LocationSearch({ onLocationFound }: Props) {
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.title}>WeatherScan</div>
+			<div className={styles.title}>Weatherscan</div>
 
 			<div className={styles.instructions}>
 				Location access was denied or unavailable.

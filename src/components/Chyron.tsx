@@ -10,7 +10,7 @@ interface Props {
 }
 
 const FALLBACK_HEADLINES = [
-	"WeatherScan — Your local weather, always on.",
+	"Weatherscan — Your local weather, always on.",
 	"Visit weather.gov for official forecasts and warnings.",
 	"Have a weather emergency? Call 911.",
 	"Turn around, don't drown — never drive through flooded roads.",

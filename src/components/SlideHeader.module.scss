@@ -20,6 +20,10 @@
 	font-size: 1.5rem;
 	letter-spacing: 0.025em;
 	color: #ffffff;
+
+	@media (max-width: 767px) {
+		font-size: 1.125rem;
+	}
 }
 
 .city {
@@ -27,6 +31,11 @@
 	font-size: 1rem;
 	padding-right: 2.5rem;
 	color: #ffffff;
+
+	@media (max-width: 767px) {
+		font-size: 0.8rem;
+		padding-right: 2rem;
+	}
 }
 
 .triangle {

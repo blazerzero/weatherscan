@@ -5,6 +5,10 @@
 	overflow: hidden;
 	height: 2.5rem;
 	background: #0a0a22;
+
+	@media (max-width: 767px) {
+		height: 2rem;
+	}
 }
 
 .strip {
@@ -22,6 +26,38 @@
 	display: flex;
 	align-items: center;
 	will-change: transform;
+}
+
+.label7desktop {
+	display: inline;
+}
+
+.label7tablet {
+	display: none;
+}
+
+.label7mobile {
+	display: none;
+}
+
+@media (max-width: 1023px) {
+	.label7desktop {
+		display: none;
+	}
+
+	.label7tablet {
+		display: inline;
+	}
+}
+
+@media (max-width: 767px) {
+	.label7tablet {
+		display: none;
+	}
+
+	.label7mobile {
+		display: inline;
+	}
 }
 
 .innerSep {
@@ -44,5 +80,10 @@
 
 	&.slotActive {
 		color: #ffffff;
+	}
+
+	@media (max-width: 767px) {
+		font-size: 0.875rem;
+		letter-spacing: 0.04em;
 	}
 }

@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { WeatherIcon } from "@/components/WeatherIcon";
 import type { HourlyPoint, LocationInfo } from "@/types/weather";
 import styles from "./HourlyFooter.module.scss";
@@ -67,13 +68,21 @@ export function HourlyFooter({ hourly, location }: Props) {
 						hour12: true,
 					});
 					const timeLabel =
-						rawHour === "12 PM" ? "noon" : rawHour.toLowerCase();
+						rawHour === "12 PM"
+							? "noon"
+							: rawHour === "12 AM"
+								? "midnight"
+								: rawHour.toLowerCase();
 
 					const barH =
 						BAR_MIN + ((h.tempF - minT) / tempRange) * (BAR_MAX - BAR_MIN);
 
 					return (
-						<div key={h.time.toISOString()} className={styles.column}>
+						<div
+							key={h.time.toISOString()}
+							className={styles.column}
+							style={{ "--bar-h": `${barH}px` } as CSSProperties}
+						>
 							<div className={styles.slotBody}>
 								<WeatherIcon
 									code={h.conditionCode}
@@ -83,16 +92,11 @@ export function HourlyFooter({ hourly, location }: Props) {
 								/>
 								<div className={styles.tempBar}>
 									<span className={styles.temp}>{h.tempF}</span>
-									<div
-										className={styles.bar}
-										style={
-											{
-												"--bar-h": `${barH}px`,
-												"--bar-delay": `${i * 120}ms`,
-											} as React.CSSProperties
-										}
-									/>
 								</div>
+								<div
+									className={styles.bar}
+									style={{ "--bar-delay": `${i * 120}ms` } as CSSProperties}
+								/>
 							</div>
 
 							<div className={styles.timeBand}>

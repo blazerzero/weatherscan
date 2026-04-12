@@ -6915,6 +6915,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vite-plugin-open-graph@npm:^2.0.6":
+  version: 2.0.6
+  resolution: "vite-plugin-open-graph@npm:2.0.6"
+  checksum: 10c0/d1cec3052437d1d6084feb30a77f8d8c44c15ea64f2d231d4fc03edf4fd6fa925fd64df85954c94b20ae23cf142c1449eb840f3fa694cb7dcb006e83a5cce94d
+  languageName: node
+  linkType: hard
+
 "vite-plugin-pwa@npm:^0.21.1":
   version: 0.21.2
   resolution: "vite-plugin-pwa@npm:0.21.2"
@@ -7133,6 +7140,7 @@ __metadata:
     sass: "npm:^1.99.0"
     typescript: "npm:^5.8.3"
     vite: "npm:^6.3.2"
+    vite-plugin-open-graph: "npm:^2.0.6"
     vite-plugin-pwa: "npm:^0.21.1"
     vitest: "npm:^3.1.1"
     workbox-window: "npm:^7.3.0"

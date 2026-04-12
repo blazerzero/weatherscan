@@ -74,7 +74,15 @@ export function CategoryTicker({ slides, activeIndex }: Props) {
 									i === contRef.current && styles.slotActive,
 								)}
 							>
-								{TICKER_NAMES[slide]}
+								{slide === "7day" ? (
+									<>
+										<span className={styles.label7desktop}>7-DAY</span>
+										<span className={styles.label7tablet}>5-DAY</span>
+										<span className={styles.label7mobile}>3-DAY</span>
+									</>
+								) : (
+									TICKER_NAMES[slide]
+								)}
 							</span>
 						</Fragment>
 					))}

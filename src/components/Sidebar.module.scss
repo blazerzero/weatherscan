@@ -5,6 +5,10 @@
 	position: relative;
 	overflow: hidden;
 	// background: linear-gradient(160deg, #72bde8 0%, #4a9ad0 50%, #3a80bc 100%);
+
+	@media (max-width: 767px) {
+		height: auto;
+	}
 }
 
 .decorativeArc {
@@ -15,6 +19,10 @@
 	right: -30%;
 	top: -20%;
 	opacity: 0.18;
+
+	@media (max-width: 767px) {
+		display: none;
+	}
 }
 
 .dateTime {
@@ -23,6 +31,10 @@
 	padding: 0.5rem 0.75rem 0;
 	position: relative;
 	z-index: 10;
+
+	@media (max-width: 767px) {
+		display: none;
+	}
 }
 
 .dateTimeInner {
@@ -41,6 +53,10 @@
 	padding: 0.25rem 0.75rem 0;
 	position: relative;
 	z-index: 10;
+
+	@media (max-width: 1023px) {
+		display: none;
+	}
 }
 
 .wordmarkText {
@@ -58,6 +74,10 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
+
+	@media (max-width: 767px) {
+		flex: none;
+	}
 }
 
 .currentWeatherWrapperShadow {
@@ -84,6 +104,14 @@
 	font-size: 1.5rem;
 	font-weight: 700;
 	text-align: center;
+
+	@media (max-width: 1023px) {
+		font-size: 1.25rem;
+	}
+
+	@media (max-width: 767px) {
+		font-size: 1rem;
+	}
 }
 
 .currentWeather {
@@ -95,12 +123,25 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+
+	@media (max-width: 767px) {
+		padding: 0.5rem 0.75rem;
+		flex: none;
+	}
 }
 
 .nowLabel {
 	color: #0d1f3a;
 	font-size: 3rem;
 	font-weight: 900;
+
+	@media (max-width: 1023px) {
+		font-size: 2rem;
+	}
+
+	@media (max-width: 767px) {
+		font-size: 1.25rem;
+	}
 }
 
 .temperature {
@@ -108,12 +149,29 @@
 	font-size: 5rem;
 	font-weight: 700;
 	line-height: 1;
+
+	@media (max-width: 1023px) {
+		font-size: 3.5rem;
+	}
+
+	@media (max-width: 767px) {
+		font-size: 2.75rem;
+	}
 }
 
 .secondaryStat {
 	color: #1a3a6a;
 	font-size: 1.5rem;
 	margin-top: 0.375rem;
+
+	@media (max-width: 1023px) {
+		font-size: 1.125rem;
+	}
+
+	@media (max-width: 767px) {
+		font-size: 0.875rem;
+		margin-top: 0.2rem;
+	}
 }
 
 .tempRow {
@@ -121,19 +179,41 @@
 	align-items: center;
 	gap: 0.75rem;
 	margin-top: 0.125rem;
+
+	@media (max-width: 767px) {
+		gap: 0.375rem;
+	}
 }
 
 .currentIcon {
 	line-height: 1;
+
+	@media (max-width: 1023px) {
+		max-width: 5rem;
+		max-height: 5rem;
+	}
+
+	@media (max-width: 767px) {
+		max-width: 3.5rem;
+		max-height: 3.5rem;
+	}
 }
 
 .spacer {
 	flex: 1 1 0%;
+
+	@media (max-width: 767px) {
+		display: none;
+	}
 }
 
 .radarSection {
 	position: relative;
 	z-index: 10;
+
+	@media (max-width: 767px) {
+		display: none;
+	}
 }
 
 .radarLabel {

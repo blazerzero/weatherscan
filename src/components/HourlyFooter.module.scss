@@ -13,18 +13,30 @@
 	text-transform: uppercase;
 	letter-spacing: 0.025em;
 	color: #0d1f3a;
+
+	@media (max-width: 767px) {
+		font-size: 0.8rem;
+	}
 }
 
 .label {
 	font-size: 1rem;
 	font-weight: 700;
 	color: #1a2d7a;
+
+	@media (max-width: 767px) {
+		font-size: 0.8rem;
+	}
 }
 
 .columns {
 	display: flex;
 	height: 10rem;
 	background: linear-gradient(180deg, #8ab4e4 0%, #6090cc 50%, #5080bc 100%);
+
+	@media (max-width: 767px) {
+		height: 8rem;
+	}
 }
 
 .column {
@@ -36,41 +48,80 @@
 	&:last-child {
 		border-right: none;
 	}
+
+	@media (max-width: 1023px) {
+		&:nth-child(n + 4) {
+			display: none;
+		}
+	}
+
+	@media (max-width: 767px) {
+		&:nth-child(n + 3) {
+			display: none;
+		}
+	}
 }
 
 .slotBody {
+	position: relative;
 	display: flex;
 	align-items: flex-end;
 	justify-content: space-between;
-	padding: 0.5rem 0.5rem 0.25rem;
+	padding: 0.5rem 0.5rem 0;
 	flex: 1 1 0%;
+	overflow: hidden;
 }
 
 .icon {
 	font-size: 1.875rem;
 	line-height: 1;
 	align-self: center;
+
+	@media (max-width: 1023px) {
+		max-width: 5rem;
+		max-height: 5rem;
+	}
+
+	@media (max-width: 767px) {
+		max-width: 3.5rem;
+		max-height: 3.5rem;
+	}
 }
 
 .tempBar {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 0.125rem;
+	padding-bottom: var(--bar-h);
+	position: relative;
+	z-index: 1;
+	min-width: 2.5rem;
 }
 
 .temp {
-	font-size: 2.25rem;
+	font-size: 2rem;
 	font-weight: 700;
 	line-height: 1;
 	color: #0a1428;
+
+	@media (max-width: 1023px) {
+		font-size: 1.75rem;
+	}
+
+	@media (max-width: 767px) {
+		font-size: 1.5rem;
+	}
 }
 
 .bar {
-	width: 100%;
+	position: absolute;
+	bottom: 0;
+	right: 0.5rem;
+	width: 2.5rem;
 	height: var(--bar-h);
 	background: linear-gradient(90deg, #555 0%, #bbb 25%, #f4f4f4 50%, #bbb 75%, #555 100%);
 	border-radius: 2px 2px 0 0;
+	transform-origin: bottom center;
 	animation: grow-bar 1.2s ease-out both;
 	animation-delay: var(--bar-delay, 0ms);
 }
@@ -84,4 +135,8 @@
 	font-size: 0.875rem;
 	font-weight: 700;
 	color: #ffffff;
+
+	@media (max-width: 767px) {
+		font-size: 0.75rem;
+	}
 }

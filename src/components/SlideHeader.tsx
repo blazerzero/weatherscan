@@ -1,8 +1,9 @@
 import cn from "classnames";
+import type { ReactNode } from "react";
 import styles from "./SlideHeader.module.scss";
 
 interface Props {
-	title: string;
+	title: ReactNode;
 	/** When true, renders in alert-red rather than the standard gold. */
 	alert?: boolean;
 }

@@ -1,4 +1,5 @@
 import "@testing-library/jest-dom/vitest";
+import type { ReactNode } from "react";
 import { vi } from "vitest";
 
 // happy-dom doesn't implement GeolocationPositionError — polyfill it
@@ -29,7 +30,7 @@ vi.mock("leaflet", () => ({
 }));
 
 vi.mock("react-leaflet", () => ({
-	MapContainer: ({ children }: { children: React.ReactNode }) => children,
+	MapContainer: ({ children }: { children: ReactNode }) => children,
 	TileLayer: () => null,
 	useMap: vi.fn(),
 }));
