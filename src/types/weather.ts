@@ -76,4 +76,4 @@ export interface WeatherData {
 	alerts: WeatherAlert[];
 }
 
-export type SlideType = "currently" | "hourly" | "7day" | "radar" | "alerts";
+export type MainPanelSlideType = "currently" | "7day" | "radar" | "alerts";

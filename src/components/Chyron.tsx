@@ -1,6 +1,8 @@
-import { useMemo } from "react";
 import { useNationalHeadlines } from "@/hooks/useAlerts";
 import type { WeatherAlert } from "@/types/weather";
+import cn from "classnames";
+import { useMemo } from "react";
+import styles from "./Chyron.module.scss";
 
 interface Props {
 	localAlerts: WeatherAlert[];
@@ -28,53 +30,28 @@ export function Chyron({ localAlerts, locationName }: Props) {
 		return combined.length > 0 ? combined : FALLBACK_HEADLINES;
 	}, [localAlerts, nationalHeadlines]);
 
-	const text = items.join("   ·   ");
-	const doubled = `${text}   ·   ${text}`;
+	const text = items.join(" • ");
+	const doubled = `${text} • ${text}`;
 
 	const hasAlerts = localAlerts.length > 0;
 
 	return (
-		<div
-			className="flex items-center shrink-0 overflow-hidden"
-			style={{
-				height: "2.25rem",
-				background: "#484848",
-				borderTop: "2px solid #606060",
-			}}
-		>
+		<div className={styles.chyron}>
 			{/* Station logo zone */}
-			<div
-				className="shrink-0 h-full flex items-center justify-center px-3 gap-1.5"
-				style={{
-					background: "#333333",
-					borderRight: "2px solid #606060",
-					minWidth: "7rem",
-				}}
-			>
-				<div
-					className="text-sm font-bold uppercase tracking-widest leading-tight text-center"
-					style={{ color: hasAlerts ? "#ffcc00" : "#cccccc" }}
-				>
+			<div className={styles.logoZone}>
+				<div className={cn(styles.stationName, hasAlerts && styles.hasAlerts)}>
 					{hasAlerts ? "⚠ ALERT" : locationName.toUpperCase()}
 				</div>
 			</div>
 
 			{/* Arrow separator */}
-			<div
-				className="shrink-0 text-sm"
-				style={{ color: "#888888", padding: "0 0.25rem" }}
-			>
-				▶
-			</div>
+			<div className={styles.arrow}>▶</div>
 
 			{/* Scrolling text */}
-			<div className="flex-1 overflow-hidden h-full flex items-center">
+			<div className={styles.scrollArea}>
 				<div
-					className="chyron-track text-sm font-bold whitespace-nowrap"
-					style={{
-						color: hasAlerts ? "#ffcc00" : "#e8e8e8",
-						letterSpacing: "0.04em",
-					}}
+					data-testid="chyron-track"
+					className={cn(styles.scrollTrack, hasAlerts && styles.hasAlerts)}
 				>
 					{doubled}
 				</div>

@@ -1,4 +1,6 @@
+import cn from "classnames";
 import { useCallback, useEffect, useRef, useState } from "react";
+import styles from "./AudioPlayer.module.scss";
 
 // Free smooth jazz internet radio stream
 const STREAM_URL = "https://streaming.live365.com/a18141";
@@ -101,30 +103,17 @@ export function AudioPlayer() {
 	}, [mode]);
 
 	return (
-		<div className="flex items-center gap-2">
+		<div className={styles.player}>
 			<audio ref={audioRef} onEnded={handleEnded} preload="none" />
 
 			{!started ? (
-				<button
-					onClick={handleTuneIn}
-					className="flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider transition-all cursor-pointer"
-					style={{
-						background: "rgba(0,85,160,0.3)",
-						color: "#00aaff",
-						border: "1px solid #0055a0",
-					}}
-				>
+				<button onClick={handleTuneIn} className={styles.button}>
 					▶ Tune In
 				</button>
 			) : (
 				<button
 					onClick={toggleMute}
-					className="flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider cursor-pointer transition-all"
-					style={{
-						background: muted ? "rgba(80,80,80,0.2)" : "rgba(0,85,160,0.3)",
-						color: muted ? "#557799" : "#00aaff",
-						border: `1px solid ${muted ? "#334455" : "#0055a0"}`,
-					}}
+					className={cn(styles.button, muted && styles.muted)}
 					title={muted ? "Unmute" : "Mute"}
 				>
 					{muted ? "🔇" : "🎵"} {muted ? "Muted" : "Jazz"}
@@ -132,9 +121,7 @@ export function AudioPlayer() {
 			)}
 
 			{started && !isOnline && (
-				<span className="text-xs" style={{ color: "#557799" }}>
-					offline mode
-				</span>
+				<span className={styles.offlineLabel}>offline mode</span>
 			)}
 		</div>
 	);

@@ -1,0 +1,45 @@
+.header {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.375rem 0.75rem;
+	flex-shrink: 0;
+	overflow: hidden;
+	background: #162870;
+	border-bottom: 2px solid #d4a830;
+
+	&.alert {
+		background: #3a0808;
+		border-bottom-color: #dd2200;
+	}
+}
+
+.title {
+	font-weight: 700;
+	font-size: 1.5rem;
+	letter-spacing: 0.025em;
+	color: #ffffff;
+}
+
+.city {
+	font-weight: 700;
+	font-size: 1rem;
+	padding-right: 2.5rem;
+	color: #ffffff;
+}
+
+.triangle {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 48px 48px 0;
+	border-color: transparent #d4a830 transparent transparent;
+
+	&.alert {
+		border-color: transparent #dd2200 transparent transparent;
+	}
+}

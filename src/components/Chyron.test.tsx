@@ -37,11 +37,10 @@ describe("Chyron", () => {
 	});
 
 	it("renders the scrolling track element", () => {
-		const { container } = render(
-			<Chyron localAlerts={[]} locationName="Philadelphia" />,
-			{ wrapper },
-		);
-		expect(container.querySelector(".chyron-track")).toBeInTheDocument();
+		render(<Chyron localAlerts={[]} locationName="Philadelphia" />, {
+			wrapper,
+		});
+		expect(screen.getByTestId("chyron-track")).toBeInTheDocument();
 	});
 
 	it("includes alert event name in the scrolling text when alerts present", () => {
@@ -55,18 +54,16 @@ describe("Chyron", () => {
 		render(<Chyron localAlerts={[]} locationName="Philadelphia" />, {
 			wrapper,
 		});
-		// The chyron-track should contain the fallback text
-		const track = document.querySelector(".chyron-track");
-		expect(track?.textContent).toContain("WeatherScan");
+		const track = screen.getByTestId("chyron-track");
+		expect(track.textContent).toContain("WeatherScan");
 	});
 
 	it("doubles the text for seamless looping", () => {
 		render(<Chyron localAlerts={[ALERT]} locationName="Philadelphia" />, {
 			wrapper,
 		});
-		// The doubled text should appear at least twice in the track
-		const track = document.querySelector(".chyron-track");
-		const count = (track?.textContent?.match(/Tornado Watch/g) ?? []).length;
+		const track = screen.getByTestId("chyron-track");
+		const count = (track.textContent?.match(/Tornado Watch/g) ?? []).length;
 		expect(count).toBeGreaterThanOrEqual(2);
 	});
 });

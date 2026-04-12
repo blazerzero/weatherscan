@@ -1,0 +1,66 @@
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.375rem 1rem;
+	flex-shrink: 0;
+	background: linear-gradient(90deg, #003366 0%, #001a40 50%, #003366 100%);
+	border-bottom: 2px solid #0055a0;
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.logoTitle {
+	font-size: 1.25rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: #00aaff;
+	text-shadow: 0 0 12px #0077cc, 0 0 4px #00aaff;
+	font-family: "Courier New", monospace;
+}
+
+.logoBadge {
+	font-size: 0.875rem;
+	padding: 0.125rem 0.5rem;
+	border-radius: 0.25rem;
+	letter-spacing: 0.1em;
+	background: #0055a0;
+	color: #88bbdd;
+}
+
+.location {
+	font-size: 0.875rem;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 20rem;
+	text-align: center;
+	color: #ffcc00;
+	text-shadow: 0 0 8px #cc8800;
+}
+
+.clock {
+	text-align: right;
+}
+
+.clockTime {
+	font-size: 1.125rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	color: #e8f4ff;
+	font-family: "Courier New", monospace;
+	text-shadow: 0 0 6px #0077cc;
+}
+
+.clockDate {
+	font-size: 0.875rem;
+	letter-spacing: 0.08em;
+	color: #557799;
+}

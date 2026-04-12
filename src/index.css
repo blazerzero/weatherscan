@@ -1,35 +1,31 @@
-@import "tailwindcss";
+:root {
+	--ws-blue-darkest: #000d1a;
+	--ws-blue-dark: #001433;
+	--ws-blue-mid: #003366;
+	--ws-blue-light: #0055a0;
+	--ws-blue-bright: #0077cc;
+	--ws-cyan: #00aaff;
+	--ws-gold: #ffcc00;
+	--ws-orange: #ff8800;
+	--ws-red: #ff3300;
+	--ws-green: #00cc44;
+	--ws-text-primary: #e8f4ff;
+	--ws-text-secondary: #88bbdd;
+	--ws-text-dim: #557799;
+	--ws-border: #1a4070;
+}
 
-@layer base {
-	:root {
-		--ws-blue-darkest: #000d1a;
-		--ws-blue-dark: #001433;
-		--ws-blue-mid: #003366;
-		--ws-blue-light: #0055a0;
-		--ws-blue-bright: #0077cc;
-		--ws-cyan: #00aaff;
-		--ws-gold: #ffcc00;
-		--ws-orange: #ff8800;
-		--ws-red: #ff3300;
-		--ws-green: #00cc44;
-		--ws-text-primary: #e8f4ff;
-		--ws-text-secondary: #88bbdd;
-		--ws-text-dim: #557799;
-		--ws-border: #1a4070;
-	}
-
-	html,
-	body,
-	#root {
-		height: 100%;
-		width: 100%;
-		margin: 0;
-		padding: 0;
-		overflow: hidden;
-		background-color: #4a9ad0;
-		color: #ffffff;
-		font-family: "Overpass", sans-serif;
-	}
+html,
+body,
+#root {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #4a9ad0;
+	color: #ffffff;
+	font-family: "Overpass", sans-serif;
 }
 
 /* Chyron marquee animation */
@@ -42,17 +38,6 @@
 	}
 }
 
-/* Used for both bottom chyron and top category ticker */
-.chyron-track {
-	display: flex;
-	width: max-content;
-	animation: marquee 45s linear infinite;
-}
-
-.chyron-track:hover {
-	animation-play-state: paused;
-}
-
 /* Hourly footer bar grow animation */
 @keyframes grow-bar {
 	from {
@@ -60,6 +45,13 @@
 	}
 	to {
 		height: var(--bar-h);
+	}
+}
+
+/* Pulse animation (loading screen) */
+@keyframes pulse {
+	50% {
+		opacity: 0.5;
 	}
 }
 

@@ -1,20 +1,20 @@
+import cn from "classnames";
 import { useEffect, useRef, useState } from "react";
-import type { SlideType, WeatherData } from "@/types/weather";
+import type { MainPanelSlideType, WeatherData } from "@/types/weather";
 import { AlertsSlide } from "./AlertsSlide";
 import { CurrentConditions } from "./CurrentConditions";
-import { HourlyForecast } from "./HourlyForecast";
 import { RadarSlide } from "./RadarSlide";
 import { SevenDayForecast } from "./SevenDayForecast";
 import { SlideHeader } from "./SlideHeader";
+import styles from "./SlidePanel.module.scss";
 
 interface Props {
 	data: WeatherData;
-	current: SlideType;
+	current: MainPanelSlideType;
 }
 
-const SLIDE_TITLES: Record<SlideType, string> = {
+const SLIDE_TITLES: Record<MainPanelSlideType, string> = {
 	currently: "Currently",
-	hourly: "Hourly Forecast",
 	"7day": "7-Day Forecast",
 	radar: "Local Radar",
 	alerts: "Active Alerts",
@@ -34,10 +34,8 @@ export function SlidePanel({ data, current }: Props) {
 		return () => clearTimeout(timer);
 	}, [current]);
 
-	const city = data.location.city;
-
 	return (
-		<section className="flex flex-col h-full">
+		<section className={styles.panel}>
 			{/* Shared slide header */}
 			<SlideHeader
 				title={
@@ -45,22 +43,12 @@ export function SlidePanel({ data, current }: Props) {
 						? `Active Alerts (${data.alerts.length})`
 						: SLIDE_TITLES[current]
 				}
-				city={city}
 				alert={current === "alerts"}
 			/>
 
 			{/* Slide content */}
-			<div
-				className="flex-1 overflow-hidden"
-				style={{ opacity: visible ? 1 : 0, transition: "opacity 0.3s ease" }}
-			>
+			<div className={cn(styles.content, visible && styles.visible)}>
 				{current === "currently" && <CurrentConditions data={data.current} />}
-				{current === "hourly" && (
-					<HourlyForecast
-						data={data.hourly}
-						timezone={data.location.timezone}
-					/>
-				)}
 				{current === "7day" && <SevenDayForecast data={data.daily} />}
 				{current === "radar" && <RadarSlide coords={data.location.coords} />}
 				{current === "alerts" && <AlertsSlide alerts={data.alerts} />}

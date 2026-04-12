@@ -21,7 +21,7 @@ describe("CurrentConditions", () => {
 
 	it("renders dew point", () => {
 		render(<CurrentConditions data={CURRENT} />);
-		expect(screen.getByText(String(CURRENT.dewpointF))).toBeInTheDocument();
+		expect(screen.getByText(`${CURRENT.dewpointF}º`)).toBeInTheDocument();
 	});
 
 	it("renders pressure with trend indicator", () => {
@@ -41,7 +41,7 @@ describe("CurrentConditions", () => {
 
 	it("renders gust speed when present", () => {
 		render(<CurrentConditions data={CURRENT} />);
-		expect(screen.getByText("18")).toBeInTheDocument();
+		expect(screen.getByText(`${CURRENT.windGustMph} mph`)).toBeInTheDocument();
 	});
 
 	it('renders "none" for gusts when windGustMph is null', () => {
@@ -51,7 +51,7 @@ describe("CurrentConditions", () => {
 
 	it("renders wind chill / feels-like", () => {
 		render(<CurrentConditions data={CURRENT} />);
-		expect(screen.getByText(String(CURRENT.feelsLikeF))).toBeInTheDocument();
+		expect(screen.getByText(`${CURRENT.feelsLikeF}º`)).toBeInTheDocument();
 	});
 
 	it("renders a weather icon", () => {

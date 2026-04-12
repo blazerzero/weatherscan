@@ -1,5 +1,5 @@
-import { COLORS } from "@/lib/constants";
 import type { DailyForecast } from "@/types/weather";
+import styles from "./SevenDayForecast.module.scss";
 import { WeatherIcon } from "./WeatherIcon";
 
 interface Props {
@@ -10,7 +10,7 @@ export function SevenDayForecast({ data }: Props) {
 	const days = data.slice(0, 7);
 
 	return (
-		<div className="flex h-full">
+		<div className={styles.container}>
 			{days.map((d, i) => {
 				const dayLabel =
 					i === 0
@@ -18,63 +18,29 @@ export function SevenDayForecast({ data }: Props) {
 						: d.date.toLocaleDateString("en-US", { weekday: "short" });
 
 				return (
-					<div
-						key={d.date.toISOString()}
-						className="flex-1 flex flex-col items-center"
-						style={{
-							borderRight:
-								i < days.length - 1 ? `1px solid ${COLORS.borderDark}` : "none",
-						}}
-					>
+					<div key={d.date.toISOString()} className={styles.dayCol}>
 						{/* Day name header */}
-						<div
-							className="w-full text-center py-1 font-bold text-base uppercase tracking-wide"
-							style={{
-								background: COLORS.panelMid,
-								color: i === 0 ? COLORS.gold : COLORS.textPrimary,
-							}}
-						>
-							{dayLabel}
-						</div>
+						<div className={styles.dayHeader}>{dayLabel}</div>
 
 						{/* Icon + condition area */}
-						<div
-							className="flex-1 w-full flex flex-col items-center justify-center gap-1 py-2 px-1"
-							style={{ background: COLORS.panelBg }}
-						>
-							<WeatherIcon code={d.conditionCode} isDay className="text-3xl" />
-							<span
-								className="text-sm font-bold text-center leading-tight"
-								style={{ color: COLORS.textPrimary }}
-							>
-								{d.conditionLabel}
-							</span>
+						<div className={styles.iconArea}>
+							<WeatherIcon
+								code={d.conditionCode}
+								isDay
+								className={styles.icon}
+								size="8rem"
+							/>
+							<span className={styles.conditionLabel}>{d.conditionLabel}</span>
 						</div>
 
 						{/* High temp */}
-						<div
-							className="w-full text-center py-2"
-							style={{ background: COLORS.blueBright }}
-						>
-							<span
-								className="text-4xl font-bold"
-								style={{ color: COLORS.textPrimary }}
-							>
-								{d.highF}
-							</span>
+						<div className={styles.highTemp}>
+							<span className={styles.highTempValue}>{d.highF}</span>
 						</div>
 
 						{/* Low temp */}
-						<div
-							className="w-full text-center py-2"
-							style={{ background: COLORS.panelDark }}
-						>
-							<span
-								className="text-2xl"
-								style={{ color: COLORS.textSecondary }}
-							>
-								{d.lowF}
-							</span>
+						<div className={styles.lowTemp}>
+							<span className={styles.lowTempValue}>{d.lowF}</span>
 						</div>
 					</div>
 				);

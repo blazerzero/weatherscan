@@ -1,0 +1,48 @@
+.ticker {
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+	height: 2.5rem;
+	background: #0a0a22;
+}
+
+.strip {
+	flex: 1 1 0%;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.track {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	will-change: transform;
+}
+
+.innerSep {
+	width: 20px;
+	flex-shrink: 0;
+	text-align: center;
+	font-size: 1.25rem;
+	color: #2a2a55;
+	padding: 0 0.5rem;
+}
+
+.slot {
+	width: 105px;
+	flex-shrink: 0;
+	text-align: center;
+	font-size: 1.25rem;
+	font-weight: bold;
+	letter-spacing: 0.08em;
+	color: #2a2a55;
+
+	&.slotActive {
+		color: #ffffff;
+	}
+}

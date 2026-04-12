@@ -1,0 +1,16 @@
+.panel {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.content {
+	flex: 1 1 0%;
+	overflow: hidden;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+
+	&.visible {
+		opacity: 1;
+	}
+}
