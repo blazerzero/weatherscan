@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import type { WeatherAlert } from "../types/weather";
-import { useNationalHeadlines } from "../hooks/useAlerts";
+import { useNationalHeadlines } from "@/hooks/useAlerts";
+import type { WeatherAlert } from "@/types/weather";
 
 interface Props {
 	localAlerts: WeatherAlert[];
@@ -28,7 +28,6 @@ export function Chyron({ localAlerts, locationName }: Props) {
 		return combined.length > 0 ? combined : FALLBACK_HEADLINES;
 	}, [localAlerts, nationalHeadlines]);
 
-	// Build a long string with separators, doubled for seamless loop
 	const text = items.join("   ·   ");
 	const doubled = `${text}   ·   ${text}`;
 
@@ -38,34 +37,43 @@ export function Chyron({ localAlerts, locationName }: Props) {
 		<div
 			className="flex items-center shrink-0 overflow-hidden"
 			style={{
-				height: "2rem",
-				background: hasAlerts ? "rgba(255,51,0,0.15)" : "#001433",
-				borderTop: `2px solid ${hasAlerts ? "#ff3300" : "#1a4070"}`,
+				height: "2.25rem",
+				background: "#484848",
+				borderTop: "2px solid #606060",
 			}}
 		>
-			{/* Label badge */}
+			{/* Station logo zone */}
 			<div
-				className="shrink-0 px-2 h-full flex items-center text-xs font-bold uppercase tracking-widest"
+				className="shrink-0 h-full flex items-center justify-center px-3 gap-1.5"
 				style={{
-					background: hasAlerts ? "#ff3300" : "#003366",
-					color: "#e8f4ff",
-					borderRight: `2px solid ${hasAlerts ? "#ff3300" : "#1a4070"}`,
-					minWidth: "5rem",
-					justifyContent: "center",
+					background: "#333333",
+					borderRight: "2px solid #606060",
+					minWidth: "7rem",
 				}}
 			>
-				{hasAlerts ? "⚠ ALERT" : `${locationName.toUpperCase().slice(0, 8)}`}
+				<div
+					className="text-sm font-bold uppercase tracking-widest leading-tight text-center"
+					style={{ color: hasAlerts ? "#ffcc00" : "#cccccc" }}
+				>
+					{hasAlerts ? "⚠ ALERT" : locationName.toUpperCase()}
+				</div>
+			</div>
+
+			{/* Arrow separator */}
+			<div
+				className="shrink-0 text-sm"
+				style={{ color: "#888888", padding: "0 0.25rem" }}
+			>
+				▶
 			</div>
 
 			{/* Scrolling text */}
-			<div className="flex-1 overflow-hidden relative h-full flex items-center">
+			<div className="flex-1 overflow-hidden h-full flex items-center">
 				<div
-					className="chyron-track text-xs font-bold"
+					className="chyron-track text-sm font-bold whitespace-nowrap"
 					style={{
-						color: hasAlerts ? "#ffcc00" : "#88bbdd",
-						textShadow: hasAlerts ? "0 0 6px #cc8800" : undefined,
-						letterSpacing: "0.05em",
-						whiteSpace: "nowrap",
+						color: hasAlerts ? "#ffcc00" : "#e8e8e8",
+						letterSpacing: "0.04em",
 					}}
 				>
 					{doubled}

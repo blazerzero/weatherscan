@@ -1,18 +1,18 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import { render, screen, waitFor, act } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { LocationSearch } from "./LocationSearch";
 
 // Mock the geocodeCity function
-vi.mock("../api/openMeteo", async (importOriginal) => {
-	const actual = await importOriginal<typeof import("../api/openMeteo")>();
+vi.mock("@/api/openMeteo", async (importOriginal) => {
+	const actual = await importOriginal<typeof import("@/api/openMeteo")>();
 	return {
 		...actual,
 		geocodeCity: vi.fn(),
 	};
 });
 
-import { geocodeCity } from "../api/openMeteo";
+import { geocodeCity } from "@/api/openMeteo";
 
 const MOCK_LOCATION = {
 	coords: { lat: 39.95, lon: -75.16 },

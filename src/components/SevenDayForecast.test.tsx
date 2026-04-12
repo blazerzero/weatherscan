@@ -1,14 +1,9 @@
-import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+import { DAILY } from "@/test/fixtures";
 import { SevenDayForecast } from "./SevenDayForecast";
-import { DAILY } from "../test/fixtures";
 
 describe("SevenDayForecast", () => {
-	it("renders the section header", () => {
-		render(<SevenDayForecast data={DAILY} />);
-		expect(screen.getByText(/7-Day Forecast/i)).toBeInTheDocument();
-	});
-
 	it("renders exactly 7 day rows", () => {
 		render(<SevenDayForecast data={DAILY} />);
 		// Each day has a high and a low; count the high (°) values

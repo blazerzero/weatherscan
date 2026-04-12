@@ -1,14 +1,14 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
-	wmoLabel,
-	degToCardinal,
 	cToF,
-	kmToMiles,
-	hpaToInHg,
-	mpsToMph,
+	degToCardinal,
 	fetchCurrentAndForecast,
-	reverseGeocode,
 	geocodeCity,
+	hpaToInHg,
+	kmToMiles,
+	mpsToMph,
+	reverseGeocode,
+	wmoLabel,
 } from "./openMeteo";
 
 // ---------------------------------------------------------------------------
@@ -314,7 +314,7 @@ describe("fetchCurrentAndForecast", () => {
 
 	it("calls the correct API endpoint", async () => {
 		await fetchCurrentAndForecast({ lat: 40.7128, lon: -74.006 });
-		const calledUrl = (global.fetch as ReturnType<typeof vi.fn>).mock
+		const calledUrl = (globalThis.fetch as ReturnType<typeof vi.fn>).mock
 			.calls[0][0] as string;
 		expect(calledUrl).toContain("api.open-meteo.com/v1/forecast");
 		expect(calledUrl).toContain("latitude=40.7128");

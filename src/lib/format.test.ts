@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
-import { uvLabel, formatAlertTime } from "./format";
+import { describe, expect, it } from "vitest";
+import { formatAlertTime, uvLabel } from "./format";
 
 describe("uvLabel", () => {
 	it("0 → Low", () => expect(uvLabel(0)).toBe("0 Low"));

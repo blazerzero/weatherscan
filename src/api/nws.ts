@@ -1,4 +1,4 @@
-import type { WeatherAlert, LocationInfo } from "../types/weather";
+import type { LocationInfo, WeatherAlert } from "@/types/weather";
 
 const BASE = "https://api.weather.gov";
 const HEADERS = {

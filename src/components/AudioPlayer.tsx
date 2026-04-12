@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 // Free smooth jazz internet radio stream
 const STREAM_URL = "https://streaming.live365.com/a18141";
@@ -68,9 +68,7 @@ export function AudioPlayer() {
 			if (el.src !== src) {
 				el.src = src;
 				el.load();
-				el.play().catch(() => {
-					/* autoplay blocked */
-				});
+				el.play().catch(console.error);
 			}
 		}
 	}, [src, muted, started]);

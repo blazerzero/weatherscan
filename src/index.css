@@ -26,9 +26,9 @@
 		margin: 0;
 		padding: 0;
 		overflow: hidden;
-		background-color: var(--ws-blue-darkest);
-		color: var(--ws-text-primary);
-		font-family: "Courier New", Courier, monospace;
+		background-color: #4a9ad0;
+		color: #ffffff;
+		font-family: "Overpass", sans-serif;
 	}
 }
 
@@ -42,14 +42,25 @@
 	}
 }
 
+/* Used for both bottom chyron and top category ticker */
 .chyron-track {
 	display: flex;
 	width: max-content;
-	animation: marquee 60s linear infinite;
+	animation: marquee 45s linear infinite;
 }
 
 .chyron-track:hover {
 	animation-play-state: paused;
+}
+
+/* Hourly footer bar grow animation */
+@keyframes grow-bar {
+	from {
+		height: 0;
+	}
+	to {
+		height: var(--bar-h);
+	}
 }
 
 /* Slide fade transition */

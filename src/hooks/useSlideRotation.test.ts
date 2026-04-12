@@ -1,7 +1,7 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { renderHook, act } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import type { SlideType } from "@/types/weather";
 import { useSlideRotation } from "./useSlideRotation";
-import type { SlideType } from "../types/weather";
 
 const ALL_SLIDES: SlideType[] = ["hourly", "7day", "radar", "alerts"];
 const THREE_SLIDES: SlideType[] = ["hourly", "7day", "radar"];
@@ -87,7 +87,7 @@ describe("useSlideRotation", () => {
 	});
 
 	it("clears the interval on unmount", () => {
-		const clearSpy = vi.spyOn(global, "clearInterval");
+		const clearSpy = vi.spyOn(globalThis, "clearInterval");
 		const { unmount } = renderHook(() => useSlideRotation(ALL_SLIDES));
 		unmount();
 		expect(clearSpy).toHaveBeenCalled();

@@ -1,18 +1,13 @@
-import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+import { HOURLY } from "@/test/fixtures";
 import { HourlyForecast } from "./HourlyForecast";
-import { HOURLY } from "../test/fixtures";
 
 describe("HourlyForecast", () => {
-	it("renders the section header", () => {
-		render(<HourlyForecast data={HOURLY} />);
-		expect(screen.getByText(/Hourly Forecast/i)).toBeInTheDocument();
-	});
-
 	it("renders exactly 12 hourly rows", () => {
 		render(<HourlyForecast data={HOURLY} />);
-		// Each row has a temperature like "65°F", "66°F" etc.
-		const temps = screen.getAllByText(/°F$/);
+		// Each row has a temperature like "65°", "66°" etc.
+		const temps = screen.getAllByText(/^\d+°$/);
 		expect(temps).toHaveLength(12);
 	});
 
@@ -28,9 +23,9 @@ describe("HourlyForecast", () => {
 		expect(nowEls).toHaveLength(1);
 	});
 
-	it("renders temperatures in °F format", () => {
+	it("renders temperatures with degree symbol", () => {
 		render(<HourlyForecast data={HOURLY} />);
-		expect(screen.getByText(`${HOURLY[0]!.tempF}°F`)).toBeInTheDocument();
+		expect(screen.getByText(`${HOURLY[0]!.tempF}°`)).toBeInTheDocument();
 	});
 
 	it("renders precipitation chance when > 0", () => {

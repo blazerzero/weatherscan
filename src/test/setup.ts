@@ -1,4 +1,4 @@
-import "@testing-library/jest-dom";
+import "@testing-library/jest-dom/vitest";
 import { vi } from "vitest";
 
 // happy-dom doesn't implement GeolocationPositionError — polyfill it
@@ -35,6 +35,6 @@ vi.mock("react-leaflet", () => ({
 }));
 
 // Stub global fetch so tests must opt-in via vi.stubGlobal or vi.spyOn
-if (typeof global.fetch === "undefined") {
-	global.fetch = vi.fn();
+if (typeof globalThis.fetch === "undefined") {
+	globalThis.fetch = vi.fn();
 }

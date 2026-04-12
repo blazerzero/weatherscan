@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
-import type { Coordinates } from "../types/weather";
-import { fetchRadarFrames, radarTileUrl } from "../api/rainviewer";
-import { COLORS } from "../lib/constants";
-import { SlideHeader } from "./SlideHeader";
+import { fetchRadarFrames, radarTileUrl } from "@/api/rainviewer";
+import { COLORS } from "@/lib/constants";
+import type { Coordinates } from "@/types/weather";
 import "leaflet/dist/leaflet.css";
 
 interface Props {
@@ -31,7 +30,6 @@ export function RadarSlide({ coords }: Props) {
 
 	return (
 		<div className="flex flex-col h-full">
-			<SlideHeader title="Local Radar" />
 			<div className="flex-1 relative">
 				<MapContainer
 					center={[coords.lat, coords.lon]}

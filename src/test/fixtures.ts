@@ -3,12 +3,12 @@
  */
 import type {
 	CurrentConditions,
-	HourlyPoint,
 	DailyForecast,
-	WeatherAlert,
+	HourlyPoint,
 	LocationInfo,
+	WeatherAlert,
 	WeatherData,
-} from "../types/weather";
+} from "@/types/weather";
 
 export const LOCATION: LocationInfo = {
 	coords: { lat: 39.95, lon: -75.16 },

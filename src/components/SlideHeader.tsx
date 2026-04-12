@@ -1,27 +1,50 @@
-import { COLORS } from "../lib/constants";
+import { COLORS } from "@/lib/constants";
 
 interface Props {
 	title: string;
-	/** When true, renders in alert-red rather than the standard cyan. */
+	city?: string;
+	/** When true, renders in alert-red rather than the standard gold. */
 	alert?: boolean;
 }
 
-/**
- * Shared section header used at the top of every rotating slide panel.
- * Keeps the className + inline style consistent across HourlyForecast,
- * SevenDayForecast, RadarSlide, and AlertsSlide.
- */
-export function SlideHeader({ title, alert = false }: Props) {
+export function SlideHeader({ title, city, alert = false }: Props) {
 	return (
 		<div
-			className="text-center py-2 text-sm font-bold tracking-widest uppercase shrink-0"
+			className="relative flex items-center justify-between px-3 py-1.5 shrink-0 overflow-hidden"
 			style={{
-				color: alert ? COLORS.red : COLORS.cyan,
-				borderBottom: `2px solid ${alert ? COLORS.red : COLORS.border}`,
-				background: alert ? "rgba(255,51,0,0.1)" : "rgba(0,51,102,0.3)",
+				background: alert ? "#3a0808" : COLORS.panelDark,
+				borderBottom: `2px solid ${alert ? COLORS.red : COLORS.gold}`,
 			}}
 		>
-			{title}
+			<span
+				className="font-bold text-base tracking-wide"
+				style={{ color: "#ffffff" }}
+			>
+				{title}
+			</span>
+
+			{city && (
+				<span
+					className="font-bold text-base"
+					style={{ color: "#ffffff", paddingRight: "2.5rem" }}
+				>
+					{city}
+				</span>
+			)}
+
+			{/* Gold / red diagonal corner triangle */}
+			<div
+				style={{
+					position: "absolute",
+					right: 0,
+					top: 0,
+					width: 0,
+					height: 0,
+					borderStyle: "solid",
+					borderWidth: "0 48px 48px 0",
+					borderColor: `transparent ${alert ? COLORS.red : COLORS.gold} transparent transparent`,
+				}}
+			/>
 		</div>
 	);
 }

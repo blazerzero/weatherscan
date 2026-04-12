@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import type { Coordinates } from "../types/weather";
+import { useEffect, useState } from "react";
+import type { Coordinates } from "@/types/weather";
 
 export type GeoState =
 	| { status: "idle" }

@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import type { Coordinates, LocationInfo, WeatherData } from "../types/weather";
-import { fetchCurrentAndForecast, reverseGeocode } from "../api/openMeteo";
-import { enrichWithNWS, fetchAlerts } from "../api/nws";
-import { FIVE_MIN, THIRTY_MIN } from "../lib/constants";
+import { enrichWithNWS, fetchAlerts } from "@/api/nws";
+import { fetchCurrentAndForecast, reverseGeocode } from "@/api/openMeteo";
+import { FIVE_MIN, THIRTY_MIN } from "@/lib/constants";
+import type { Coordinates, LocationInfo, WeatherData } from "@/types/weather";
 
 async function loadWeather(coords: Coordinates): Promise<WeatherData> {
 	// 1. Reverse-geocode to get city/state info

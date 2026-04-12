@@ -1,115 +1,92 @@
-import type { CurrentConditions as CC } from "../types/weather";
-import { COLORS, MONO_FONT } from "../lib/constants";
-import { uvLabel } from "../lib/format";
+import { COLORS } from "@/lib/constants";
+import type { CurrentConditions as CC } from "@/types/weather";
 import { WeatherIcon } from "./WeatherIcon";
 
 interface Props {
 	data: CC;
 }
 
-interface RowProps {
-	label: string;
-	value: string;
-	highlight?: boolean;
-}
-
-function Row({ label, value, highlight }: RowProps) {
-	return (
-		<div
-			className="flex justify-between items-baseline py-1 px-2"
-			style={{ borderBottom: `1px solid ${COLORS.border}` }}
-		>
-			<span
-				className="text-xs uppercase tracking-widest"
-				style={{ color: COLORS.textDim, minWidth: "5.5rem" }}
-			>
-				{label}
-			</span>
-			<span
-				className="text-sm font-bold text-right"
-				style={{
-					color: highlight ? COLORS.gold : COLORS.textPrimary,
-					textShadow: highlight ? `0 0 8px ${COLORS.goldDark}` : undefined,
-				}}
-			>
-				{value}
-			</span>
-		</div>
-	);
-}
-
 export function CurrentConditions({ data }: Props) {
 	const windStr =
 		data.windSpeedMph === 0
 			? "Calm"
-			: `${data.windDirCardinal} ${data.windSpeedMph} mph${data.windGustMph ? ` G${data.windGustMph}` : ""}`;
+			: `${data.windDirCardinal} ${data.windSpeedMph}`;
+	const gustStr = data.windGustMph ? String(data.windGustMph) : "none";
+
+	const rows = [
+		{ label: "Humidity", value: `${data.humidityPct}%` },
+		{ label: "Dew Point", value: `${data.dewpointF}` },
+		{ label: "Pressure", value: `${data.pressureInHg} ↓` },
+		{ label: "Wind", value: windStr },
+		{ label: "Gusts", value: gustStr },
+		{ label: "Wind Chill", value: `${data.feelsLikeF}` },
+	];
 
 	return (
-		<section
-			className="flex flex-col h-full"
-			style={{ borderRight: `2px solid ${COLORS.border}` }}
-		>
-			{/* Big temperature + condition */}
+		<div className="flex h-full">
+			{/* Left column — labeled data rows */}
 			<div
-				className="flex flex-col items-center justify-center py-4 px-2 gap-1"
-				style={{
-					borderBottom: `2px solid ${COLORS.border}`,
-					background: "rgba(0,51,102,0.25)",
-				}}
+				className="flex flex-col justify-center gap-0 px-5 py-4"
+				style={{ flex: "0 0 55%" }}
 			>
+				{rows.map(({ label, value }) => (
+					<div
+						key={label}
+						className="flex items-baseline justify-between py-1"
+						style={{
+							borderBottom: "1px solid rgba(255,255,255,0.1)",
+						}}
+					>
+						<span
+							className="font-bold text-base"
+							style={{ color: COLORS.gold, minWidth: "7rem" }}
+						>
+							{label}
+						</span>
+						<span
+							className="font-bold text-base text-right"
+							style={{ color: "#ffffff" }}
+						>
+							{value}
+						</span>
+					</div>
+				))}
+			</div>
+
+			{/* Vertical divider */}
+			<div
+				style={{
+					width: "1px",
+					background: "rgba(255,255,255,0.15)",
+					margin: "1rem 0",
+				}}
+			/>
+
+			{/* Right column — icon + condition label + large temp */}
+			<div className="flex flex-col items-center justify-center gap-3 flex-1 px-4">
 				<WeatherIcon
 					code={data.conditionCode}
 					isDay={data.isDay}
-					className="text-4xl leading-none"
+					className="text-6xl leading-none"
 				/>
 				<div
-					className="text-6xl font-bold leading-none"
-					style={{
-						color: COLORS.textPrimary,
-						textShadow: `0 0 20px ${COLORS.blueBright}, 0 0 6px ${COLORS.cyan}`,
-						fontFamily: MONO_FONT,
-					}}
-				>
-					{data.temperatureF}°
-				</div>
-				<div
-					className="text-sm font-bold uppercase tracking-widest mt-1"
-					style={{ color: COLORS.cyan }}
+					className="text-base font-bold text-center"
+					style={{ color: "#ffffff" }}
 				>
 					{data.conditionLabel}
 				</div>
+				<div
+					className="font-bold leading-none"
+					style={{
+						color: "#ffffff",
+						fontSize: "4rem",
+						fontFamily: "Overpass, sans-serif",
+						textShadow: "0 2px 16px rgba(80,130,255,0.4)",
+					}}
+				>
+					{data.temperatureF}
+				</div>
 			</div>
-
-			{/* Data rows */}
-			<div className="flex flex-col flex-1 justify-center py-2">
-				<Row label="Feels Like" value={`${data.feelsLikeF}°F`} />
-				<Row label="Dewpoint" value={`${data.dewpointF}°F`} />
-				<Row label="Humidity" value={`${data.humidityPct}%`} />
-				<Row label="Visibility" value={`${data.visibilityMiles} mi`} />
-				<Row label="Wind" value={windStr} />
-				<Row label="Barometer" value={`${data.pressureInHg} inHg`} />
-				<Row
-					label="UV Index"
-					value={uvLabel(data.uvIndex)}
-					highlight={data.uvIndex >= 6}
-				/>
-			</div>
-
-			{/* Observed at */}
-			<div
-				className="text-center text-xs py-1"
-				style={{
-					color: COLORS.textDim,
-					borderTop: `1px solid ${COLORS.border}`,
-				}}
-			>
-				Obs:{" "}
-				{data.observedAt.toLocaleTimeString("en-US", {
-					hour: "2-digit",
-					minute: "2-digit",
-					hour12: true,
-				})}
-			</div>
-		</section>
+		</div>
 	);
 }

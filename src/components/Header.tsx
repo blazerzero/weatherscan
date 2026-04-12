@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import type { LocationInfo } from "../types/weather";
+import { useEffect, useState } from "react";
+import type { LocationInfo } from "@/types/weather";
 
 interface Props {
 	location: LocationInfo | null;
@@ -61,7 +61,7 @@ export function Header({ location }: Props) {
 					WeatherScan
 				</div>
 				<div
-					className="text-xs px-2 py-0.5 rounded"
+					className="text-sm px-2 py-0.5 rounded"
 					style={{
 						background: "#0055a0",
 						color: "#88bbdd",
@@ -93,7 +93,7 @@ export function Header({ location }: Props) {
 					{timeStr}
 				</div>
 				<div
-					className="text-xs"
+					className="text-sm"
 					style={{ color: "#557799", letterSpacing: "0.08em" }}
 				>
 					{dateStr}

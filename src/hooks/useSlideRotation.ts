@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
-import type { SlideType } from "../types/weather";
+import { useCallback, useEffect, useState } from "react";
+import type { SlideType } from "@/types/weather";
 
 const SLIDE_DURATION_MS = 30_000;
 

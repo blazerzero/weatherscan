@@ -1,11 +1,11 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import type { LocationInfo } from "@/types/weather";
 import {
-	normalizeSeverity,
+	enrichWithNWS,
 	fetchAlerts,
 	fetchNationalHeadlines,
-	enrichWithNWS,
+	normalizeSeverity,
 } from "./nws";
-import type { LocationInfo } from "../types/weather";
 
 // ---------------------------------------------------------------------------
 // normalizeSeverity
@@ -80,7 +80,7 @@ describe("fetchAlerts", () => {
 	it("returns empty array for non-US locations without calling fetch", async () => {
 		const alerts = await fetchAlerts(NON_US_LOCATION);
 		expect(alerts).toEqual([]);
-		expect(global.fetch).not.toHaveBeenCalled();
+		expect(globalThis.fetch).not.toHaveBeenCalled();
 	});
 
 	it("returns parsed alerts for US locations", async () => {
@@ -138,7 +138,7 @@ describe("fetchAlerts", () => {
 
 	it("uses the correct NWS API endpoint with lat/lon", async () => {
 		await fetchAlerts(US_LOCATION);
-		const url = (global.fetch as ReturnType<typeof vi.fn>).mock
+		const url = (globalThis.fetch as ReturnType<typeof vi.fn>).mock
 			.calls[0][0] as string;
 		expect(url).toContain("api.weather.gov/alerts/active");
 		expect(url).toContain("40.7128");

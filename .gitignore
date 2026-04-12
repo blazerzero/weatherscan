@@ -6,3 +6,12 @@ dist-ssr
 .env
 .env.*
 !.env.example
+
+# Yarn PnP
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*

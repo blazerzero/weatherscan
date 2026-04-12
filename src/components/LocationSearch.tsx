@@ -1,6 +1,6 @@
-import { useState, useRef, type FormEvent } from "react";
-import { geocodeCity } from "../api/openMeteo";
-import type { LocationInfo } from "../types/weather";
+import { type FormEvent, useRef, useState } from "react";
+import { geocodeCity } from "@/api/openMeteo";
+import type { LocationInfo } from "@/types/weather";
 
 interface Props {
 	onLocationFound: (location: LocationInfo) => void;

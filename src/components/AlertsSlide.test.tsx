@@ -1,7 +1,7 @@
-import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+import { ALERT, EXTREME_ALERT } from "@/test/fixtures";
 import { AlertsSlide } from "./AlertsSlide";
-import { ALERT, EXTREME_ALERT } from "../test/fixtures";
 
 describe("AlertsSlide", () => {
 	describe("no alerts", () => {
@@ -19,11 +19,6 @@ describe("AlertsSlide", () => {
 	});
 
 	describe("with alerts", () => {
-		it("renders the alert count in the header", () => {
-			render(<AlertsSlide alerts={[ALERT]} />);
-			expect(screen.getByText(/Active Alerts \(1\)/i)).toBeInTheDocument();
-		});
-
 		it("renders the event name", () => {
 			render(<AlertsSlide alerts={[ALERT]} />);
 			expect(screen.getByText("Tornado Watch")).toBeInTheDocument();
@@ -46,7 +41,6 @@ describe("AlertsSlide", () => {
 
 		it("renders multiple alerts", () => {
 			render(<AlertsSlide alerts={[ALERT, EXTREME_ALERT]} />);
-			expect(screen.getByText(/Active Alerts \(2\)/i)).toBeInTheDocument();
 			expect(screen.getByText("Tornado Watch")).toBeInTheDocument();
 			expect(screen.getByText("Tornado Warning")).toBeInTheDocument();
 		});

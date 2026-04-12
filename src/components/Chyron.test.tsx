@@ -1,8 +1,8 @@
-import { describe, it, expect, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
+import { ALERT } from "@/test/fixtures";
 import { Chyron } from "./Chyron";
-import { ALERT } from "../test/fixtures";
 
 // The Chyron uses useNationalHeadlines which calls TanStack Query.
 // Wrap with a QueryClient that has no data so it shows fallback.

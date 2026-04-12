@@ -1,10 +1,10 @@
 import type {
 	Coordinates,
 	CurrentConditions,
-	HourlyPoint,
 	DailyForecast,
+	HourlyPoint,
 	LocationInfo,
-} from "../types/weather";
+} from "@/types/weather";
 
 const BASE = "https://api.open-meteo.com/v1";
 const GEO_BASE = "https://geocoding-api.open-meteo.com/v1";
@@ -116,12 +116,18 @@ export async function fetchCurrentAndForecast(coords: Coordinates): Promise<{
 		precipitation_unit: "mm",
 		timezone: "auto",
 		forecast_days: "7",
-		forecast_hours: "24",
+		forecast_hours: "48",
 	});
 
 	const res = await fetch(`${BASE}/forecast?${params}`);
 	if (!res.ok) throw new Error(`Open-Meteo error: ${res.status}`);
 	const data = (await res.json()) as OpenMeteoResponse;
+
+	// open-meteo returns wall-clock times in the location's local timezone.
+	// Appending "Z" would treat them as UTC, which is wrong. Instead, subtract
+	// the UTC offset so the resulting Date represents the correct instant.
+	const toUtc = (localStr: string) =>
+		new Date(new Date(localStr + "Z").getTime() - data.utc_offset_seconds * 1000);
 
 	const c = data.current;
 	const isDay = c.is_day === 1;
@@ -141,11 +147,11 @@ export async function fetchCurrentAndForecast(coords: Coordinates): Promise<{
 		conditionCode: c.weather_code,
 		conditionLabel: wmoLabel(c.weather_code, isDay),
 		isDay,
-		observedAt: new Date(c.time + "Z"),
+		observedAt: toUtc(c.time),
 	};
 
-	const hourly: HourlyPoint[] = data.hourly.time.slice(0, 12).map((t, i) => ({
-		time: new Date(t + "Z"),
+	const hourly: HourlyPoint[] = data.hourly.time.slice(0, 48).map((t, i) => ({
+		time: toUtc(t),
 		tempF: cToF(data.hourly.temperature_2m[i] ?? 0),
 		conditionCode: data.hourly.weather_code[i] ?? 0,
 		conditionLabel: wmoLabel(
@@ -163,8 +169,8 @@ export async function fetchCurrentAndForecast(coords: Coordinates): Promise<{
 		conditionCode: data.daily.weather_code[i] ?? 0,
 		conditionLabel: wmoLabel(data.daily.weather_code[i] ?? 0, true),
 		precipChancePct: data.daily.precipitation_probability_max[i] ?? 0,
-		sunrise: new Date(data.daily.sunrise[i] ?? t + "T06:00:00Z"),
-		sunset: new Date(data.daily.sunset[i] ?? t + "T18:00:00Z"),
+		sunrise: toUtc(data.daily.sunrise[i] ?? t + "T06:00:00"),
+		sunset: toUtc(data.daily.sunset[i] ?? t + "T18:00:00"),
 	}));
 
 	return { current, hourly, daily };
@@ -240,6 +246,7 @@ function geoResultToLocation(r: GeoResult): LocationInfo {
 // ---- raw API response shapes ----
 
 interface OpenMeteoResponse {
+	utc_offset_seconds: number;
 	current: {
 		time: string;
 		temperature_2m: number;
