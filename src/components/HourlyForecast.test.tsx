@@ -6,8 +6,8 @@ import { HourlyForecast } from "./HourlyForecast";
 describe("HourlyForecast", () => {
 	it("renders exactly 12 hourly rows", () => {
 		render(<HourlyForecast data={HOURLY} />);
-		// Each row has a temperature like "65°", "66°" etc.
-		const temps = screen.getAllByText(/^\d+°$/);
+		// Each row has a temperature rendered as a bare number
+		const temps = screen.getAllByText(/^\d+$/);
 		expect(temps).toHaveLength(12);
 	});
 
@@ -23,9 +23,9 @@ describe("HourlyForecast", () => {
 		expect(nowEls).toHaveLength(1);
 	});
 
-	it("renders temperatures with degree symbol", () => {
+	it("renders temperatures as bare numbers", () => {
 		render(<HourlyForecast data={HOURLY} />);
-		expect(screen.getByText(`${HOURLY[0]!.tempF}°`)).toBeInTheDocument();
+		expect(screen.getByText(`${HOURLY[0]!.tempF}`)).toBeInTheDocument();
 	});
 
 	it("renders precipitation chance when > 0", () => {

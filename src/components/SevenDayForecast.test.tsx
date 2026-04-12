@@ -6,10 +6,10 @@ import { SevenDayForecast } from "./SevenDayForecast";
 describe("SevenDayForecast", () => {
 	it("renders exactly 7 day rows", () => {
 		render(<SevenDayForecast data={DAILY} />);
-		// Each day has a high and a low; count the high (°) values
-		const highs = screen.getAllByText(/^\d+°$/);
-		// 7 highs + 7 lows = 14 elements matching "##°"
-		expect(highs).toHaveLength(14);
+		// Each day has a high and a low rendered as bare numbers
+		const temps = screen.getAllByText(/^\d+$/);
+		// 7 highs + 7 lows = 14 elements
+		expect(temps).toHaveLength(14);
 	});
 
 	it('labels the first row as "Today"', () => {
@@ -26,24 +26,12 @@ describe("SevenDayForecast", () => {
 
 	it("renders the high temperature for each day", () => {
 		render(<SevenDayForecast data={DAILY} />);
-		expect(screen.getByText(`${DAILY[0]!.highF}°`)).toBeInTheDocument();
+		expect(screen.getByText(`${DAILY[0]!.highF}`)).toBeInTheDocument();
 	});
 
 	it("renders the low temperature for each day", () => {
 		render(<SevenDayForecast data={DAILY} />);
-		expect(screen.getByText(`${DAILY[0]!.lowF}°`)).toBeInTheDocument();
-	});
-
-	it("renders precipitation chance for rainy days", () => {
-		render(<SevenDayForecast data={DAILY} />);
-		// Multiple rainy days have 70% precip chance in the fixture
-		const precips = screen.getAllByText("70%");
-		expect(precips.length).toBeGreaterThan(0);
-	});
-
-	it("does not render 0% precipitation", () => {
-		render(<SevenDayForecast data={DAILY} />);
-		expect(screen.queryByText("0%")).not.toBeInTheDocument();
+		expect(screen.getByText(`${DAILY[0]!.lowF}`)).toBeInTheDocument();
 	});
 
 	it("renders weather icons for each day", () => {

@@ -171,7 +171,7 @@ const MOCK_OPEN_METEO_RESPONSE = {
 	},
 	hourly: {
 		time: Array.from(
-			{ length: 24 },
+			{ length: 48 },
 			(_, i) => `2024-01-15T${String(i).padStart(2, "0")}:00`,
 		),
 		temperature_2m: Array.from({ length: 24 }, (_, i) => 15 + i * 0.5),
@@ -265,9 +265,9 @@ describe("fetchCurrentAndForecast", () => {
 		expect(current.visibilityMiles).toBe(kmToMiles(10));
 	});
 
-	it("returns 12 hourly points", async () => {
+	it("returns all hourly points", async () => {
 		const { hourly } = await fetchCurrentAndForecast({ lat: 40.7, lon: -74.0 });
-		expect(hourly).toHaveLength(12);
+		expect(hourly).toHaveLength(48);
 	});
 
 	it("returns 7 daily forecasts", async () => {
