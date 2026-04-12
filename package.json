@@ -1,6 +1,6 @@
 {
 	"name": "weatherscan",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"private": true,
 	"packageManager": "yarn@4.13.0",
 	"type": "module",
@@ -14,7 +14,11 @@
 		"test:coverage": "vitest run --coverage",
 		"lint": "biome lint --write",
 		"format": "biome format --write",
-		"prepare": "husky"
+		"prepare": "husky",
+		"deploy": "yarn build && wrangler pages deploy"
+	},
+	"engines": {
+		"node": "^24"
 	},
 	"dependencies": {
 		"@tanstack/react-query": "^5.74.4",
@@ -43,6 +47,7 @@
 		"vite": "^6.3.2",
 		"vite-plugin-pwa": "^0.21.1",
 		"vitest": "^3.1.1",
-		"workbox-window": "^7.3.0"
+		"workbox-window": "^7.3.0",
+		"wrangler": "^3"
 	}
 }
