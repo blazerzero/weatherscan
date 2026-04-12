@@ -34,7 +34,7 @@ export function useSlideRotation(slides: MainPanelSlideType[]): {
 
 	const safeIndex = Math.min(index, slides.length - 1);
 	return {
-		current: slides[safeIndex] ?? "hourly",
+		current: slides[safeIndex] ?? "currently",
 		index: safeIndex,
 		advance,
 		goTo,

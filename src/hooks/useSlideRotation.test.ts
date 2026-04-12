@@ -3,8 +3,13 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { MainPanelSlideType } from "@/types/weather";
 import { useSlideRotation } from "./useSlideRotation";
 
-const ALL_SLIDES: MainPanelSlideType[] = ["hourly", "7day", "radar", "alerts"];
-const THREE_SLIDES: MainPanelSlideType[] = ["hourly", "7day", "radar"];
+const ALL_SLIDES: MainPanelSlideType[] = [
+	"currently",
+	"radar",
+	"7day",
+	"alerts",
+];
+const THREE_SLIDES: MainPanelSlideType[] = ["currently", "radar", "7day"];
 
 describe("useSlideRotation", () => {
 	beforeEach(() => {
@@ -18,14 +23,14 @@ describe("useSlideRotation", () => {
 	it("starts at index 0 with the first slide", () => {
 		const { result } = renderHook(() => useSlideRotation(ALL_SLIDES));
 		expect(result.current.index).toBe(0);
-		expect(result.current.current).toBe("hourly");
+		expect(result.current.current).toBe("currently");
 	});
 
 	it("advance() moves to the next slide", () => {
 		const { result } = renderHook(() => useSlideRotation(ALL_SLIDES));
 		act(() => result.current.advance());
 		expect(result.current.index).toBe(1);
-		expect(result.current.current).toBe("7day");
+		expect(result.current.current).toBe("radar");
 	});
 
 	it("advance() wraps around from last to first slide", () => {
@@ -38,14 +43,14 @@ describe("useSlideRotation", () => {
 		// One more advance should wrap to 0
 		act(() => result.current.advance());
 		expect(result.current.index).toBe(0);
-		expect(result.current.current).toBe("hourly");
+		expect(result.current.current).toBe("currently");
 	});
 
 	it("goTo() jumps to a specific index", () => {
 		const { result } = renderHook(() => useSlideRotation(ALL_SLIDES));
 		act(() => result.current.goTo(2));
 		expect(result.current.index).toBe(2);
-		expect(result.current.current).toBe("radar");
+		expect(result.current.current).toBe("7day");
 	});
 
 	it("goTo() wraps via modulo", () => {
@@ -74,14 +79,14 @@ describe("useSlideRotation", () => {
 		slides = THREE_SLIDES; // alerts removed
 		rerender();
 		expect(result.current.index).toBe(0);
-		expect(result.current.current).toBe("hourly");
+		expect(result.current.current).toBe("currently");
 	});
 
 	it("does not go negative when index equals slides.length after shrink", () => {
-		let slides: MainPanelSlideType[] = ["hourly", "7day"];
+		let slides: MainPanelSlideType[] = ["7day"];
 		const { result, rerender } = renderHook(() => useSlideRotation(slides));
 		act(() => result.current.goTo(1));
-		slides = ["hourly"]; // remove second
+		slides = ["7day"]; // remove second
 		rerender();
 		expect(result.current.index).toBe(0);
 	});
