@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useNationalHeadlines } from "@/hooks/useAlerts";
 import type { WeatherAlert } from "@/types/weather";
+import styles from "./Chyron.module.scss";
 
 interface Props {
 	localAlerts: WeatherAlert[];
@@ -35,24 +36,22 @@ export function Chyron({ localAlerts, locationName }: Props) {
 
 	return (
 		<div
-			className="flex items-center shrink-0 overflow-hidden"
+			className={styles.chyron}
 			style={{
-				height: "2.25rem",
 				background: "#484848",
 				borderTop: "2px solid #606060",
 			}}
 		>
 			{/* Station logo zone */}
 			<div
-				className="shrink-0 h-full flex items-center justify-center px-3 gap-1.5"
+				className={styles.logoZone}
 				style={{
 					background: "#333333",
 					borderRight: "2px solid #606060",
-					minWidth: "7rem",
 				}}
 			>
 				<div
-					className="text-sm font-bold uppercase tracking-widest leading-tight text-center"
+					className={styles.stationName}
 					style={{ color: hasAlerts ? "#ffcc00" : "#cccccc" }}
 				>
 					{hasAlerts ? "⚠ ALERT" : locationName.toUpperCase()}
@@ -61,19 +60,19 @@ export function Chyron({ localAlerts, locationName }: Props) {
 
 			{/* Arrow separator */}
 			<div
-				className="shrink-0 text-sm"
-				style={{ color: "#888888", padding: "0 0.25rem" }}
+				className={styles.arrow}
+				style={{ color: "#888888" }}
 			>
 				▶
 			</div>
 
 			{/* Scrolling text */}
-			<div className="flex-1 overflow-hidden h-full flex items-center">
+			<div className={styles.scrollArea}>
 				<div
-					className="chyron-track text-sm font-bold whitespace-nowrap"
+					data-testid="chyron-track"
+					className={styles.scrollTrack}
 					style={{
 						color: hasAlerts ? "#ffcc00" : "#e8e8e8",
-						letterSpacing: "0.04em",
 					}}
 				>
 					{doubled}

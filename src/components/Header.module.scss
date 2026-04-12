@@ -1,0 +1,53 @@
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.375rem 1rem;
+	flex-shrink: 0;
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.logoTitle {
+	font-size: 1.25rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.logoBadge {
+	font-size: 0.875rem;
+	padding: 0.125rem 0.5rem;
+	border-radius: 0.25rem;
+	letter-spacing: 0.1em;
+}
+
+.location {
+	font-size: 0.875rem;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 20rem;
+	text-align: center;
+}
+
+.clock {
+	text-align: right;
+}
+
+.clockTime {
+	font-size: 1.125rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+}
+
+.clockDate {
+	font-size: 0.875rem;
+	letter-spacing: 0.08em;
+}

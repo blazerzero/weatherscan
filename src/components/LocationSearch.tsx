@@ -1,6 +1,7 @@
 import { type FormEvent, useRef, useState } from "react";
 import { geocodeCity } from "@/api/openMeteo";
 import type { LocationInfo } from "@/types/weather";
+import styles from "./LocationSearch.module.scss";
 
 interface Props {
 	onLocationFound: (location: LocationInfo) => void;
@@ -34,47 +35,46 @@ export function LocationSearch({ onLocationFound }: Props) {
 
 	return (
 		<div
-			className="flex flex-col items-center justify-center h-full gap-6"
+			className={styles.container}
 			style={{
 				background: "linear-gradient(180deg, #000d1a 0%, #001433 100%)",
 			}}
 		>
 			<div
-				className="text-3xl font-bold tracking-widest uppercase"
+				className={styles.title}
 				style={{ color: "#00aaff", textShadow: "0 0 20px #0077cc" }}
 			>
 				WeatherScan
 			</div>
 
 			<div
-				className="text-sm text-center"
-				style={{ color: "#557799", maxWidth: "22rem" }}
+				className={styles.instructions}
+				style={{ color: "#557799" }}
 			>
 				Location access was denied or unavailable.
 				<br />
 				Enter a city name or zip code to get started.
 			</div>
 
-			<form onSubmit={handleSubmit} className="flex gap-2">
+			<form onSubmit={handleSubmit} className={styles.form}>
 				<input
 					ref={inputRef}
 					type="text"
 					value={query}
 					onChange={(e) => setQuery(e.target.value)}
 					placeholder="City, State or Zip"
-					className="px-3 py-1.5 rounded text-sm outline-none"
+					className={styles.input}
 					style={{
 						background: "#001a40",
 						border: "1px solid #1a4070",
 						color: "#e8f4ff",
-						width: "16rem",
 					}}
 					autoFocus
 				/>
 				<button
 					type="submit"
 					disabled={loading}
-					className="px-3 py-1.5 rounded text-sm font-bold uppercase tracking-wider cursor-pointer"
+					className={styles.submitButton}
 					style={{
 						background: "#003366",
 						color: "#00aaff",
@@ -87,7 +87,7 @@ export function LocationSearch({ onLocationFound }: Props) {
 			</form>
 
 			{error && (
-				<div className="text-xs" style={{ color: "#ff8800" }}>
+				<div className={styles.errorMsg} style={{ color: "#ff8800" }}>
 					{error}
 				</div>
 			)}

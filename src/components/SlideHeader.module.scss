@@ -1,0 +1,21 @@
+.header {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.375rem 0.75rem;
+	flex-shrink: 0;
+	overflow: hidden;
+}
+
+.title {
+	font-weight: 700;
+	font-size: 1rem;
+	letter-spacing: 0.025em;
+}
+
+.city {
+	font-weight: 700;
+	font-size: 1rem;
+	padding-right: 2.5rem;
+}

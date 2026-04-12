@@ -15,6 +15,7 @@ import type {
 	LocationInfo,
 	SlideType,
 } from "@/types/weather";
+import styles from "./App.module.scss";
 
 export function App() {
 	const geo = useGeolocation();
@@ -54,16 +55,16 @@ export function App() {
 
 	return (
 		<div
-			className="w-screen h-screen overflow-hidden flex flex-col"
+			className={styles.app}
 			style={{
 				background:
 					"linear-gradient(160deg, #72bde8 0%, #4a9ad0 50%, #3a80bc 100%)",
 			}}
 		>
 			{/* Main row */}
-			<div className="flex flex-1 overflow-hidden">
+			<div className={styles.mainRow}>
 				{/* Left sidebar */}
-				<div className="shrink-0 flex flex-col" style={{ width: "33%" }}>
+				<div className={styles.sidebarCol}>
 					{showLocationSearch ? (
 						<LocationSearch onLocationFound={(loc) => setManualLocation(loc)} />
 					) : (
@@ -76,7 +77,7 @@ export function App() {
 				</div>
 
 				{/* Right content column */}
-				<div className="flex-1 flex flex-col overflow-hidden">
+				<div className={styles.contentCol}>
 					{/* Category ticker */}
 					<CategoryTicker
 						city={activeLocation?.city ?? null}
@@ -86,7 +87,7 @@ export function App() {
 
 					{/* Blue main panel */}
 					<div
-						className="flex-1 overflow-hidden"
+						className={styles.mainPanel}
 						style={{ background: "#2244b0" }}
 					>
 						{isLoading && !data ? (
@@ -117,7 +118,7 @@ export function App() {
 			{/* Stale-data indicator */}
 			{data && isLoading && (
 				<div
-					className="absolute top-2 right-2 text-sm px-2 py-0.5 rounded z-30"
+					className={styles.staleIndicator}
 					style={{
 						background: "rgba(0,0,0,0.55)",
 						color: "#99bbdd",
@@ -193,27 +194,27 @@ function CategoryTicker({
 
 	return (
 		<div
-			className="shrink-0 flex items-center overflow-hidden"
-			style={{ height: "1.625rem", background: "#0a0a22" }}
+			className={styles.ticker}
+			style={{ background: "#0a0a22" }}
 		>
 			{/* Fixed city label */}
 			<span
-				className="shrink-0 text-xs font-bold tracking-wider px-2 whitespace-nowrap"
+				className={styles.tickerCity}
 				style={{ color: "#d4a830" }}
 			>
 				{(city ?? "WEATHERSCAN").toUpperCase()}
 			</span>
-			<span className="shrink-0 text-xs px-1" style={{ color: "#333355" }}>
+			<span className={styles.tickerSep} style={{ color: "#333355" }}>
 				{"<"}
 			</span>
 
 			{/* Infinite sliding strip */}
 			<div
 				ref={containerRef}
-				className="flex-1 h-full overflow-hidden relative"
+				className={styles.tickerStrip}
 			>
 				<div
-					className="absolute inset-y-0 left-0 flex items-center"
+					className={styles.tickerTrack}
 					style={{
 						transform: `translateX(${track.x}px)`,
 						transition: track.animated
@@ -285,7 +286,7 @@ function BottomStrip({
 
 	return (
 		<div
-			className="shrink-0"
+			className={styles.bottomStrip}
 			style={{ opacity: visible ? 1 : 0, transition: "opacity 0.35s ease" }}
 		>
 			{view === "hourly" ? (
@@ -320,27 +321,26 @@ function FiveDayFooter({
 		<div>
 			{/* Gold header strip */}
 			<div
-				className="flex items-center gap-2 px-3 py-1"
+				className={styles.footerHeader}
 				style={{ background: "#c8aa38", borderTop: "2px solid #a08828" }}
 			>
 				<span
-					className="text-base font-bold uppercase tracking-wide"
+					className={styles.footerCity}
 					style={{ color: "#0d1f3a" }}
 				>
 					{location.city.toUpperCase()}:
 				</span>
-				<span className="text-base font-bold" style={{ color: "#1a2d7a" }}>
+				<span className={styles.footerLabel} style={{ color: "#1a2d7a" }}>
 					5 DAY FORECAST
 				</span>
 			</div>
 
 			{/* Day columns */}
 			<div
-				className="flex"
+				className={styles.footerColumns}
 				style={{
 					background:
 						"linear-gradient(180deg, #8ab4e4 0%, #6090cc 50%, #5080bc 100%)",
-					height: "10rem",
 				}}
 			>
 				{days.map((d, i) => {
@@ -350,7 +350,7 @@ function FiveDayFooter({
 					return (
 						<div
 							key={d.date.toISOString()}
-							className="flex-1 flex flex-col"
+							className={styles.footerColumn}
 							style={{
 								borderRight:
 									i < days.length - 1 ? "1px solid #3a5888" : undefined,
@@ -358,11 +358,11 @@ function FiveDayFooter({
 						>
 							{/* Day name */}
 							<div
-								className="px-2 py-1"
+								className={styles.footerDayHeader}
 								style={{ background: i === 0 ? "#9abce8" : "#5a7ec0" }}
 							>
 								<span
-									className="text-sm font-bold"
+									className={styles.footerDayName}
 									style={{ color: "#0a1840" }}
 								>
 									{dayLabel}
@@ -370,21 +370,21 @@ function FiveDayFooter({
 							</div>
 
 							{/* Icon + high / low */}
-							<div className="flex-1 flex items-center px-2 gap-2">
+							<div className={styles.footerDayBody}>
 								<WeatherIcon
 									code={d.conditionCode}
 									isDay
-									className="text-3xl leading-none shrink-0"
+									className={styles.footerDayIcon}
 								/>
-								<div className="flex flex-col leading-none">
+								<div className={styles.footerTemps}>
 									<span
-										className="text-3xl font-bold"
+										className={styles.footerHighTemp}
 										style={{ color: "#0a1428" }}
 									>
 										{d.highF}
 									</span>
 									<span
-										className="text-lg font-bold"
+										className={styles.footerLowTemp}
 										style={{ color: "#333333" }}
 									>
 										{d.lowF}
@@ -444,30 +444,29 @@ function HourlyFooter({
 		: "TODAY";
 
 	return (
-		<div className="shrink-0">
+		<div className={styles.bottomStrip}>
 			{/* Gold header strip */}
 			<div
-				className="flex items-center gap-2 px-3 py-1"
+				className={styles.footerHeader}
 				style={{ background: "#c8aa38", borderTop: "2px solid #a08828" }}
 			>
 				<span
-					className="text-base font-bold uppercase tracking-wide"
+					className={styles.footerCity}
 					style={{ color: "#0d1f3a" }}
 				>
 					{location.city.toUpperCase()}:
 				</span>
-				<span className="text-base font-bold" style={{ color: "#1a2d7a" }}>
+				<span className={styles.footerLabel} style={{ color: "#1a2d7a" }}>
 					{dayName}'S FORECAST
 				</span>
 			</div>
 
 			{/* Time slots */}
 			<div
-				className="flex"
+				className={styles.footerColumns}
 				style={{
 					background:
 						"linear-gradient(180deg, #8ab4e4 0%, #6090cc 50%, #5080bc 100%)",
-					height: "10rem",
 				}}
 			>
 				{(() => {
@@ -492,23 +491,23 @@ function HourlyFooter({
 						return (
 							<div
 								key={h.time.toISOString()}
-								className="flex-1 flex flex-col"
+								className={styles.footerColumn}
 								style={{
 									borderRight:
 										i < slots.length - 1 ? "1px solid #3a5888" : undefined,
 								}}
 							>
 								{/* Icon + temperature + bar */}
-								<div className="flex items-end justify-between px-2 pt-2 pb-1 flex-1">
+								<div className={styles.footerSlotBody}>
 									<WeatherIcon
 										code={h.conditionCode}
 										isDay={h.isDay}
-										className="text-3xl leading-none self-center"
+										className={styles.footerSlotIcon}
 									/>
 									{/* Temperature + silver bar stacked */}
-									<div className="flex flex-col items-center gap-0.5">
+									<div className={styles.footerTempBar}>
 										<span
-											className="text-4xl font-bold leading-none"
+											className={styles.footerTemp}
 											style={{ color: "#0a1428" }}
 										>
 											{h.tempF}
@@ -531,9 +530,9 @@ function HourlyFooter({
 								</div>
 
 								{/* Time label band */}
-								<div className="px-2 py-1" style={{ background: "#6a5010" }}>
+								<div className={styles.footerTimeBand} style={{ background: "#6a5010" }}>
 									<span
-										className="text-sm font-bold"
+										className={styles.footerTimeLabel}
 										style={{ color: "#ffffff" }}
 									>
 										{timeLabel}
@@ -550,14 +549,14 @@ function HourlyFooter({
 
 function LoadingScreen() {
 	return (
-		<div className="flex flex-col items-center justify-center h-full gap-4">
+		<div className={styles.loadingScreen}>
 			<div
-				className="text-2xl font-bold tracking-widest uppercase animate-pulse"
+				className={styles.loadingTitle}
 				style={{ color: "#d4a830" }}
 			>
 				Acquiring Data…
 			</div>
-			<div className="text-sm" style={{ color: "#99bbdd" }}>
+			<div className={styles.loadingSubtitle} style={{ color: "#99bbdd" }}>
 				Fetching conditions for your location
 			</div>
 		</div>
@@ -566,16 +565,16 @@ function LoadingScreen() {
 
 function ErrorScreen({ onRetry }: { onRetry: () => void }) {
 	return (
-		<div className="flex flex-col items-center justify-center h-full gap-4">
-			<div className="text-2xl font-bold" style={{ color: "#dd2200" }}>
+		<div className={styles.errorScreen}>
+			<div className={styles.errorTitle} style={{ color: "#dd2200" }}>
 				Unable to Load Weather
 			</div>
-			<div className="text-sm" style={{ color: "#99bbdd" }}>
+			<div className={styles.errorSubtitle} style={{ color: "#99bbdd" }}>
 				Check your connection and try again.
 			</div>
 			<button
 				onClick={onRetry}
-				className="px-4 py-1.5 rounded text-sm font-bold uppercase tracking-wider cursor-pointer"
+				className={styles.retryButton}
 				style={{
 					background: "#162870",
 					color: "#d4a830",

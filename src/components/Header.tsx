@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { LocationInfo } from "@/types/weather";
+import styles from "./Header.module.scss";
 
 interface Props {
 	location: LocationInfo | null;
@@ -41,7 +42,7 @@ export function Header({ location }: Props) {
 
 	return (
 		<header
-			className="flex items-center justify-between px-4 py-1.5 shrink-0"
+			className={styles.header}
 			style={{
 				background:
 					"linear-gradient(90deg, #003366 0%, #001a40 50%, #003366 100%)",
@@ -49,9 +50,9 @@ export function Header({ location }: Props) {
 			}}
 		>
 			{/* Logo */}
-			<div className="flex items-center gap-3">
+			<div className={styles.logo}>
 				<div
-					className="text-xl font-bold tracking-widest uppercase"
+					className={styles.logoTitle}
 					style={{
 						color: "#00aaff",
 						textShadow: "0 0 12px #0077cc, 0 0 4px #00aaff",
@@ -61,11 +62,10 @@ export function Header({ location }: Props) {
 					WeatherScan
 				</div>
 				<div
-					className="text-sm px-2 py-0.5 rounded"
+					className={styles.logoBadge}
 					style={{
 						background: "#0055a0",
 						color: "#88bbdd",
-						letterSpacing: "0.1em",
 					}}
 				>
 					LOCAL
@@ -74,16 +74,16 @@ export function Header({ location }: Props) {
 
 			{/* Location */}
 			<div
-				className="text-sm font-bold tracking-wider truncate max-w-xs text-center"
+				className={styles.location}
 				style={{ color: "#ffcc00", textShadow: "0 0 8px #cc8800" }}
 			>
 				{locationStr}
 			</div>
 
 			{/* Clock */}
-			<div className="text-right">
+			<div className={styles.clock}>
 				<div
-					className="text-lg font-bold tracking-widest"
+					className={styles.clockTime}
 					style={{
 						color: "#e8f4ff",
 						fontFamily: "Courier New, monospace",
@@ -93,8 +93,8 @@ export function Header({ location }: Props) {
 					{timeStr}
 				</div>
 				<div
-					className="text-sm"
-					style={{ color: "#557799", letterSpacing: "0.08em" }}
+					className={styles.clockDate}
+					style={{ color: "#557799" }}
 				>
 					{dateStr}
 				</div>

@@ -1,4 +1,5 @@
 import { COLORS } from "@/lib/constants";
+import styles from "./SlideHeader.module.scss";
 
 interface Props {
 	title: string;
@@ -10,14 +11,14 @@ interface Props {
 export function SlideHeader({ title, city, alert = false }: Props) {
 	return (
 		<div
-			className="relative flex items-center justify-between px-3 py-1.5 shrink-0 overflow-hidden"
+			className={styles.header}
 			style={{
 				background: alert ? "#3a0808" : COLORS.panelDark,
 				borderBottom: `2px solid ${alert ? COLORS.red : COLORS.gold}`,
 			}}
 		>
 			<span
-				className="font-bold text-base tracking-wide"
+				className={styles.title}
 				style={{ color: "#ffffff" }}
 			>
 				{title}
@@ -25,8 +26,8 @@ export function SlideHeader({ title, city, alert = false }: Props) {
 
 			{city && (
 				<span
-					className="font-bold text-base"
-					style={{ color: "#ffffff", paddingRight: "2.5rem" }}
+					className={styles.city}
+					style={{ color: "#ffffff" }}
 				>
 					{city}
 				</span>

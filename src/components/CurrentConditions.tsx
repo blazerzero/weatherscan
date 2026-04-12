@@ -1,6 +1,7 @@
 import { COLORS } from "@/lib/constants";
 import type { CurrentConditions as CC } from "@/types/weather";
 import { WeatherIcon } from "./WeatherIcon";
+import styles from "./CurrentConditions.module.scss";
 
 interface Props {
 	data: CC;
@@ -23,28 +24,25 @@ export function CurrentConditions({ data }: Props) {
 	];
 
 	return (
-		<div className="flex h-full">
+		<div className={styles.container}>
 			{/* Left column — labeled data rows */}
-			<div
-				className="flex flex-col justify-center gap-0 px-5 py-4"
-				style={{ flex: "0 0 55%" }}
-			>
+			<div className={styles.dataCol}>
 				{rows.map(({ label, value }) => (
 					<div
 						key={label}
-						className="flex items-baseline justify-between py-1"
+						className={styles.dataRow}
 						style={{
 							borderBottom: "1px solid rgba(255,255,255,0.1)",
 						}}
 					>
 						<span
-							className="font-bold text-base"
-							style={{ color: COLORS.gold, minWidth: "7rem" }}
+							className={styles.dataLabel}
+							style={{ color: COLORS.gold }}
 						>
 							{label}
 						</span>
 						<span
-							className="font-bold text-base text-right"
+							className={styles.dataValue}
 							style={{ color: "#ffffff" }}
 						>
 							{value}
@@ -63,24 +61,22 @@ export function CurrentConditions({ data }: Props) {
 			/>
 
 			{/* Right column — icon + condition label + large temp */}
-			<div className="flex flex-col items-center justify-center gap-3 flex-1 px-4">
+			<div className={styles.iconCol}>
 				<WeatherIcon
 					code={data.conditionCode}
 					isDay={data.isDay}
-					className="text-6xl leading-none"
+					className={styles.conditionIcon}
 				/>
 				<div
-					className="text-base font-bold text-center"
+					className={styles.conditionLabel}
 					style={{ color: "#ffffff" }}
 				>
 					{data.conditionLabel}
 				</div>
 				<div
-					className="font-bold leading-none"
+					className={styles.temperature}
 					style={{
 						color: "#ffffff",
-						fontSize: "4rem",
-						fontFamily: "Overpass, sans-serif",
 						textShadow: "0 2px 16px rgba(80,130,255,0.4)",
 					}}
 				>

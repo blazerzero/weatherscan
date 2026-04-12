@@ -1,0 +1,20 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.mapArea {
+	flex: 1 1 0%;
+	position: relative;
+}
+
+.loadingOverlay {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 0.875rem;
+	pointer-events: none;
+}

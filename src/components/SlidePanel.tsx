@@ -6,6 +6,7 @@ import { HourlyForecast } from "./HourlyForecast";
 import { RadarSlide } from "./RadarSlide";
 import { SevenDayForecast } from "./SevenDayForecast";
 import { SlideHeader } from "./SlideHeader";
+import styles from "./SlidePanel.module.scss";
 
 interface Props {
 	data: WeatherData;
@@ -37,7 +38,7 @@ export function SlidePanel({ data, current }: Props) {
 	const city = data.location.city;
 
 	return (
-		<section className="flex flex-col h-full">
+		<section className={styles.panel}>
 			{/* Shared slide header */}
 			<SlideHeader
 				title={
@@ -51,7 +52,7 @@ export function SlidePanel({ data, current }: Props) {
 
 			{/* Slide content */}
 			<div
-				className="flex-1 overflow-hidden"
+				className={styles.content}
 				style={{ opacity: visible ? 1 : 0, transition: "opacity 0.3s ease" }}
 			>
 				{current === "currently" && <CurrentConditions data={data.current} />}

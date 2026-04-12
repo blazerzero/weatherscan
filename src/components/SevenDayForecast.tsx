@@ -1,6 +1,7 @@
 import { COLORS } from "@/lib/constants";
 import type { DailyForecast } from "@/types/weather";
 import { WeatherIcon } from "./WeatherIcon";
+import styles from "./SevenDayForecast.module.scss";
 
 interface Props {
 	data: DailyForecast[];
@@ -10,7 +11,7 @@ export function SevenDayForecast({ data }: Props) {
 	const days = data.slice(0, 7);
 
 	return (
-		<div className="flex h-full">
+		<div className={styles.container}>
 			{days.map((d, i) => {
 				const dayLabel =
 					i === 0
@@ -20,7 +21,7 @@ export function SevenDayForecast({ data }: Props) {
 				return (
 					<div
 						key={d.date.toISOString()}
-						className="flex-1 flex flex-col items-center"
+						className={styles.dayCol}
 						style={{
 							borderRight:
 								i < days.length - 1 ? `1px solid ${COLORS.borderDark}` : "none",
@@ -28,7 +29,7 @@ export function SevenDayForecast({ data }: Props) {
 					>
 						{/* Day name header */}
 						<div
-							className="w-full text-center py-1 font-bold text-base uppercase tracking-wide"
+							className={styles.dayHeader}
 							style={{
 								background: COLORS.panelMid,
 								color: i === 0 ? COLORS.gold : COLORS.textPrimary,
@@ -39,12 +40,12 @@ export function SevenDayForecast({ data }: Props) {
 
 						{/* Icon + condition area */}
 						<div
-							className="flex-1 w-full flex flex-col items-center justify-center gap-1 py-2 px-1"
+							className={styles.iconArea}
 							style={{ background: COLORS.panelBg }}
 						>
-							<WeatherIcon code={d.conditionCode} isDay className="text-3xl" />
+							<WeatherIcon code={d.conditionCode} isDay className={styles.icon} />
 							<span
-								className="text-sm font-bold text-center leading-tight"
+								className={styles.conditionLabel}
 								style={{ color: COLORS.textPrimary }}
 							>
 								{d.conditionLabel}
@@ -53,11 +54,11 @@ export function SevenDayForecast({ data }: Props) {
 
 						{/* High temp */}
 						<div
-							className="w-full text-center py-2"
+							className={styles.highTemp}
 							style={{ background: COLORS.blueBright }}
 						>
 							<span
-								className="text-4xl font-bold"
+								className={styles.highTempValue}
 								style={{ color: COLORS.textPrimary }}
 							>
 								{d.highF}
@@ -66,11 +67,11 @@ export function SevenDayForecast({ data }: Props) {
 
 						{/* Low temp */}
 						<div
-							className="w-full text-center py-2"
+							className={styles.lowTemp}
 							style={{ background: COLORS.panelDark }}
 						>
 							<span
-								className="text-2xl"
+								className={styles.lowTempValue}
 								style={{ color: COLORS.textSecondary }}
 							>
 								{d.lowF}

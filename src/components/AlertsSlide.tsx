@@ -1,6 +1,7 @@
 import { COLORS } from "@/lib/constants";
 import { formatAlertTime } from "@/lib/format";
 import type { WeatherAlert } from "@/types/weather";
+import styles from "./AlertsSlide.module.scss";
 
 interface Props {
 	alerts: WeatherAlert[];
@@ -36,15 +37,15 @@ const SEVERITY_COLORS: Record<
 export function AlertsSlide({ alerts }: Props) {
 	if (alerts.length === 0) {
 		return (
-			<div className="flex flex-col h-full items-center justify-center gap-2">
-				<div className="text-4xl">✅</div>
+			<div className={styles.noAlerts}>
+				<div className={styles.noAlertsIcon}>✅</div>
 				<div
-					className="text-base font-bold uppercase tracking-widest"
+					className={styles.noAlertsTitle}
 					style={{ color: COLORS.green }}
 				>
 					No Active Alerts
 				</div>
-				<div className="text-sm" style={{ color: COLORS.textDim }}>
+				<div className={styles.noAlertsDesc} style={{ color: COLORS.textDim }}>
 					No warnings or advisories for your area.
 				</div>
 			</div>
@@ -52,27 +53,27 @@ export function AlertsSlide({ alerts }: Props) {
 	}
 
 	return (
-		<div className="flex flex-col h-full overflow-y-auto">
+		<div className={styles.alertList}>
 			{alerts.map((a) => {
 				const colors = SEVERITY_COLORS[a.severity];
 				return (
 					<div
 						key={a.id}
-						className="mx-2 my-1.5 p-2 rounded"
+						className={styles.alertCard}
 						style={{
 							border: `1px solid ${colors.border}`,
 							background: colors.bg,
 						}}
 					>
-						<div className="flex items-start justify-between gap-2">
+						<div className={styles.alertHeader}>
 							<div
-								className="text-sm font-bold uppercase tracking-wide"
+								className={styles.alertEvent}
 								style={{ color: colors.text }}
 							>
 								{a.event}
 							</div>
 							<div
-								className="text-sm px-1.5 py-0.5 rounded uppercase tracking-wider shrink-0"
+								className={styles.alertSeverity}
 								style={{
 									color: colors.text,
 									border: `1px solid ${colors.border}`,
@@ -82,12 +83,12 @@ export function AlertsSlide({ alerts }: Props) {
 							</div>
 						</div>
 						<div
-							className="text-sm mt-1"
+							className={styles.alertArea}
 							style={{ color: COLORS.textSecondary }}
 						>
 							{a.areaDesc}
 						</div>
-						<div className="text-sm mt-0.5" style={{ color: COLORS.textDim }}>
+						<div className={styles.alertExpires} style={{ color: COLORS.textDim }}>
 							Until: {formatAlertTime(a.expires)}
 						</div>
 					</div>

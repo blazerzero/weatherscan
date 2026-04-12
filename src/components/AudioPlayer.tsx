@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import styles from "./AudioPlayer.module.scss";
 
 // Free smooth jazz internet radio stream
 const STREAM_URL = "https://streaming.live365.com/a18141";
@@ -101,13 +102,13 @@ export function AudioPlayer() {
 	}, [mode]);
 
 	return (
-		<div className="flex items-center gap-2">
+		<div className={styles.player}>
 			<audio ref={audioRef} onEnded={handleEnded} preload="none" />
 
 			{!started ? (
 				<button
 					onClick={handleTuneIn}
-					className="flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider transition-all cursor-pointer"
+					className={styles.button}
 					style={{
 						background: "rgba(0,85,160,0.3)",
 						color: "#00aaff",
@@ -119,7 +120,7 @@ export function AudioPlayer() {
 			) : (
 				<button
 					onClick={toggleMute}
-					className="flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider cursor-pointer transition-all"
+					className={styles.button}
 					style={{
 						background: muted ? "rgba(80,80,80,0.2)" : "rgba(0,85,160,0.3)",
 						color: muted ? "#557799" : "#00aaff",
@@ -132,7 +133,7 @@ export function AudioPlayer() {
 			)}
 
 			{started && !isOnline && (
-				<span className="text-xs" style={{ color: "#557799" }}>
+				<span className={styles.offlineLabel} style={{ color: "#557799" }}>
 					offline mode
 				</span>
 			)}

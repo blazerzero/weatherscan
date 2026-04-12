@@ -1,6 +1,7 @@
 import { COLORS } from "@/lib/constants";
 import type { HourlyPoint } from "@/types/weather";
 import { WeatherIcon } from "./WeatherIcon";
+import styles from "./HourlyForecast.module.scss";
 
 interface Props {
 	data: HourlyPoint[];
@@ -12,8 +13,8 @@ export function HourlyForecast({ data, timezone }: Props) {
 	const hours = data.slice(0, 12);
 
 	return (
-		<div className="flex flex-col h-full">
-			<div className="flex-1 overflow-hidden">
+		<div className={styles.container}>
+			<div className={styles.list}>
 				{hours.map((h, i) => {
 					const timeStr = h.time.toLocaleTimeString("en-US", {
 						hour: "numeric",
@@ -24,17 +25,16 @@ export function HourlyForecast({ data, timezone }: Props) {
 					return (
 						<div
 							key={h.time.toISOString()}
-							className="flex items-center justify-between px-4 py-1.5"
+							className={styles.row}
 							style={{
 								borderBottom: `1px solid ${COLORS.border}`,
 								background: isNow ? "rgba(42,82,188,0.4)" : undefined,
 							}}
 						>
 							<span
-								className="text-sm font-bold w-16"
+								className={styles.time}
 								style={{
 									color: isNow ? COLORS.gold : COLORS.textSecondary,
-									letterSpacing: "0.05em",
 								}}
 							>
 								{isNow ? "NOW" : timeStr}
@@ -42,29 +42,29 @@ export function HourlyForecast({ data, timezone }: Props) {
 							<WeatherIcon
 								code={h.conditionCode}
 								isDay={h.isDay}
-								className="text-lg w-8 text-center"
+								className={styles.icon}
 							/>
 							<span
-								className="text-sm w-20 text-center truncate"
+								className={styles.condition}
 								style={{ color: COLORS.textDim }}
 							>
 								{h.conditionLabel}
 							</span>
 							<span
-								className="text-base font-bold w-14 text-right"
+								className={styles.temp}
 								style={{ color: COLORS.textPrimary }}
 							>
 								{h.tempF}
 							</span>
 							{h.precipChancePct > 0 && (
 								<span
-									className="text-sm w-10 text-right"
+									className={styles.precip}
 									style={{ color: COLORS.blueAccent }}
 								>
 									{h.precipChancePct}%
 								</span>
 							)}
-							{h.precipChancePct === 0 && <span className="w-10" />}
+							{h.precipChancePct === 0 && <span className={styles.precipSpacer} />}
 						</div>
 					);
 				})}
