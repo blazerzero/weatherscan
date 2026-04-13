@@ -149,29 +149,29 @@
 }
 
 .highTemp {
-	font-size: 3rem;
+	font-size: 2.5rem;
 	font-weight: 700;
 	color: #0a1428;
 
 	@media (max-width: 1023px) {
-		font-size: 2.25rem;
+		font-size: 2rem;
 	}
 
 	@media (max-width: 767px) {
-		font-size: 1.75rem;
+		font-size: 1.5rem;
 	}
 }
 
 .lowTemp {
-	font-size: 2rem;
+	font-size: 1.75rem;
 	font-weight: 700;
 	color: #333333;
 
 	@media (max-width: 1023px) {
-		font-size: 1.5rem;
+		font-size: 1.25rem;
 	}
 
 	@media (max-width: 767px) {
-		font-size: 1.25rem;
+		font-size: 1rem;
 	}
 }

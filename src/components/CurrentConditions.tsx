@@ -43,6 +43,7 @@ export function CurrentConditions({ data }: Props) {
 					code={data.conditionCode}
 					isDay={data.isDay}
 					className={styles.conditionIcon}
+					size="6rem"
 				/>
 				<div className={styles.conditionLabel}>{data.conditionLabel}</div>
 				<div className={styles.temperature}>{data.temperatureF}</div>

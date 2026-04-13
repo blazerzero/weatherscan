@@ -45,7 +45,7 @@ export function FiveDayFooter({ daily, location }: Props) {
 									code={d.conditionCode}
 									isDay
 									className={styles.icon}
-									size="6rem"
+									size="5rem"
 								/>
 								<div className={styles.temps}>
 									<span className={styles.highTemp}>{d.highF}</span>
