@@ -76,77 +76,70 @@ describe("degToCardinal", () => {
 
 describe("wmoLabel", () => {
 	describe("clear / cloudy", () => {
-		it("code 0 day → Clear", () => expect(wmoLabel(0, true)).toBe("Clear"));
-		it("code 0 night → Clear", () => expect(wmoLabel(0, false)).toBe("Clear"));
-		it("code 1 → Mostly Clear", () =>
-			expect(wmoLabel(1, true)).toBe("Mostly Clear"));
+		it("code 0 day → Clear", () => expect(wmoLabel(0)).toBe("Clear"));
+		it("code 0 night → Clear", () => expect(wmoLabel(0)).toBe("Clear"));
+		it("code 1 → Mostly Clear", () => expect(wmoLabel(1)).toBe("Mostly Clear"));
 		it("code 2 → Partly Cloudy", () =>
-			expect(wmoLabel(2, true)).toBe("Partly Cloudy"));
-		it("code 3 → Overcast", () => expect(wmoLabel(3, true)).toBe("Overcast"));
+			expect(wmoLabel(2)).toBe("Partly Cloudy"));
+		it("code 3 → Overcast", () => expect(wmoLabel(3)).toBe("Overcast"));
 	});
 
 	describe("fog", () => {
-		it("code 45 → Foggy", () => expect(wmoLabel(45, true)).toBe("Foggy"));
-		it("code 48 → Foggy", () => expect(wmoLabel(48, true)).toBe("Foggy"));
+		it("code 45 → Foggy", () => expect(wmoLabel(45)).toBe("Foggy"));
+		it("code 48 → Foggy", () => expect(wmoLabel(48)).toBe("Foggy"));
 	});
 
 	describe("drizzle", () => {
 		it("code 51 → Light Drizzle", () =>
-			expect(wmoLabel(51, true)).toBe("Light Drizzle"));
-		it("code 53 → Drizzle", () => expect(wmoLabel(53, true)).toBe("Drizzle"));
+			expect(wmoLabel(51)).toBe("Light Drizzle"));
+		it("code 53 → Drizzle", () => expect(wmoLabel(53)).toBe("Drizzle"));
 		it("code 55 → Heavy Drizzle", () =>
-			expect(wmoLabel(55, true)).toBe("Heavy Drizzle"));
+			expect(wmoLabel(55)).toBe("Heavy Drizzle"));
 		it("code 56 → Freezing Drizzle", () =>
-			expect(wmoLabel(56, true)).toBe("Freezing Drizzle"));
+			expect(wmoLabel(56)).toBe("Freezing Drizzle"));
 		it("code 57 → Freezing Drizzle", () =>
-			expect(wmoLabel(57, true)).toBe("Freezing Drizzle"));
+			expect(wmoLabel(57)).toBe("Freezing Drizzle"));
 	});
 
 	describe("rain", () => {
-		it("code 61 → Light Rain", () =>
-			expect(wmoLabel(61, true)).toBe("Light Rain"));
-		it("code 63 → Rain", () => expect(wmoLabel(63, true)).toBe("Rain"));
-		it("code 65 → Heavy Rain", () =>
-			expect(wmoLabel(65, true)).toBe("Heavy Rain"));
+		it("code 61 → Light Rain", () => expect(wmoLabel(61)).toBe("Light Rain"));
+		it("code 63 → Rain", () => expect(wmoLabel(63)).toBe("Rain"));
+		it("code 65 → Heavy Rain", () => expect(wmoLabel(65)).toBe("Heavy Rain"));
 		it("code 66 → Freezing Rain", () =>
-			expect(wmoLabel(66, true)).toBe("Freezing Rain"));
+			expect(wmoLabel(66)).toBe("Freezing Rain"));
 		it("code 67 → Freezing Rain", () =>
-			expect(wmoLabel(67, true)).toBe("Freezing Rain"));
+			expect(wmoLabel(67)).toBe("Freezing Rain"));
 	});
 
 	describe("snow", () => {
-		it("code 71 → Light Snow", () =>
-			expect(wmoLabel(71, true)).toBe("Light Snow"));
-		it("code 73 → Snow", () => expect(wmoLabel(73, true)).toBe("Snow"));
-		it("code 75 → Heavy Snow", () =>
-			expect(wmoLabel(75, true)).toBe("Heavy Snow"));
-		it("code 77 → Snow Grains", () =>
-			expect(wmoLabel(77, true)).toBe("Snow Grains"));
+		it("code 71 → Light Snow", () => expect(wmoLabel(71)).toBe("Light Snow"));
+		it("code 73 → Snow", () => expect(wmoLabel(73)).toBe("Snow"));
+		it("code 75 → Heavy Snow", () => expect(wmoLabel(75)).toBe("Heavy Snow"));
+		it("code 77 → Snow Grains", () => expect(wmoLabel(77)).toBe("Snow Grains"));
 	});
 
 	describe("showers", () => {
 		it("code 80 → Light Showers", () =>
-			expect(wmoLabel(80, true)).toBe("Light Showers"));
-		it("code 81 → Showers", () => expect(wmoLabel(81, true)).toBe("Showers"));
+			expect(wmoLabel(80)).toBe("Light Showers"));
+		it("code 81 → Showers", () => expect(wmoLabel(81)).toBe("Showers"));
 		it("code 82 → Heavy Showers", () =>
-			expect(wmoLabel(82, true)).toBe("Heavy Showers"));
+			expect(wmoLabel(82)).toBe("Heavy Showers"));
 		it("code 85 → Snow Showers", () =>
-			expect(wmoLabel(85, true)).toBe("Snow Showers"));
+			expect(wmoLabel(85)).toBe("Snow Showers"));
 		it("code 86 → Snow Showers", () =>
-			expect(wmoLabel(86, true)).toBe("Snow Showers"));
+			expect(wmoLabel(86)).toBe("Snow Showers"));
 	});
 
 	describe("thunderstorms", () => {
 		it("code 95 → Thunderstorm", () =>
-			expect(wmoLabel(95, true)).toBe("Thunderstorm"));
+			expect(wmoLabel(95)).toBe("Thunderstorm"));
 		it("code 96 → Severe Thunderstorm", () =>
-			expect(wmoLabel(96, true)).toBe("Severe Thunderstorm"));
+			expect(wmoLabel(96)).toBe("Severe Thunderstorm"));
 		it("code 99 → Severe Thunderstorm", () =>
-			expect(wmoLabel(99, true)).toBe("Severe Thunderstorm"));
+			expect(wmoLabel(99)).toBe("Severe Thunderstorm"));
 	});
 
-	it("unknown code → Unknown", () =>
-		expect(wmoLabel(999, true)).toBe("Unknown"));
+	it("unknown code → Unknown", () => expect(wmoLabel(999)).toBe("Unknown"));
 });
 
 // ---------------------------------------------------------------------------

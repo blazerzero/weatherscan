@@ -61,13 +61,13 @@ function getIcon(code: number, isDay: boolean): object {
 		case 67:
 			return sleet;
 		case 71:
-		case 85:
-			return night ? partlyCloudyNightSnow : partlyCloudyDaySnow;
 		case 73:
-		case 77:
 		case 75:
-		case 86:
+		case 77:
 			return snow;
+		case 85:
+		case 86:
+			return night ? partlyCloudyNightSnow : partlyCloudyDaySnow;
 		case 80:
 		case 81:
 		case 82:

@@ -28,7 +28,7 @@ export function SevenDayForecast({ data }: Props) {
 								code={d.conditionCode}
 								isDay
 								className={styles.icon}
-								size="8rem"
+								size="6rem"
 							/>
 							<span className={styles.conditionLabel}>{d.conditionLabel}</span>
 						</div>

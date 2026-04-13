@@ -1,13 +1,13 @@
 {
 	"name": "weatherscan",
-	"version": "0.2.5",
+	"version": "0.2.6",
 	"private": true,
 	"packageManager": "yarn@4.13.0",
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
-		"deploy": "wrangler deploy",
 		"build": "tsc -b && vite build",
+		"deploy": "yarn build && wrangler deploy",
 		"preview": "vite preview",
 		"typecheck": "tsc --noEmit",
 		"test": "vitest run",

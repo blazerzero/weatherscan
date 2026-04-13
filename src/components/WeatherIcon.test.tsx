@@ -5,6 +5,12 @@ import { WeatherIcon } from "./WeatherIcon";
 
 vi.mock("@meteocons/lottie/fill/clear-day.json", () => ({ default: {} }));
 vi.mock("@meteocons/lottie/fill/clear-night.json", () => ({ default: {} }));
+vi.mock("@meteocons/lottie/fill/mostly-clear-day.json", () => ({
+	default: {},
+}));
+vi.mock("@meteocons/lottie/fill/mostly-clear-night.json", () => ({
+	default: {},
+}));
 vi.mock("@meteocons/lottie/fill/partly-cloudy-day.json", () => ({
 	default: {},
 }));

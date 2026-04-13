@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import type { MainPanelSlideType } from "@/types/weather";
 
-const SLIDE_DURATION_MS = 15_000;
+const SLIDE_DURATION_MS = 1000_000;
 
 export function useSlideRotation(slides: MainPanelSlideType[]): {
 	current: MainPanelSlideType;
