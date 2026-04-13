@@ -1,6 +1,6 @@
 {
 	"name": "weatherscan",
-	"version": "0.2.4",
+	"version": "0.2.5",
 	"private": true,
 	"packageManager": "yarn@4.13.0",
 	"type": "module",

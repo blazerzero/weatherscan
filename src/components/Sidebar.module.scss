@@ -53,10 +53,6 @@
 	padding: 0.25rem 0.75rem 0;
 	position: relative;
 	z-index: 10;
-
-	@media (max-width: 1023px) {
-		display: none;
-	}
 }
 
 .wordmarkText {
@@ -66,6 +62,10 @@
 	text-align: center;
 	margin: 1.5rem 0;
 	text-shadow: 0 0 1rem white;
+
+	@media (max-width: 1023px) {
+		margin: 0;
+	}
 }
 
 .currentWeatherWrapper {

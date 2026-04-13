@@ -19,13 +19,40 @@
 	}
 }
 
-.label {
+.labelDesktop,
+.labelTablet,
+.labelMobile {
 	font-size: 1.25rem;
 	font-weight: 700;
 	color: #1a2d7a;
 
 	@media (max-width: 767px) {
 		font-size: 0.875rem;
+	}
+}
+
+.labelTablet,
+.labelMobile {
+	display: none;
+}
+
+@media (max-width: 1023px) {
+	.labelDesktop {
+		display: none;
+	}
+
+	.labelTablet {
+		display: inline;
+	}
+}
+
+@media (max-width: 767px) {
+	.labelTablet {
+		display: none;
+	}
+
+	.labelMobile {
+		display: inline;
 	}
 }
 

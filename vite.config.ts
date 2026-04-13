@@ -6,7 +6,7 @@ import { VitePWA } from "vite-plugin-pwa";
 
 const env = loadEnv(
 	process.env.NODE_ENV as string,
-	path.resolve(__dirname, ".."),
+	path.resolve(__dirname),
 	"VITE_",
 );
 

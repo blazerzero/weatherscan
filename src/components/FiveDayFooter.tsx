@@ -24,7 +24,9 @@ export function FiveDayFooter({ daily, location }: Props) {
 		<div>
 			<div className={styles.header}>
 				<span className={styles.city}>{location.city.toUpperCase()}:</span>
-				<span className={styles.label}>5 DAY FORECAST</span>
+				<span className={styles.labelDesktop}>5 DAY FORECAST</span>
+				<span className={styles.labelTablet}>3 DAY FORECAST</span>
+				<span className={styles.labelMobile}>2 DAY FORECAST</span>
 			</div>
 
 			<div className={styles.columns}>

@@ -1,13 +1,13 @@
 .app {
 	width: 100vw;
-	height: 80vh;
+	height: calc(100% - 6rem);
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
 	background: linear-gradient(160deg, #72bde8 0%, #4a9ad0 50%, #3a80bc 100%);
-	padding: 10vh 0;
+	padding: 3rem 0;
 
-	@media (max-width: 1023px) {
+	@media (max-width: 767px) {
 		height: 100dvh;
 		padding: 0;
 	}

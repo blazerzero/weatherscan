@@ -3,6 +3,8 @@ import clearNight from "@meteocons/lottie/fill/clear-night.json";
 import drizzle from "@meteocons/lottie/fill/drizzle.json";
 import fogDay from "@meteocons/lottie/fill/fog-day.json";
 import fogNight from "@meteocons/lottie/fill/fog-night.json";
+import mostlyClearDay from "@meteocons/lottie/fill/mostly-clear-day.json";
+import mostlyClearNight from "@meteocons/lottie/fill/mostly-clear-night.json";
 import overcast from "@meteocons/lottie/fill/overcast.json";
 import overcastDayDrizzle from "@meteocons/lottie/fill/overcast-day-drizzle.json";
 import overcastNightDrizzle from "@meteocons/lottie/fill/overcast-night-drizzle.json";
@@ -31,26 +33,53 @@ interface Props {
 }
 
 function getIcon(code: number, isDay: boolean): object {
-	const d = isDay ? "day" : "night";
-
-	if (code === 0) return d === "night" ? clearNight : clearDay;
-	if (code <= 2) return d === "night" ? partlyCloudyNight : partlyCloudyDay;
-	if (code === 3) return overcast;
-	if (code === 45 || code === 48) return d === "night" ? fogNight : fogDay;
-	if (code >= 51 && code <= 55) return drizzle;
-	if (code >= 56 && code <= 57)
-		return d === "night" ? overcastNightDrizzle : overcastDayDrizzle;
-	if (code >= 61 && code <= 65) return rain;
-	if (code >= 66 && code <= 67) return sleet;
-	if (code >= 71 && code <= 77) return snow;
-	if (code >= 80 && code <= 82)
-		return d === "night" ? partlyCloudyNightRain : partlyCloudyDayRain;
-	if (code >= 85 && code <= 86)
-		return d === "night" ? partlyCloudyNightSnow : partlyCloudyDaySnow;
-	if (code === 95) return d === "night" ? thunderstormsNight : thunderstormsDay;
-	if (code >= 96)
-		return d === "night" ? thunderstormsExtremeNight : thunderstormsExtremeDay;
-	return d === "night" ? clearNight : clearDay;
+	const night = !isDay;
+	switch (code) {
+		case 0:
+			return night ? clearNight : clearDay;
+		case 1:
+			return night ? mostlyClearNight : mostlyClearDay;
+		case 2:
+			return night ? partlyCloudyNight : partlyCloudyDay;
+		case 3:
+			return overcast;
+		case 45:
+		case 48:
+			return night ? fogNight : fogDay;
+		case 51:
+		case 53:
+		case 55:
+			return drizzle;
+		case 56:
+		case 57:
+			return night ? overcastNightDrizzle : overcastDayDrizzle;
+		case 61:
+		case 63:
+		case 65:
+			return rain;
+		case 66:
+		case 67:
+			return sleet;
+		case 71:
+		case 85:
+			return night ? partlyCloudyNightSnow : partlyCloudyDaySnow;
+		case 73:
+		case 77:
+		case 75:
+		case 86:
+			return snow;
+		case 80:
+		case 81:
+		case 82:
+			return night ? partlyCloudyNightRain : partlyCloudyDayRain;
+		case 95:
+			return night ? thunderstormsNight : thunderstormsDay;
+		case 96:
+		case 99:
+			return night ? thunderstormsExtremeNight : thunderstormsExtremeDay;
+		default:
+			return night ? clearNight : clearDay;
+	}
 }
 
 export function WeatherIcon({

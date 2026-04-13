@@ -10,31 +10,54 @@ const BASE = "https://api.open-meteo.com/v1";
 const GEO_BASE = "https://geocoding-api.open-meteo.com/v1";
 
 // WMO Weather Interpretation Codes → human-readable label
-export function wmoLabel(code: number, isDay: boolean): string {
-	if (code === 0) return isDay ? "Clear" : "Clear";
-	if (code === 1) return "Mostly Clear";
-	if (code === 2) return "Partly Cloudy";
-	if (code === 3) return "Overcast";
-	if (code === 45 || code === 48) return "Foggy";
-	if (code === 51) return "Light Drizzle";
-	if (code === 53) return "Drizzle";
-	if (code === 55) return "Heavy Drizzle";
-	if (code === 56 || code === 57) return "Freezing Drizzle";
-	if (code === 61) return "Light Rain";
-	if (code === 63) return "Rain";
-	if (code === 65) return "Heavy Rain";
-	if (code === 66 || code === 67) return "Freezing Rain";
-	if (code === 71) return "Light Snow";
-	if (code === 73) return "Snow";
-	if (code === 75) return "Heavy Snow";
-	if (code === 77) return "Snow Grains";
-	if (code === 80) return "Light Showers";
-	if (code === 81) return "Showers";
-	if (code === 82) return "Heavy Showers";
-	if (code === 85 || code === 86) return "Snow Showers";
-	if (code === 95) return "Thunderstorm";
-	if (code === 96 || code === 99) return "Severe Thunderstorm";
-	return "Unknown";
+export function wmoLabel(code: number): string {
+	switch (code) {
+		case 0:
+			return "Clear";
+		case 1:
+			return "Mostly Sunny";
+		case 2:
+			return "Partly Cloudy";
+		case 3:
+			return "Cloudy";
+		case 45:
+		case 48:
+			return "Fog";
+		case 51:
+		case 53:
+		case 55:
+			return "Drizzle";
+		case 56:
+		case 57:
+			return "Freezing Drizzle";
+		case 66:
+		case 67:
+			return "Freezing Rain";
+		case 61:
+		case 63:
+		case 65:
+			return "Rain";
+		case 71:
+		case 85:
+			return "Snow Showers";
+		case 73:
+		case 77:
+			return "Snow";
+		case 75:
+		case 86:
+			return "Heavy Snow";
+		case 80:
+		case 81:
+		case 82:
+			return "Showers";
+		case 95:
+			return "Thunderstorms";
+		case 96:
+		case 99:
+			return "Severe Thunderstorms";
+		default:
+			return "Unknown";
+	}
 }
 
 export function degToCardinal(deg: number): string {
@@ -147,7 +170,7 @@ export async function fetchCurrentAndForecast(coords: Coordinates): Promise<{
 		pressureInHg: hpaToInHg(c.surface_pressure),
 		uvIndex: Math.round(c.uv_index),
 		conditionCode: c.weather_code,
-		conditionLabel: wmoLabel(c.weather_code, isDay),
+		conditionLabel: wmoLabel(c.weather_code),
 		isDay,
 		observedAt: toUtc(c.time),
 	};
@@ -156,20 +179,19 @@ export async function fetchCurrentAndForecast(coords: Coordinates): Promise<{
 		time: toUtc(t),
 		tempF: cToF(data.hourly.temperature_2m[i] ?? 0),
 		conditionCode: data.hourly.weather_code[i] ?? 0,
-		conditionLabel: wmoLabel(
-			data.hourly.weather_code[i] ?? 0,
-			(data.hourly.is_day[i] ?? 1) === 1,
-		),
+		conditionLabel: wmoLabel(data.hourly.weather_code[i] ?? 0),
 		precipChancePct: data.hourly.precipitation_probability[i] ?? 0,
 		isDay: (data.hourly.is_day[i] ?? 1) === 1,
 	}));
+
+	console.log(data.daily);
 
 	const daily: DailyForecast[] = data.daily.time.map((t, i) => ({
 		date: new Date(t + "T12:00:00Z"),
 		highF: cToF(data.daily.temperature_2m_max[i] ?? 0),
 		lowF: cToF(data.daily.temperature_2m_min[i] ?? 0),
 		conditionCode: data.daily.weather_code[i] ?? 0,
-		conditionLabel: wmoLabel(data.daily.weather_code[i] ?? 0, true),
+		conditionLabel: wmoLabel(data.daily.weather_code[i] ?? 0),
 		precipChancePct: data.daily.precipitation_probability_max[i] ?? 0,
 		sunrise: toUtc(data.daily.sunrise[i] ?? t + "T06:00:00"),
 		sunset: toUtc(data.daily.sunset[i] ?? t + "T18:00:00"),
