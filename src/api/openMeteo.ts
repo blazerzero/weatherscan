@@ -19,7 +19,7 @@ export function wmoLabel(code: number): string {
 		case 2:
 			return "Partly Cloudy";
 		case 3:
-			return "Overcast";
+			return "Cloudy";
 		case 45:
 		case 48:
 			return "Foggy";

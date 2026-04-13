@@ -81,7 +81,7 @@ describe("wmoLabel", () => {
 		it("code 1 → Mostly Clear", () => expect(wmoLabel(1)).toBe("Mostly Clear"));
 		it("code 2 → Partly Cloudy", () =>
 			expect(wmoLabel(2)).toBe("Partly Cloudy"));
-		it("code 3 → Overcast", () => expect(wmoLabel(3)).toBe("Overcast"));
+		it("code 3 → Cloudy", () => expect(wmoLabel(3)).toBe("Cloudy"));
 	});
 
 	describe("fog", () => {
